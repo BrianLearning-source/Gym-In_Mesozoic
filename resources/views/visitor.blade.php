@@ -10,7 +10,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-black">
+<body class="bg-black md:mx-44">
     <!-- Header -->
     <div class="sticky top-0 bg-black w-full">
         <div class="flex items-center justify-between h-14 px-6">
@@ -62,8 +62,8 @@
     </div>
 
     <!-- Kepadatan Gym showcase -->
-    <div class="flex flex-col justify-center items-center pt-16 px-10">
-        <div>
+    <div class="flex flex-col pt-16 px-10">
+        <div class="flex flex-col">
             <h1 class="text-2xl text-white text-left font-bold" style="text-shadow: 0px 5px 10px rgba(255, 255, 255, 0.4)">
                 Khawatir Penuh? <br>
                 Sumpek?
@@ -82,9 +82,9 @@
             keluar dari gym!</p>
     </div>
 
-    <!-- Kepadatan Gym showcase -->
-    <div class="flex flex-col justify-center items-end pt-16 px-10">
-        <div>
+    <!-- Perkembangan Gym showcase -->
+    <div class="flex flex-col pt-16 px-10">
+        <div class="flex flex-col justify-end items-end">
             <h1 class="text-2xl text-white text-right font-bold" style="text-shadow: 0px 5px 10px rgba(255, 255, 255, 0.4)">
                 Pantau Perkembanganmu!
             </h1>
@@ -97,7 +97,7 @@
             <div style="height: 308px; background: #ffffff;"></div>
         </div>
 
-        <p class="text-white text-right pt-3 opacity-80">Tunjukkanlah hasil kerja kerasmu yang sudah kamu peroleh!</p>
+        <p class="text-white text-right pt-3 opacity-80 flex flex-col justify-end items-end">Tunjukkanlah hasil kerja kerasmu yang sudah kamu peroleh!</p>
     </div>
 
     <!-- Tunggu apalagi ? -->

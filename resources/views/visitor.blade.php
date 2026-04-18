@@ -16,7 +16,7 @@
     </style>
 </head>
 
-<body class="bg-black md:mx-44">
+<body class="bg-black md:mx-11">
     <!-- Header -->
     <div class="sticky top-0 bg-black w-full">
         <div class="flex items-center justify-between h-14 px-6">

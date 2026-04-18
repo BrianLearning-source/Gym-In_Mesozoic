@@ -21,7 +21,9 @@
     <div class="sticky top-0 bg-black w-full">
         <div class="flex items-center justify-between h-14 px-6">
             <h1 class="text-2xl font-bold text-white">Gym-In</h1>
-            <div class="bg-white w-8 h-8 rounded-full"></div>
+            <a href="/login/">
+                <div class="bg-white w-8 h-8 rounded-full"></div>
+            </a>
         </div>
     </div>
     <!-- End Header -->

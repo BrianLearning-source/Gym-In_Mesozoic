@@ -8,6 +8,12 @@
     <title>Gym-In</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .header-glow {
+            text-shadow: 0px 5px 10px rgba(255, 255, 255, 0.4);
+        }
+    </style>
 </head>
 
 <body class="bg-black md:mx-44">
@@ -23,7 +29,7 @@
     <!-- Gym-In introduction text -->
     <div class="pt-[50vh] flex flex-col px-10 pb-20">
         <div class="flex flex-col">
-            <h1 class="text-2xl font-bold text-white text-left" style="text-shadow: 0px 5px 10px rgba(255, 255, 255, 0.4)">Gym-In</h1>
+            <h1 class="text-2xl font-bold text-white text-left header-glow">Gym-In</h1>
             <p class="text-white text-left pt-3">
                 Tempat berolahraga dimana anda bisa memantau perkembangan anda, melihat kepadatan gym, serta memberi
                 anda motivasi untuk berolahraga rutin dengan adanya fitur Streak langsung dari situs web aplikasi kami!
@@ -43,7 +49,7 @@
     <!-- Streak and Reward showcase -->
     <div class="flex flex-col justify-center items-center pt-16 px-10">
         <div>
-            <h1 class="text-2xl text-white text-center font-bold" style="text-shadow: 0px 5px 10px rgba(255, 255, 255, 0.4)">
+            <h1 class="text-2xl text-white text-center font-bold header-glow">
                 Tetap Semangat! <br>
                 Tetap Konsisten!
             </h1>
@@ -64,7 +70,7 @@
     <!-- Kepadatan Gym showcase -->
     <div class="flex flex-col pt-16 px-10">
         <div class="flex flex-col">
-            <h1 class="text-2xl text-white text-left font-bold" style="text-shadow: 0px 5px 10px rgba(255, 255, 255, 0.4)">
+            <h1 class="text-2xl text-white text-left font-bold header-glow">
                 Khawatir Penuh? <br>
                 Sumpek?
             </h1>
@@ -85,7 +91,7 @@
     <!-- Perkembangan Gym showcase -->
     <div class="flex flex-col pt-16 px-10">
         <div class="flex flex-col justify-end items-end">
-            <h1 class="text-2xl text-white text-right font-bold" style="text-shadow: 0px 5px 10px rgba(255, 255, 255, 0.4)">
+            <h1 class="text-2xl text-white text-right font-bold header-glow">
                 Pantau Perkembanganmu!
             </h1>
             <p class="text-white text-right pt-3 opacity-80">Catat dan lihat seberapa pesat perjalananmu!</p>
@@ -104,7 +110,7 @@
     <div class="flex flex-col justify-center items-center py-16 px-10">
         <div
             class="flex flex-col justify-center items-center py-7 px-10 bg-white bg-opacity-20 backdrop-blur-3xl rounded-3xl">
-            <h1 class="text-2xl text-white text-center font-bold" style="text-shadow: 0px 5px 10px rgba(255, 255, 255, 0.4)">
+            <h1 class="text-2xl text-white text-center font-bold header-glow">
                 Tunggu apalagi?
             </h1>
             <p class="text-white text-center pt-3 opacity-80">

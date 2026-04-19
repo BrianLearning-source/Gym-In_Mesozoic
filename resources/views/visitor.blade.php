@@ -116,7 +116,7 @@
     <!-- Header -->
     <div class="sticky top-0 bg-black bg-opacity-80 backdrop-blur-md w-full z-50 transition-all duration-300"
         id="header">
-        <div class="flex items-center justify-between h-14 px-6">
+        <div class="flex items-center justify-between h-14 px-6 md:mx-11">
             <h1 class="text-2xl font-bold text-white">Gym-In</h1>
             <a href="/login/">
                 <div class="bg-white w-8 h-8 rounded-full hover:scale-110 transition-transform duration-300"></div>
@@ -171,25 +171,27 @@
     </div>
 
     <!-- Kepadatan Gym showcase -->
-    <div class="section-bg flex flex-col py-16 px-10 md:mx-11 fade-section" id="density">
+    <div class="section-bg flex flex-col py-16 px-10 fade-section" id="density">
         <div class="bg-image bg-density"></div>
-        <div class="flex flex-col relative z-10">
-            <h1 class="text-2xl text-white text-left font-bold header-glow">
+        <div class="md:mx-11">
+            <div class="flex flex-col relative z-10">
+                <h1 class="text-2xl text-white text-left font-bold header-glow">
                 Khawatir Penuh? <br>
                 Sumpek?
-            </h1>
-            <p class="text-white text-left pt-3 opacity-80">Cek kepadatan gym secara langsung di laman utama aplikasi!
-            </p>
-        </div>
+                </h1>
+                <p class="text-white text-left pt-3 opacity-80">Cek kepadatan gym secara langsung di laman utama aplikasi!
+                </p>
+            </div>
 
-        <div class="flex flex-row justify-between items-center pt-7">
-            {{-- <img src="" alt="" height="308px">
-            <img src="" alt="" height="308px"> --}}
-            <div style="height: 308px; background: #ffffff;"></div>
-        </div>
+            <div class="flex flex-row justify-between items-center pt-7">
+                {{-- <img src="" alt="" height="308px">
+                <img src="" alt="" height="308px"> --}}
+                <div style="height: 308px; background: #ffffff;"></div>
+            </div>
 
-        <p class="text-white text-left pt-3 opacity-80">Kepadatan gym akan diperbarui setiap kali anggota datang dan
-            keluar dari gym!</p>
+            <p class="text-white text-left pt-3 opacity-80">Kepadatan gym akan diperbarui setiap kali anggota datang dan
+                keluar dari gym!</p>
+        </div>
     </div>
 
     <!-- Perkembangan Gym showcase -->
@@ -212,9 +214,9 @@
     </div>
 
     <!-- Tunggu apalagi ? -->
-    <div class="section-bg flex flex-col justify-center items-center py-16 px-10 md:mx-11 fade-section " id=gabung>
+    <div class="section-bg flex flex-col justify-center items-center py-16 px-10 fade-section " id=gabung>
         <div class="bg-image bg-gabung"></div>
-        <div class="flex flex-col relative z-10">
+        <div class="flex flex-col relative z-10 md:mx-11">
             <div
                 class="flex flex-col justify-center items-center py-7 px-10 bg-white bg-opacity-20 backdrop-blur-sm rounded-3xl">
                 <h1 class="text-2xl text-white text-center font-bold header-glow">

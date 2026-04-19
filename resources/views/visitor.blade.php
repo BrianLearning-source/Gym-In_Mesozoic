@@ -48,15 +48,15 @@
     
     /* Individual background images for each section */
     .bg-intro {
-        background-image: url("https://images.pexels.com/photos/3839058/pexels-photo-3839058.jpeg");
+        background-image: url("https://images.pexels.com/photos/3839058/pexels-photo-3839058.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
     }
     
     .bg-density {
-        background-image: url("https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg");
+        background-image: url("https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
     }
 
     .bg-gabung {
-        background-image: url("https://images.pexels.com/photos/4761779/pexels-photo-4761779.jpeg");
+        background-image: url("https://images.pexels.com/photos/4761779/pexels-photo-4761779.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
     }
     
     /* Fade-in animation for sections */
@@ -133,7 +133,7 @@
             </p>
         </div>
 
-        <button class="mt-8 bg-white text-black font-bold uppercase py-3 px-6 rounded-lg w-fit">
+        <button class="mt-8 bg-white text-black font-bold uppercase py-3 px-6 rounded-lg w-fit hover:scale-110">
             MARI BERGABUNG
         </button>
 
@@ -144,7 +144,7 @@
     </div>
 
     <!-- Streak and Reward showcase -->
-    <div class="flex flex-col justify-center items-center pt-16 px-10">
+    <div class="flex flex-col justify-center items-center py-16 px-10">
         <div>
             <h1 class="text-2xl text-white text-center font-bold header-glow">
                 Tetap Semangat! <br>
@@ -165,7 +165,7 @@
     </div>
 
     <!-- Kepadatan Gym showcase -->
-    <div class="section-bg flex flex-col pt-16 px-10 fade-section" id="density">
+    <div class="section-bg flex flex-col py-16 px-10 fade-section" id="density">
         <div class="bg-image bg-density"></div>
         <div class="flex flex-col relative z-10">
             <h1 class="text-2xl text-white text-left font-bold header-glow">
@@ -187,7 +187,7 @@
     </div>
 
     <!-- Perkembangan Gym showcase -->
-    <div class="flex flex-col pt-16 px-10">
+    <div class="flex flex-col py-16 px-10">
         <div class="flex flex-col justify-end items-end">
             <h1 class="text-2xl text-white text-right font-bold header-glow">
                 Pantau Perkembanganmu!
@@ -209,7 +209,7 @@
         <div class="bg-image bg-gabung"></div>
         <div class="flex flex-col relative z-10">
         <div
-            class="flex flex-col justify-center items-center py-7 px-10 bg-white bg-opacity-20 backdrop-blur-3xl rounded-3xl">
+            class="flex flex-col justify-center items-center py-7 px-10 bg-white bg-opacity-20 backdrop-blur-sm rounded-3xl">
             <h1 class="text-2xl text-white text-center font-bold header-glow">
                 Tunggu apalagi?
             </h1>
@@ -222,7 +222,7 @@
                 Gym-In
             </h1>
 
-            <button class="mt-8 bg-white text-black font-bold uppercase py-3 px-6 rounded-lg w-fit">
+            <button class="mt-8 bg-white text-black font-bold uppercase py-3 px-6 rounded-lg w-fit hover:scale-110">
                 MARI BERGABUNG
             </button>
         </div>
@@ -266,10 +266,10 @@
         let header = document.getElementById('header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 100) {
-                header.classList.add('bg-opacity-95');
+                header.classList.add('bg-opacity-65');
                 header.style.backdropFilter = 'blur(12px)';
             } else {
-                header.classList.remove('bg-opacity-95');
+                header.classList.remove('bg-opacity-65');
                 header.style.backdropFilter = 'blur(8px)';
             }
         });

@@ -36,13 +36,21 @@
     <h1 class="text-6xl font-bold text-white text-center header-glow mt-12">Gym-In</h1>
 
     <div class="flex flex-col justify-center items-center mt-20 px-10">
+
+        <!-- Login Note -->
         <p class="text-white text-1xl text-center py-3 drop-shadow-2xl">
             Untuk membuat akun, anda harus menjadi anggota gym.
             Anda bisa mengisi formulir yang berada di halaman utama
             atau daftar ke gym.
         </p>
+
+        <!-- Back Button -->
+        <a href="/" class="text-white font-semibold w-full text-left hover:underline hover:scale-105 transform transition duration-300">
+            ← Kembali
+        </a>
+        <!-- Login Form -->
         <div
-            class="flex flex-col justify-center items-center backdrop-blur-sm drop-shadow-2xl bg-white bg-opacity-20 rounded-3xl w-fit h-fit mt-6">
+            class="flex flex-col justify-center items-center backdrop-blur-sm drop-shadow-2xl bg-white bg-opacity-20 rounded-3xl w-fit h-fit mt-3.5">
             <div class=" m-11">
                 <h1 class="text-2xl font-bold text-white text-center header-glow uppercase">Login</h1>
 
@@ -51,7 +59,7 @@
                         class="bg-white bg-opacity-20 text-white placeholder:text-white placeholder:opacity-75 border border-white border-opacity-50 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-white">
                     <input type="password" placeholder="Password"
                         class="bg-white bg-opacity-20 text-white placeholder:text-white placeholder:opacity-75 border border-white border-opacity-50 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-white">
-                    <button type="submit" class=" text-white font-bold uppercase py-3 px-6 rounded-lg w-full"
+                    <button type="submit" class=" text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
                         style="background-color: rgba(77, 145, 132)">Login</button>
                 </form>
             </div>
@@ -62,7 +70,7 @@
                 Jika terdapat kendala seperti lupa kata sandi, mohon
                 kontak kami di
             </p>
-            <p class="text-green-400 text-1xl text-center drop-shadow-2xl">+62 767-6767-6767</p>
+            <p class="text-green-400 text-1xl text-center drop-shadow-2xl hover:underline">+62 767-6767-6767</p>
         </div>
     </div>
 </body>

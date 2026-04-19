@@ -17,7 +17,7 @@
         .bg-image {
             position: absolute;
             inset: 0;
-            background-image: url("https://images.pexels.com/photos/4162449/pexels-photo-4162449.jpeg");
+            background-image: url("https://images.pexels.com/photos/4162449/pexels-photo-4162449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
             background-size: cover;
             background-position: center;
             opacity: 0.25;

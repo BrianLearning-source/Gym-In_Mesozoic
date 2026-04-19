@@ -13,10 +13,25 @@
         .header-glow {
             text-shadow: 0px 5px 10px rgba(255, 255, 255, 0.4);
         }
+
+        .bg-image {
+            position: absolute;
+            inset: 0;
+            background-image: url("https://images.pexels.com/photos/4162449/pexels-photo-4162449.jpeg");
+            background-size: cover;
+            background-position: center;
+            opacity: 0.25;
+        }
     </style>
 </head>
 
 <body class="bg-black md:mx-11">
+
+    <!-- Background Image -->
+    <div class="fixed inset-0 pointer-events-none" style="z-index: -2;">
+        <div class="bg-image"></div>
+    </div>
+    
     <!-- Title -->
     <h1 class="text-6xl font-bold text-white text-center header-glow mt-12">Gym-In</h1>
 
@@ -27,7 +42,7 @@
             atau daftar ke gym.
         </p>
         <div
-            class="flex flex-col justify-center items-center backdrop-blur-2xl drop-shadow-2xl bg-white bg-opacity-20 rounded-3xl w-fit h-fit mt-6">
+            class="flex flex-col justify-center items-center backdrop-blur-sm drop-shadow-2xl bg-white bg-opacity-20 rounded-3xl w-fit h-fit mt-6">
             <div class=" m-11">
                 <h1 class="text-2xl font-bold text-white text-center header-glow uppercase">Login</h1>
 

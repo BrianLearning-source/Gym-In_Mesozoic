@@ -1,0 +1,49 @@
+@startuml Gym-In Mesozoic
+!define Table(name,desc) class name as "desc" << (T,#FFAAAA) >>
+!define primary_key(x) <b>PK: x</b>
+!define foreign_key(x) <i>FK: x</i>
+
+hide methods
+hide stereotypes
+
+Table(m_rewards, "m_rewards)") {
+    primary_key(reward_id) : BIGINT
+    name : VARCHAR
+    points_required : INTEGER
+    stock : INTEGER
+    created_at : TIMESTAMP
+    updated_at : TIMESTAMP
+}
+
+Table(m_anggota, "m_anggota") {
+    primary_key(id) : BIGINT
+    name : VARCHAR
+    gender : ENUM('male', 'female')
+    email : VARCHAR (UNIQUE)
+    phone_number : VARCHAR (NULLABLE)
+    join_date : DATE
+    points : INTEGER
+    streak : INTEGER
+    highest_streak : INTEGER
+    created_at : TIMESTAMP
+    updated_at : TIMESTAMP
+}
+
+Table(m_perkembangan, "m_perkembangan") {
+    primary_key(perkembangan_id) : BIGINT
+    foreign_key(anggota_id) : BIGINT
+    date : DATE (NULLABLE)
+    start_time : TIME (NULLABLE)
+    end_time : TIME (NULLABLE)
+    weight : INTEGER (NULLABLE)
+    height : INTEGER (NULLABLE)
+    calory_burned : INTEGER (NULLABLE)
+    diary : VARCHAR (NULLABLE)
+    created_at : TIMESTAMP
+    updated_at : TIMESTAMP
+}
+
+' Relationships
+m_anggota "1" -- "0..*" m_perkembangan : tracks progress >
+
+@enduml

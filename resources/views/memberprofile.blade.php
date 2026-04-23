@@ -42,14 +42,14 @@
 
     <!-- Main Container -->
     <div class="flex flex-col items-center justify-center px-4 py-8 md:px-10">
-        
+
         <!-- Title -->
         <h1 class="mt-6 text-6xl font-bold text-center text-white md:mt-12 header-glow">GYM-IN</h1>
 
         <!-- Back Button -->
         <div class="w-full max-w-6xl mt-8">
-            <a href="/member" 
-               class="text-white font-semibold hover:underline hover:scale-105 transform transition duration-300 inline-flex items-center gap-2">
+            <a href="/member"
+                class="text-white font-semibold hover:underline hover:scale-105 transform transition duration-300 inline-flex items-center gap-2">
                 <span>←</span> Kembali
             </a>
         </div>
@@ -57,79 +57,57 @@
         <!-- Profile Header Section -->
         <div class="relative w-full max-w-6xl mt-6">
             <!-- Profile Banner -->
-            <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-800/50 to-teal-800/50 backdrop-blur-sm">
+            <div
+                class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-800/50 to-teal-800/50 backdrop-blur-sm">
                 <!-- Profile Cover Image Placeholder -->
-                <div class="h-32 md:h-48 bg-gradient-to-r from-emerald-900/30 to-teal-900/30"></div>
-                
+                {{-- <div class="h-32 md:h-48 bg-gradient-to-r from-emerald-900/30 to-teal-900/30"></div> --}}
+
                 <!-- Profile Info -->
-                <div class="relative px-6 pb-6">
+                <div class="relative px-6 py-6 flex flex-col justify-center items-center">
                     <!-- Avatar -->
-                    <div class="absolute -top-12 right-6">
-                        <div class="w-24 h-24 rounded-full border-4 border-emerald-500 overflow-hidden bg-gradient-to-br from-emerald-600 to-teal-600 shadow-xl">
-                            <img src="https://ui-avatars.com/api/?name=Grand+Regentt+Brian&background=0D9488&color=fff&size=96" 
-                                 alt="Profile" 
-                                 class="w-full h-full object-cover">
-                        </div>
+                    <div
+                        class="w-24 h-24 rounded-full border-4 border-emerald-500 overflow-hidden bg-gradient-to-br from-emerald-600 to-teal-600 shadow-xl">
+                        <img src="https://pbs.twimg.com/media/E8YT2mbVcAIA5vv?format=jpg&name=small"
+                            alt="Profile" class="w-full h-full object-cover">
                     </div>
-                    
+
                     <!-- Name and Title -->
-                    <div class="mt-14 ml-2">
-                        <h2 class="text-2xl font-bold text-white md:text-3xl">Grand Regentt Brian</h2>
-                        <p class="text-emerald-400">The Veteran Bodybuilder</p>
+                    <div class="mx-2 my-4 flex flex-col justify-center items-center">
+                        <h2 class="text-2xl font-bold text-white md:text-3xl text-center">Grand Regentt Brian</h2>
+                        <p class="text-emerald-400 text-center">The Veteran Bodybuilder</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Stats Grid 1 -->
-        <div class="grid w-full max-w-6xl grid-cols-1 gap-4 mt-8 md:grid-cols-3">
+        <div class="w-full max-w-6xl gap-4 mt-8 flex flex-row flex-wrap justify-center items-center">
             <!-- Card 1 -->
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
+            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
                 <p class="text-2xl font-bold text-white md:text-3xl">6/7/1991</p>
                 <p class="mt-2 text-sm text-gray-300">Tanggal bergabung</p>
             </div>
-            
+
             <!-- Card 2 -->
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
+            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
                 <p class="text-2xl font-bold text-white md:text-3xl">670 Hari</p>
                 <p class="mt-2 text-sm text-gray-300">Streak tertinggi</p>
             </div>
-            
+
             <!-- Card 3 -->
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
+            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
                 <p class="text-2xl font-bold text-white md:text-3xl">4020 Jam</p>
                 <p class="mt-2 text-sm text-gray-300">Total waktu latihan</p>
             </div>
         </div>
 
-        <!-- Stats Grid 2 -->
-        <div class="grid w-full max-w-6xl grid-cols-1 gap-4 mt-4 md:grid-cols-3">
-            <!-- Card 4 -->
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
-                <p class="text-2xl font-bold text-white md:text-3xl">6 jam</p>
-                <p class="mt-2 text-sm text-gray-300">Latihan hari ini</p>
-            </div>
-            
-            <!-- Card 5 -->
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
-                <p class="text-2xl font-bold text-white md:text-3xl">67 Hari</p>
-                <p class="mt-2 text-sm text-gray-300">Streak saat ini</p>
-            </div>
-            
-            <!-- Card 6 -->
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
-                <p class="text-2xl font-bold text-white md:text-3xl">6700</p>
-                <p class="mt-2 text-sm text-gray-300">Poin streak</p>
-            </div>
-        </div>
-
         <!-- Data Anggota & Stat Anggota Section -->
         <div class="grid w-full max-w-6xl grid-cols-1 gap-6 mt-8 lg:grid-cols-2">
-            
+
             <!-- Data Anggota Card -->
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
                 <h3 class="mb-6 text-xl font-bold text-white">Data Anggota</h3>
-                
+
                 <div class="space-y-4">
                     <div class="flex justify-between items-center pb-3 border-b border-white/20">
                         <span class="text-gray-300">Gender</span>
@@ -149,7 +127,7 @@
             <!-- Stat Anggota Card -->
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
                 <h3 class="mb-6 text-xl font-bold text-white">Stat Anggota</h3>
-                
+
                 <div class="space-y-4">
                     <div class="flex justify-between items-center pb-3 border-b border-white/20">
                         <span class="text-gray-300">Berat Badan</span>
@@ -163,34 +141,55 @@
             </div>
         </div>
 
+        <!-- Stats Grid 2 -->
+        <div class="w-full max-w-6xl gap-4 mt-4 flex flex-row flex-wrap justify-center items-center">
+            <!-- Card 4 -->
+            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
+                <p class="text-2xl font-bold text-white md:text-3xl">6 jam</p>
+                <p class="mt-2 text-sm text-gray-300">Latihan hari ini</p>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
+                <p class="text-2xl font-bold text-white md:text-3xl">67 Hari</p>
+                <p class="mt-2 text-sm text-gray-300">Streak saat ini</p>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
+                <p class="text-2xl font-bold text-white md:text-3xl">6700</p>
+                <p class="mt-2 text-sm text-gray-300">Poin streak</p>
+            </div>
+        </div>
+
         <!-- Personalisasi Section - Updated with Buttons -->
         <div class="w-full max-w-6xl mt-8">
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
                 <h3 class="mb-6 text-xl font-bold text-white">Personalisasi</h3>
-                
+
                 <!-- Buttons Container -->
                 <div class="flex flex-col gap-4">
-                    <button type="button" 
-                            class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
-                            style="background-color: rgba(77, 145, 132)">
+                    <button type="button"
+                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
+                        style="background-color: rgba(77, 145, 132)">
                         Edit Profil
                     </button>
-                    
-                    <button type="button" 
-                            class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
-                            style="background-color: rgba(77, 145, 132)">
+
+                    <button type="button"
+                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
+                        style="background-color: rgba(77, 145, 132)">
                         Ubah Password
                     </button>
-                    
-                    <button type="button" 
-                            class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
-                            style="background-color: rgba(77, 145, 132)">
+
+                    <button type="button"
+                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
+                        style="background-color: rgba(77, 145, 132)">
                         Pengaturan Notifikasi
                     </button>
-                    
-                    <button type="button" 
-                            class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
-                            style="background-color: rgba(77, 145, 132)">
+
+                    <button type="button"
+                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
+                        style="background-color: rgba(77, 145, 132)">
                         Preferensi Latihan
                     </button>
                 </div>

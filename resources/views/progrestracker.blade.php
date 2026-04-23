@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Workout History - GYM-IN</title>
 
@@ -15,21 +15,21 @@
         }
 
         .bg-image {
-            position: fixed;
+            position: absolute;
             inset: 0;
             background-image: url("https://images.pexels.com/photos/4162449/pexels-photo-4162449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
             background-size: cover;
             background-position: center;
             opacity: 0.25;
-            z-index: -2;
         }
 
         .stat-card {
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .stat-card:hover {
             transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.15);
         }
 
         .history-row {
@@ -39,140 +39,141 @@
         .history-row:hover {
             background-color: rgba(255, 255, 255, 0.05);
         }
-
-        .day-active {
-            background-color: rgba(196, 214, 176, 0.3);
-            border-radius: 8px;
-        }
     </style>
 </head>
 
-<body class="bg-black">
+<body class="bg-black md:mx-11">
 
     <!-- Background Image -->
-    <div class="bg-image"></div>
+    <div class="fixed inset-0 pointer-events-none" style="z-index: -2;">
+        <div class="bg-image"></div>
+    </div>
 
-    <!-- Main Container - Mobile First -->
-    <div class="flex flex-col px-4 py-6 pb-24 max-w-md mx-auto">
+    <!-- Main Container -->
+    <div class="flex flex-col items-center justify-center px-4 py-8 md:px-10">
         
-        <!-- Header -->
-        <div class="mb-6">
-            <h1 class="text-4xl font-bold text-center text-white header-glow">GYM-IN</h1>
-        </div>
+        <!-- Title -->
+        <h1 class="mt-6 text-6xl font-bold text-center text-white md:mt-12 header-glow">GYM-IN</h1>
 
         <!-- Back Button -->
-        <div class="mb-5">
+        <div class="w-full max-w-6xl mt-8">
             <a href="/member" 
-               class="text-white/80 text-sm hover:text-white inline-flex items-center gap-1">
+               class="text-white font-semibold hover:underline hover:scale-105 transform transition duration-300 inline-flex items-center gap-2">
                 <span>←</span> Kembali
             </a>
         </div>
 
         <!-- Page Title -->
-        <div class="mb-4">
-            <h2 class="text-xl font-bold text-white">Riwayat Latihan</h2>
-            <p class="text-xs text-gray-400 mt-1">Lihat perkembangan latihan Anda dari waktu ke waktu</p>
+        <div class="w-full max-w-6xl mt-6">
+            <div class="mb-2">
+                <h2 class="text-2xl font-bold text-white">Riwayat Latihan</h2>
+                <p class="text-sm text-gray-400 mt-1">Lihat perkembangan latihan Anda dari waktu ke waktu</p>
+            </div>
         </div>
 
         <!-- Weekly Calendar / Day Selector -->
-        <div class="mb-6">
-            <div class="flex justify-between gap-1">
-                <!-- Day 1 -->
-                <div class="flex-1 text-center py-2 rounded-lg bg-white/5">
-                    <p class="text-xs text-gray-400">Sen</p>
-                    <p class="text-sm font-semibold text-white">10</p>
-                </div>
-                <!-- Day 2 -->
-                <div class="flex-1 text-center py-2 rounded-lg bg-white/5">
-                    <p class="text-xs text-gray-400">Sel</p>
-                    <p class="text-sm font-semibold text-white">11</p>
-                </div>
-                <!-- Day 3 -->
-                <div class="flex-1 text-center py-2 rounded-lg bg-white/5">
-                    <p class="text-xs text-gray-400">Rab</p>
-                    <p class="text-sm font-semibold text-white">12</p>
-                </div>
-                <!-- Day 4 -->
-                <div class="flex-1 text-center py-2 rounded-lg bg-emerald-500/20 border border-emerald-500/30">
-                    <p class="text-xs text-emerald-400">Kam</p>
-                    <p class="text-sm font-semibold text-emerald-400">13</p>
-                </div>
-                <!-- Day 5 -->
-                <div class="flex-1 text-center py-2 rounded-lg bg-white/5">
-                    <p class="text-xs text-gray-400">Jum</p>
-                    <p class="text-sm font-semibold text-white">14</p>
-                </div>
-                <!-- Day 6 -->
-                <div class="flex-1 text-center py-2 rounded-lg bg-white/5">
-                    <p class="text-xs text-gray-400">Sab</p>
-                    <p class="text-sm font-semibold text-white">15</p>
-                </div>
-                <!-- Day 7 -->
-                <div class="flex-1 text-center py-2 rounded-lg bg-white/5">
-                    <p class="text-xs text-gray-400">Min</p>
-                    <p class="text-sm font-semibold text-white">16</p>
+        <div class="w-full max-w-6xl mt-4">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
+                <div class="flex justify-between gap-2">
+                    <!-- Day 1 -->
+                    <div class="flex-1 text-center py-3 rounded-lg bg-white/5">
+                        <p class="text-xs text-gray-400">Sen</p>
+                        <p class="text-sm font-semibold text-white">10</p>
+                    </div>
+                    <!-- Day 2 -->
+                    <div class="flex-1 text-center py-3 rounded-lg bg-white/5">
+                        <p class="text-xs text-gray-400">Sel</p>
+                        <p class="text-sm font-semibold text-white">11</p>
+                    </div>
+                    <!-- Day 3 -->
+                    <div class="flex-1 text-center py-3 rounded-lg bg-white/5">
+                        <p class="text-xs text-gray-400">Rab</p>
+                        <p class="text-sm font-semibold text-white">12</p>
+                    </div>
+                    <!-- Day 4 - Active -->
+                    <div class="flex-1 text-center py-3 rounded-lg bg-emerald-500/20 border border-emerald-500/30">
+                        <p class="text-xs text-emerald-400">Kam</p>
+                        <p class="text-sm font-semibold text-emerald-400">13</p>
+                    </div>
+                    <!-- Day 5 -->
+                    <div class="flex-1 text-center py-3 rounded-lg bg-white/5">
+                        <p class="text-xs text-gray-400">Jum</p>
+                        <p class="text-sm font-semibold text-white">14</p>
+                    </div>
+                    <!-- Day 6 -->
+                    <div class="flex-1 text-center py-3 rounded-lg bg-white/5">
+                        <p class="text-xs text-gray-400">Sab</p>
+                        <p class="text-sm font-semibold text-white">15</p>
+                    </div>
+                    <!-- Day 7 -->
+                    <div class="flex-1 text-center py-3 rounded-lg bg-white/5">
+                        <p class="text-xs text-gray-400">Min</p>
+                        <p class="text-sm font-semibold text-white">16</p>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Today's Workout Summary Card -->
-        <div class="mb-6">
-            <div class="p-4 rounded-2xl backdrop-blur-sm bg-white/10">
-                <div class="flex items-center justify-between mb-3">
-                    <h3 class="font-semibold text-white">Latihan Hari Ini</h3>
-                    <span class="text-xs text-emerald-400">Kamis, 13 Maret 2025</span>
+        <div class="w-full max-w-6xl mt-8">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-white">Latihan Hari Ini</h3>
+                    <span class="text-sm text-emerald-400">Kamis, 13 Maret 2025</span>
                 </div>
-                <div class="flex gap-4">
-                    <div class="flex-1 text-center">
-                        <p class="text-2xl font-bold text-emerald-400">18 j</p>
-                        <p class="text-xs text-gray-400">Durasi</p>
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+                    <div class="text-center">
+                        <p class="text-3xl font-bold text-emerald-400">18 j</p>
+                        <p class="text-sm text-gray-300">Durasi</p>
                     </div>
-                    <div class="flex-1 text-center">
-                        <p class="text-2xl font-bold text-orange-400">300</p>
-                        <p class="text-xs text-gray-400">Kkal</p>
+                    <div class="text-center">
+                        <p class="text-3xl font-bold text-orange-400">300</p>
+                        <p class="text-sm text-gray-300">Kkal</p>
                     </div>
-                    <div class="flex-1 text-center">
-                        <p class="text-2xl font-bold text-blue-400">90 kg</p>
-                        <p class="text-xs text-gray-400">Max Weight</p>
+                    <div class="text-center">
+                        <p class="text-3xl font-bold text-blue-400">90 kg</p>
+                        <p class="text-sm text-gray-300">Max Weight</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Weekly Stats Cards (3 columns horizontal) -->
-        <div class="mb-6">
-            <h3 class="mb-3 text-sm font-semibold text-white">Statistik Minggu Ini</h3>
-            <div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
-                <!-- Card 1 -->
-                <div class="stat-card flex-shrink-0 p-3 text-center rounded-xl backdrop-blur-sm bg-white/10 min-w-[110px]">
-                    <div class="text-xl font-bold text-emerald-400">67</div>
-                    <p class="text-xs text-gray-300">Total Latihan</p>
-                </div>
-                <!-- Card 2 -->
-                <div class="stat-card flex-shrink-0 p-3 text-center rounded-xl backdrop-blur-sm bg-white/10 min-w-[110px]">
-                    <div class="text-xl font-bold text-emerald-400">24 j</div>
-                    <p class="text-xs text-gray-300">Total Durasi</p>
-                </div>
-                <!-- Card 3 -->
-                <div class="stat-card flex-shrink-0 p-3 text-center rounded-xl backdrop-blur-sm bg-white/10 min-w-[110px]">
-                    <div class="text-xl font-bold text-emerald-400">1,850</div>
-                    <p class="text-xs text-gray-300">Total Kkal</p>
-                </div>
-                <!-- Card 4 -->
-                <div class="stat-card flex-shrink-0 p-3 text-center rounded-xl backdrop-blur-sm bg-white/10 min-w-[110px]">
-                    <div class="text-xl font-bold text-emerald-400">95 kg</div>
-                    <p class="text-xs text-gray-300">PR Week</p>
+        <!-- Weekly Stats Cards -->
+        <div class="w-full max-w-6xl mt-8">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
+                <h3 class="mb-4 text-lg font-semibold text-white">Statistik Minggu Ini</h3>
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                    <!-- Card 1 -->
+                    <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5">
+                        <div class="text-2xl font-bold text-emerald-400">67</div>
+                        <p class="text-sm text-gray-300">Total Latihan</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5">
+                        <div class="text-2xl font-bold text-emerald-400">24 j</div>
+                        <p class="text-sm text-gray-300">Total Durasi</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5">
+                        <div class="text-2xl font-bold text-emerald-400">1,850</div>
+                        <p class="text-sm text-gray-300">Total Kkal</p>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5">
+                        <div class="text-2xl font-bold text-emerald-400">95 kg</div>
+                        <p class="text-sm text-gray-300">PR Week</p>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Workout History Table -->
-        <div class="mb-6">
-            <h3 class="mb-3 text-sm font-semibold text-white">Riwayat Latihan Detail</h3>
-            
-            <div class="rounded-2xl backdrop-blur-sm bg-white/10 overflow-hidden">
+        <div class="w-full max-w-6xl mt-8">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
+                <h3 class="mb-4 text-lg font-semibold text-white">Riwayat Latihan Detail</h3>
+                
                 <!-- Table Header -->
-                <div class="grid grid-cols-5 gap-2 px-4 py-3 border-b border-white/10 text-xs font-semibold text-gray-400">
+                <div class="grid grid-cols-5 gap-2 px-4 py-3 mb-2 border-b border-white/10 text-sm font-semibold text-gray-400">
                     <div>Hari</div>
                     <div>Tanggal</div>
                     <div>Durasi</div>
@@ -208,7 +209,7 @@
                 </div>
                 
                 <!-- Row 4 - Thursday (Today - Highlighted) -->
-                <div class="history-row grid grid-cols-5 gap-2 px-4 py-3 bg-emerald-500/10 text-sm">
+                <div class="history-row grid grid-cols-5 gap-2 px-4 py-3 rounded-lg bg-emerald-500/10 text-sm">
                     <div class="text-emerald-400 font-semibold">Kamis</div>
                     <div class="text-emerald-400">13/03</div>
                     <div class="text-emerald-400">2.2 j</div>
@@ -217,7 +218,7 @@
                 </div>
                 
                 <!-- Row 5 - Friday -->
-                <div class="history-row grid grid-cols-5 gap-2 px-4 py-3 border-b border-white/5 text-sm">
+                <div class="history-row grid grid-cols-5 gap-2 px-4 py-3 border-t border-white/5 text-sm">
                     <div class="text-white">Jumat</div>
                     <div class="text-gray-300">14/03</div>
                     <div class="text-gray-400">-</div>
@@ -246,88 +247,78 @@
         </div>
 
         <!-- Progress Chart Section -->
-        <div class="mb-6">
-            <h3 class="mb-3 text-sm font-semibold text-white">Progres Berat Badan</h3>
-            
-            <div class="p-4 rounded-2xl backdrop-blur-sm bg-white/10">
-                <!-- Simple bar chart representation -->
-                <div class="flex items-end justify-between gap-2 h-32 mb-4">
+        <div class="w-full max-w-6xl mt-8">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
+                <h3 class="mb-4 text-lg font-semibold text-white">Progres Berat Badan</h3>
+                
+                <!-- Bar chart -->
+                <div class="flex items-end justify-between gap-2 h-40 mb-4">
                     <div class="flex-1 flex flex-col items-center">
-                        <div class="w-full bg-emerald-500 rounded-t-lg" style="height: 60px;"></div>
-                        <span class="text-xs text-gray-400 mt-2">85 kg</span>
+                        <div class="w-full bg-emerald-500 rounded-t-lg transition-all hover:bg-emerald-400" style="height: 60px;"></div>
+                        <span class="text-sm text-gray-400 mt-2">85 kg</span>
                         <span class="text-xs text-gray-500">Sen</span>
                     </div>
                     <div class="flex-1 flex flex-col items-center">
-                        <div class="w-full bg-emerald-500 rounded-t-lg" style="height: 70px;"></div>
-                        <span class="text-xs text-gray-400 mt-2">88 kg</span>
+                        <div class="w-full bg-emerald-500 rounded-t-lg transition-all hover:bg-emerald-400" style="height: 70px;"></div>
+                        <span class="text-sm text-gray-400 mt-2">88 kg</span>
                         <span class="text-xs text-gray-500">Sel</span>
                     </div>
                     <div class="flex-1 flex flex-col items-center">
-                        <div class="w-full bg-emerald-500 rounded-t-lg" style="height: 65px;"></div>
-                        <span class="text-xs text-gray-400 mt-2">87 kg</span>
+                        <div class="w-full bg-emerald-500 rounded-t-lg transition-all hover:bg-emerald-400" style="height: 65px;"></div>
+                        <span class="text-sm text-gray-400 mt-2">87 kg</span>
                         <span class="text-xs text-gray-500">Rab</span>
                     </div>
                     <div class="flex-1 flex flex-col items-center">
-                        <div class="w-full bg-emerald-400 rounded-t-lg" style="height: 75px;"></div>
-                        <span class="text-xs text-emerald-400 mt-2 font-semibold">90 kg</span>
+                        <div class="w-full bg-emerald-400 rounded-t-lg transition-all hover:bg-emerald-300" style="height: 75px;"></div>
+                        <span class="text-sm text-emerald-400 mt-2 font-semibold">90 kg</span>
                         <span class="text-xs text-gray-500">Kam</span>
                     </div>
                     <div class="flex-1 flex flex-col items-center">
                         <div class="w-full bg-white/20 rounded-t-lg" style="height: 0px;"></div>
-                        <span class="text-xs text-gray-500 mt-2">-</span>
+                        <span class="text-sm text-gray-500 mt-2">-</span>
                         <span class="text-xs text-gray-500">Jum</span>
                     </div>
                 </div>
                 
                 <!-- Legend -->
-                <div class="flex justify-center gap-4 mt-2 pt-3 border-t border-white/10">
-                    <div class="flex items-center gap-1">
+                <div class="flex justify-center gap-6 mt-4 pt-4 border-t border-white/10">
+                    <div class="flex items-center gap-2">
                         <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
-                        <span class="text-xs text-gray-400">Completed</span>
+                        <span class="text-sm text-gray-400">Completed</span>
                     </div>
-                    <div class="flex items-center gap-1">
+                    <div class="flex items-center gap-2">
                         <div class="w-3 h-3 rounded-full bg-white/20"></div>
-                        <span class="text-xs text-gray-400">Not yet</span>
+                        <span class="text-sm text-gray-400">Not yet</span>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Achievement Section -->
-        <div class="mb-6">
-            <div class="p-4 rounded-2xl backdrop-blur-sm bg-gradient-to-r from-emerald-900/30 to-teal-900/30">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-yellow-500/20 flex items-center justify-center">
-                        <span class="text-xl">🏆</span>
+        <div class="w-full max-w-6xl mt-8">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-gradient-to-r from-emerald-900/30 to-teal-900/30">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center">
+                        <span class="text-2xl">🏆</span>
                     </div>
                     <div>
-                        <p class="text-sm font-semibold text-white">Pencapaian Terbaru!</p>
-                        <p class="text-xs text-emerald-400">7 hari berturut-turut berolahraga</p>
+                        <p class="text-base font-semibold text-white">Pencapaian Terbaru!</p>
+                        <p class="text-sm text-emerald-400">7 hari berturut-turut berolahraga</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Contact Section -->
-        <div class="py-4 text-center">
-            <p class="text-sm text-white">
+        <div class="w-full max-w-6xl py-8 mt-4 text-center">
+            <p class="text-white drop-shadow-2xl">
                 Mengalami kendala? Kontak kami di:
             </p>
-            <p class="mt-1 text-emerald-400 hover:underline text-sm">
+            <p class="text-emerald-400 hover:underline text-1xl drop-shadow-2xl mt-2">
                 +62 767-6767-6767
             </p>
         </div>
     </div>
-
-    <style>
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-    </style>
 
     <?php
     // PHP Logic for dynamic data

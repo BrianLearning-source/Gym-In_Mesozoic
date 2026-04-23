@@ -55,7 +55,7 @@
         </div>
 
         <!-- Profile Header Section -->
-        <div class="relative w-full max-w-6xl mt-6">
+        <div class="relative w-full max-w-6xl my-6">
             <!-- Profile Banner -->
             <div
                 class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-800/50 to-teal-800/50 backdrop-blur-sm">

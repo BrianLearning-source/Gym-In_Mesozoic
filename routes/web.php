@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -8,9 +9,9 @@ Route::get('/', function () {
     return view('visitor');
 });
 
-Route::get('login', function () {
-    return view('memberlogin');
-});
+Route::get('/loginMember', [LoginController::class, 'CustomLogin']
+);
+
 Route::get('profile', function () {
     return view('memberprofile');
 });

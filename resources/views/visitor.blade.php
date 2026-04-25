@@ -118,7 +118,7 @@
         id="header">
         <div class="flex items-center justify-between h-14 px-6 md:mx-11">
             <h1 class="text-2xl font-bold text-white">Gym-In</h1>
-            <a href="/login/">
+            <a href="/loginMember/">
                 <div class="bg-white w-8 h-8 rounded-full hover:scale-110 transition-transform duration-300"></div>
             </a>
         </div>

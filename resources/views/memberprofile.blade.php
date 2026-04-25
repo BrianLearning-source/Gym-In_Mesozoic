@@ -48,7 +48,7 @@
 
         <!-- Back Button -->
         <div class="w-full max-w-6xl mt-8">
-            <a href="/member"
+            <a href="/memberdashboard"
                 class="text-white font-semibold hover:underline hover:scale-105 transform transition duration-300 inline-flex items-center gap-2">
                 <span>←</span> Kembali
             </a>
@@ -73,7 +73,7 @@
 
                     <!-- Name and Title -->
                     <div class="mx-2 my-4 flex flex-col justify-center items-center">
-                        <h2 class="text-2xl font-bold text-white md:text-3xl text-center">Grand Regentt Brian</h2>
+                        <h2 class="text-2xl font-bold text-white md:text-3xl text-center">{{ $anggota->name }}</h2>
                         <p class="text-emerald-400 text-center">The Veteran Bodybuilder</p>
                     </div>
                 </div>
@@ -84,19 +84,19 @@
         <div class="w-full max-w-6xl gap-4 mt-8 flex flex-row flex-wrap justify-center items-center">
             <!-- Card 1 -->
             <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
-                <p class="text-2xl font-bold text-white md:text-3xl">6/7/1991</p>
+                <p class="text-2xl font-bold text-white md:text-3xl">{{ $anggota->join_date->format('d/m/Y') }}</p>
                 <p class="mt-2 text-sm text-gray-300">Tanggal bergabung</p>
             </div>
 
             <!-- Card 2 -->
             <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
-                <p class="text-2xl font-bold text-white md:text-3xl">670 Hari</p>
+                <p class="text-2xl font-bold text-white md:text-3xl">{{ $anggota->highest_streak }} Hari</p>
                 <p class="mt-2 text-sm text-gray-300">Streak tertinggi</p>
             </div>
 
             <!-- Card 3 -->
             <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
-                <p class="text-2xl font-bold text-white md:text-3xl">4020 Jam</p>
+                <p class="text-2xl font-bold text-white md:text-3xl">{{ $anggota->total_training_time }} Jam</p>
                 <p class="mt-2 text-sm text-gray-300">Total waktu latihan</p>
             </div>
         </div>
@@ -111,15 +111,15 @@
                 <div class="space-y-4">
                     <div class="flex justify-between items-center pb-3 border-b border-white/20">
                         <span class="text-gray-300">Gender</span>
-                        <span class="font-semibold text-white">Laki-laki</span>
+                        <span class="font-semibold text-white">{{ $anggota->gender }}</span>
                     </div>
                     <div class="flex justify-between items-center pb-3 border-b border-white/20">
                         <span class="text-gray-300">Email</span>
-                        <span class="font-semibold text-white">brianserafino@gmail.com</span>
+                        <span class="font-semibold text-white">{{ $anggota->email }}</span>
                     </div>
                     <div class="flex justify-between items-center pb-3 border-b border-white/20">
                         <span class="text-gray-300">No. Telp</span>
-                        <span class="font-semibold text-white">+62 828-8282-8282</span>
+                        <span class="font-semibold text-white">{{ $anggota->phone_number }}</span>
                     </div>
                 </div>
             </div>

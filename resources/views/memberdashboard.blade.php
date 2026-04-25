@@ -76,7 +76,7 @@
 
         <!-- Welcome Section with Avatar -->
         <div class="flex items-center justify-between w-full max-w-6xl mt-8">
-            <h2 class="text-2xl font-bold text-white">Halo, Brian!</h2>
+            <h2 class="text-2xl text-left font-bold text-white pr-5">Halo, {{ $anggota->name }}!</h2>
             <!-- Avatar Circle -->
             <div class="w-14 h-14 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 shadow-lg flex items-center justify-center overflow-hidden border-2 border-white/20">
                 <span class="text-2xl text-white">👤</span>
@@ -89,11 +89,11 @@
                 <!-- Streak Section inside box -->
                 <div class="mb-6 text-center">
                     <p class="text-lg font-semibold text-white">
-                        Anda telah berolahraga selama <span class="text-emerald-400">67 hari</span> berturut-turut!
+                        Anda telah berolahraga selama <span class="text-emerald-400">{{ $anggota->streak }}</span> berturut-turut!
                     </p>
                     <div class="flex items-center justify-center gap-2 mt-2">
                         <span class="text-yellow-400 text-xl">🪙</span>
-                        <p class="text-white">Poin Streak anda: <span class="font-bold text-emerald-400">6700</span></p>
+                        <p class="text-white">Poin Streak anda: <span class="font-bold text-emerald-400">{{ $anggota->points }}</span></p>
                     </div>
                 </div>
 

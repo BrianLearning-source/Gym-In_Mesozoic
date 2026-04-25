@@ -21,4 +21,10 @@ class AnggotaController extends Controller
         return view('memberprofile', ['anggota' => $anggota]);
     }
 
+    public function rewards($id = 1)
+    {
+        $anggota = AnggotaModel::find($id); // Ganti dengan ID anggota yang ingin ditampilkan
+        return view('rewards', ['anggota' => $anggota]);
+    }
+
 }

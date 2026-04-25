@@ -15,9 +15,8 @@ Route::get('/loginMember', [LoginController::class, 'CustomLogin']
 
 Route::get('/profile', [AnggotaController::class, 'profile']);
 
-Route::get('rewards', function () {
-    return view('rewards');
-});
+Route::get('rewards', [AnggotaController::class, 'rewards']);
+
 Route::get('/memberdashboard', [AnggotaController::class, 'index']);
 
 Route::get('progres', function () {

@@ -89,7 +89,7 @@
                 <!-- Streak Section inside box -->
                 <div class="mb-6 text-center">
                     <p class="text-lg font-semibold text-white">
-                        Anda telah berolahraga selama <span class="text-emerald-400">{{ $anggota->streak }}</span> berturut-turut!
+                        Anda telah berolahraga selama <span class="text-emerald-400">{{ $anggota->streak }}</span> hari berturut-turut!
                     </p>
                     <div class="flex items-center justify-center gap-2 mt-2">
                         <span class="text-yellow-400 text-xl">🪙</span>

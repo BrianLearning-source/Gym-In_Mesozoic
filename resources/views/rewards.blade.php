@@ -58,7 +58,7 @@
 
         <!-- Back Button -->
         <div class="w-full max-w-6xl mt-8">
-            <a href="/member" 
+            <a href="/memberdashboard" 
                class="text-white font-semibold hover:underline hover:scale-105 transform transition duration-300 inline-flex items-center gap-2">
                 <span>←</span> Kembali
             </a>
@@ -70,7 +70,7 @@
                 <div class="flex flex-col md:flex-row justify-between items-center gap-4">
                     <div>
                         <p class="text-gray-300">Poin streak anda</p>
-                        <p class="text-3xl font-bold text-white">6700 Poin</p>
+                        <p class="text-3xl font-bold text-white">{{ $anggota->points }}</p>
                     </div>
                     <div class="text-right">
                         <p class="text-gray-300">Reward ini akan mengurangi</p>

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AnggotaController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -8,18 +10,15 @@ Route::get('/', function () {
     return view('visitor');
 });
 
-Route::get('login', function () {
-    return view('memberlogin');
-});
-Route::get('profile', function () {
-    return view('memberprofile');
-});
-Route::get('rewards', function () {
-    return view('rewards');
-});
-Route::get('member', function () {
-    return view('memberdashboard');
-});
+Route::get('/loginMember', [LoginController::class, 'CustomLogin']
+);
+
+Route::get('/profile', [AnggotaController::class, 'profile']);
+
+Route::get('rewards', [AnggotaController::class, 'rewards']);
+
+Route::get('/memberdashboard', [AnggotaController::class, 'index']);
+
 Route::get('progres', function () {
     return view('progrestracker');
 });

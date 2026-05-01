@@ -21,6 +21,8 @@ class UserResource extends Resource
     // protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack; 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::UserGroup;
 
+    protected static ?string $navigationLabel = 'Pengguna';
+
     protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Schema $schema): Schema
@@ -47,5 +49,10 @@ class UserResource extends Resource
             'create' => CreateUser::route('/create'),
             'edit' => EditUser::route('/{record}/edit'),
         ];
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Pengguna';
     }
 }

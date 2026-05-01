@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AnggotaSeeder::class,
             LevelSeeder::class,
+            PerkembanganSeeder::class,
         ]);
     }
 }

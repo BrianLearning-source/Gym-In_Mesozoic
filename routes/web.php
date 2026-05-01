@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PerkembanganController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,6 +20,4 @@ Route::get('rewards', [AnggotaController::class, 'rewards']);
 
 Route::get('/memberdashboard', [AnggotaController::class, 'index']);
 
-Route::get('progres', function () {
-    return view('progrestracker');
-});
+Route::get('/progres', [PerkembanganController::class, 'index']);

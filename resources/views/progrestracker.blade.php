@@ -57,7 +57,7 @@
 
         <!-- Back Button -->
         <div class="w-full max-w-6xl mt-8">
-            <a href="/member" 
+            <a href="/memberdashboard" 
                class="text-white font-semibold hover:underline hover:scale-105 transform transition duration-300 inline-flex items-center gap-2">
                 <span>←</span> Kembali
             </a>
@@ -119,19 +119,19 @@
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
                 <div class="flex items-center justify-between mb-4">
                     <h3 class="text-lg font-semibold text-white">Latihan Hari Ini</h3>
-                    <span class="text-sm text-emerald-400">Kamis, 13 Maret 2025</span>
+                    <span class="text-sm text-emerald-400">{{ $perkembangan->date->format('l, j F Y') ?? 'Tanggal tidak tersedia' }}</span>
                 </div>
-                <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+                <div class="flex flex-row flex-wrap items-center justify-center gap-8">
                     <div class="text-center">
-                        <p class="text-3xl font-bold text-emerald-400">18 j</p>
+                        <p class="text-3xl font-bold text-emerald-400">{{ $duration ? $duration->duration : 'Durasi tidak tersedia' }} jam</p>
                         <p class="text-sm text-gray-300">Durasi</p>
                     </div>
                     <div class="text-center">
-                        <p class="text-3xl font-bold text-orange-400">300</p>
-                        <p class="text-sm text-gray-300">Kkal</p>
+                        <p class="text-3xl font-bold text-orange-400">{{ $perkembangan->calory_burned ?? 'Kalori tidak tersedia' }} kkal</p>
+                        <p class="text-sm text-gray-300">Total kalori</p>
                     </div>
                     <div class="text-center">
-                        <p class="text-3xl font-bold text-blue-400">90 kg</p>
+                        <p class="text-3xl font-bold text-blue-400">{{ $perkembangan->weight ?? 'Berat tidak tersedia' }} kg</p>
                         <p class="text-sm text-gray-300">Max Weight</p>
                     </div>
                 </div>
@@ -142,24 +142,24 @@
         <div class="w-full max-w-6xl mt-8">
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
                 <h3 class="mb-4 text-lg font-semibold text-white">Statistik Minggu Ini</h3>
-                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="flex flex-wrap gap-4 items-center justify-center">
                     <!-- Card 1 -->
-                    <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5">
-                        <div class="text-2xl font-bold text-emerald-400">67</div>
+                    <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5 w-full max-w-[150px]">
+                        <div class="text-2xl font-bold text-emerald-400">67 jam</div>
                         <p class="text-sm text-gray-300">Total Latihan</p>
                     </div>
                     <!-- Card 2 -->
-                    <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5">
-                        <div class="text-2xl font-bold text-emerald-400">24 j</div>
+                    <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5 w-full max-w-[150px]">
+                        <div class="text-2xl font-bold text-emerald-400">24 jam</div>
                         <p class="text-sm text-gray-300">Total Durasi</p>
                     </div>
                     <!-- Card 3 -->
-                    <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5">
-                        <div class="text-2xl font-bold text-emerald-400">1,850</div>
-                        <p class="text-sm text-gray-300">Total Kkal</p>
+                    <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5 w-full max-w-[150px]">
+                        <div class="text-2xl font-bold text-emerald-400">1,850 kkal</div>
+                        <p class="text-sm text-gray-300">Total Kalori</p>
                     </div>
                     <!-- Card 4 -->
-                    <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5">
+                    <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5 w-full max-w-[150px]">
                         <div class="text-2xl font-bold text-emerald-400">95 kg</div>
                         <p class="text-sm text-gray-300">PR Week</p>
                     </div>
@@ -185,8 +185,8 @@
                 <div class="history-row grid grid-cols-5 gap-2 px-4 py-3 border-b border-white/5 text-sm">
                     <div class="text-white">Senin</div>
                     <div class="text-gray-300">10/03</div>
-                    <div class="text-emerald-400">1.5 j</div>
-                    <div class="text-orange-400">250</div>
+                    <div class="text-emerald-400">1.5 jam</div>
+                    <div class="text-orange-400">250 kkal</div>
                     <div class="text-blue-400">85 kg</div>
                 </div>
                 
@@ -194,8 +194,8 @@
                 <div class="history-row grid grid-cols-5 gap-2 px-4 py-3 border-b border-white/5 text-sm">
                     <div class="text-white">Selasa</div>
                     <div class="text-gray-300">11/03</div>
-                    <div class="text-emerald-400">2 j</div>
-                    <div class="text-orange-400">320</div>
+                    <div class="text-emerald-400">2 jam</div>
+                    <div class="text-orange-400">320 kkal</div>
                     <div class="text-blue-400">88 kg</div>
                 </div>
                 
@@ -203,7 +203,7 @@
                 <div class="history-row grid grid-cols-5 gap-2 px-4 py-3 border-b border-white/5 text-sm">
                     <div class="text-white">Rabu</div>
                     <div class="text-gray-300">12/03</div>
-                    <div class="text-emerald-400">1.8 j</div>
+                    <div class="text-emerald-400">1.8 jam</div>
                     <div class="text-orange-400">290</div>
                     <div class="text-blue-400">87 kg</div>
                 </div>

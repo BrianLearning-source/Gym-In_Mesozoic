@@ -68,11 +68,11 @@
         <div class="w-full max-w-6xl mt-6">
             <div class="p-6 rounded-xl backdrop-blur-sm bg-gradient-to-r from-emerald-900/40 to-teal-900/40">
                 <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                    <div>
+                    <div class="md:text-left text-center">
                         <p class="text-gray-300">Poin streak anda</p>
                         <p class="text-3xl font-bold text-white">{{ $anggota->points }}</p>
                     </div>
-                    <div class="text-right">
+                    <div class="md:text-right text-center">
                         <p class="text-gray-300">Reward ini akan mengurangi</p>
                         <p class="text-2xl font-bold text-red-400">-2500 Poin</p>
                     </div>

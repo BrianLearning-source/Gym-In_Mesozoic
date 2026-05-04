@@ -12,25 +12,25 @@ class AnggotaController extends Controller
     //
     public function index()
     {
-        $anggota = Auth::user(); // Ambil data anggota yang sedang login
+        $anggota = Auth::guard('member')->user(); // Ambil data anggota yang sedang login
         return view('memberdashboard', ['anggota' => $anggota]);
     }
 
     public function profile()
     {
-        $anggota = Auth::user(); // Ambil data anggota yang sedang login
+        $anggota = Auth::guard('member')->user(); // Ambil data anggota yang sedang login
         return view('memberprofile', ['anggota' => $anggota]);
     }
 
     public function rewards()
     {
-        $anggota = Auth::user(); // Ambil data anggota yang sedang login
+        $anggota = Auth::guard('member')->user(); // Ambil data anggota yang sedang login
         return view('rewards', ['anggota' => $anggota]);
     }
 
     public function perkembangan()
     {
-        $id = Auth::id(); // Ambil ID anggota yang sedang login
+        $id = Auth::guard('member')->id(); // Ambil ID anggota yang sedang login
         $perkembangan = PerkembanganModel::find($id);
         $duration = PerkembanganModel::where('anggota_id', $id)
             ->selectRaw('TIMESTAMPDIFF(HOUR, start_time, end_time) AS duration')

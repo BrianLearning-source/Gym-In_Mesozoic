@@ -23,7 +23,7 @@ class LoginController extends Controller
         ]);
 
         // Coba login dengan kredensial yang diberikan
-        if (Auth::attempt($credentials)) {
+        if (Auth::guard('member')->attempt($credentials)) {
             $request->session()->regenerate();
 
 
@@ -38,7 +38,8 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        // Ganti logout jadi Auth::logout(); pas udah selesai (cuma biar ndak ke log out habis login di admin)
+        Auth::guard('member')->logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();

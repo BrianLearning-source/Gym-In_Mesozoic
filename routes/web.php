@@ -13,8 +13,8 @@ Route::get('/', function () {
 Route::get('/loginMember', [LoginController::class, 'showLogin'])->name('login');
 Route::post('/loginMember', [LoginController::class, 'login'])->name('login.post');
 
-// Protected Member Routes (Wrapped in 'auth' middleware)
-Route::middleware(['auth'])->prefix('member')->group(function () {
+// Protected Member Routes (Wrapped in 'auth:member' middleware)
+Route::middleware(['auth:member'])->prefix('member')->group(function () {
     Route::get('/memberDashboard', [AnggotaController::class, 'index'])->name('member.dashboard');
     Route::get('/profile', [AnggotaController::class, 'profile'])->name('member.profile');
     Route::get('/rewards', [AnggotaController::class, 'rewards'])->name('member.rewards');

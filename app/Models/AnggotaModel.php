@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class AnggotaModel extends Model
+class AnggotaModel extends Authenticatable
 {
     //
     use HasFactory;
@@ -17,6 +19,7 @@ class AnggotaModel extends Model
         'nama',
         'gender',
         'email',
+        'password',
         'phone_number',
         'join_date',
         'points',
@@ -24,7 +27,13 @@ class AnggotaModel extends Model
         'highest_streak',
     ];
 
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
     protected $casts = [
         'join_date' => 'date',
+        'password' => 'hashed',
     ];
 }

@@ -3,28 +3,39 @@
 namespace App\Http\Controllers;
 
 use App\Models\AnggotaModel;
+use App\Models\PerkembanganModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AnggotaController extends Controller
 {
     //
-    // Yang ID nanti diambil dari session login, sementara di hardcode dulu
-    public function index($id = 1)
+    public function index()
     {
-        $anggota = AnggotaModel::find($id); // Ganti dengan ID anggota yang ingin ditampilkan
+        $anggota = Auth::guard('member')->user(); // Ambil data anggota yang sedang login
         return view('memberdashboard', ['anggota' => $anggota]);
     }
 
-    public function profile($id = 1)
+    public function profile()
     {
-        $anggota = AnggotaModel::find($id); // Ganti dengan ID anggota yang ingin ditampilkan
+        $anggota = Auth::guard('member')->user(); // Ambil data anggota yang sedang login
         return view('memberprofile', ['anggota' => $anggota]);
     }
 
-    public function rewards($id = 1)
+    public function rewards()
     {
-        $anggota = AnggotaModel::find($id); // Ganti dengan ID anggota yang ingin ditampilkan
+        $anggota = Auth::guard('member')->user(); // Ambil data anggota yang sedang login
         return view('rewards', ['anggota' => $anggota]);
+    }
+
+    public function perkembangan()
+    {
+        $id = Auth::guard('member')->id(); // Ambil ID anggota yang sedang login
+        $perkembangan = PerkembanganModel::find($id);
+        $duration = PerkembanganModel::where('anggota_id', $id)
+            ->selectRaw('TIMESTAMPDIFF(HOUR, start_time, end_time) AS duration')
+            ->first();
+        return view('progrestracker', ['perkembangan' => $perkembangan, 'duration' => $duration]);
     }
 
 }

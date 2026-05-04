@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\PerkembanganController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,13 +10,15 @@ Route::get('/', function () {
     return view('visitor');
 });
 
-Route::get('/loginMember', [LoginController::class, 'CustomLogin']
-);
+Route::get('/loginMember', [LoginController::class, 'showLogin'])->name('login');
+Route::post('/loginMember', [LoginController::class, 'login'])->name('login.post');
 
-Route::get('/profile', [AnggotaController::class, 'profile']);
-
-Route::get('rewards', [AnggotaController::class, 'rewards']);
-
-Route::get('/memberdashboard', [AnggotaController::class, 'index']);
-
-Route::get('/progres', [PerkembanganController::class, 'index']);
+// Protected Member Routes (Wrapped in 'auth' middleware)
+Route::middleware(['auth:member'])->prefix('member')->group(function () {
+    Route::get('/memberDashboard', [AnggotaController::class, 'index'])->name('member.dashboard');
+    Route::get('/profile', [AnggotaController::class, 'profile'])->name('member.profile');
+    Route::get('/rewards', [AnggotaController::class, 'rewards'])->name('member.rewards');
+    Route::get('/progres', [AnggotaController::class, 'perkembangan'])->name('member.progres');
+    
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+});

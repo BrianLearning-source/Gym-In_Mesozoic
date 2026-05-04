@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->enum('gender', ['male', 'female']);
             $table->string('email')->unique();
+            $table->string('password');
             $table->string('phone_number')->nullable();
             $table->date('join_date');
             $table->integer('points')->default(0);

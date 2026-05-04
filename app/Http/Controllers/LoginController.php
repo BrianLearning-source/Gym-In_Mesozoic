@@ -32,12 +32,13 @@ class LoginController extends Controller
 
         // Jika gagal, kembali ke halaman login dengan pesan error
         return back()->withErrors([
-            'email' => 'Email atau Password salah.',
+            'email' => 'The provided credentials do not match our records.',
         ]);
     }
 
     public function logout(Request $request)
     {
+        // Ganti logout jadi Auth::logout(); pas udah selesai (cuma biar ndak ke log out habis login di admin)
         Auth::guard('member')->logout();
 
         $request->session()->invalidate();

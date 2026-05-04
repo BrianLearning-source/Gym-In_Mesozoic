@@ -31,7 +31,7 @@
     <div class="fixed inset-0 pointer-events-none" style="z-index: -2;">
         <div class="bg-image"></div>
     </div>
-    
+
     <!-- Title -->
     <h1 class="text-6xl font-bold text-white text-center header-glow mt-12">Gym-In</h1>
 
@@ -45,7 +45,8 @@
         </p>
 
         <!-- Back Button -->
-        <a href="/" class="text-white font-semibold w-full text-left hover:underline hover:scale-105 transform transition duration-300">
+        <a href="/"
+            class="text-white font-semibold w-full text-left hover:underline hover:scale-105 transform transition duration-300">
             ← Kembali
         </a>
         <!-- Login Form -->
@@ -54,12 +55,25 @@
             <div class=" m-11">
                 <h1 class="text-2xl font-bold text-white text-center header-glow uppercase">Login</h1>
 
-                <form action="" class="flex flex-col gap-4 p-6">
-                    <input type="text" placeholder="Username"
+                <form action="{{ route('login.post') }}" method="POST" class="flex flex-col gap-4 p-6">
+                    <!-- Error -->
+                    @if ($errors->any())
+                    <div
+                        class="bg-red-500 bg-opacity-20 border border-red-500 text-red-500 px-4 py-2 rounded-lg text-sm mb-4">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+
+                    <input type="email" name="email" placeholder="Email"
                         class="bg-white bg-opacity-20 text-white placeholder:text-white placeholder:opacity-75 border border-white border-opacity-50 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-white">
-                    <input type="password" placeholder="Password"
+                    <input type="password" name="password" placeholder="Password"
                         class="bg-white bg-opacity-20 text-white placeholder:text-white placeholder:opacity-75 border border-white border-opacity-50 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-white">
-                    <button type="submit" class=" text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
+                    <button type="submit"
+                        class=" text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
                         style="background-color: rgba(77, 145, 132)">Login</button>
                 </form>
             </div>

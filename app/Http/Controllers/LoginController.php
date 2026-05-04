@@ -23,7 +23,7 @@ class LoginController extends Controller
         ]);
 
         // Coba login dengan kredensial yang diberikan
-        if (Auth::guard('member')->attempt($credentials)) {
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
 
@@ -32,13 +32,13 @@ class LoginController extends Controller
 
         // Jika gagal, kembali ke halaman login dengan pesan error
         return back()->withErrors([
-            'email' => 'Email atau Password salah.',
+            'email' => 'The provided credentials do not match our records.',
         ]);
     }
 
     public function logout(Request $request)
     {
-        Auth::guard('member')->logout();
+        Auth::logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();

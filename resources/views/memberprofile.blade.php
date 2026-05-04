@@ -48,7 +48,7 @@
 
         <!-- Back Button -->
         <div class="w-full max-w-6xl mt-8">
-            <a href="/memberdashboard"
+            <a href="{{ route('member.dashboard') }}"
                 class="text-white font-semibold hover:underline hover:scale-105 transform transition duration-300 inline-flex items-center gap-2">
                 <span>←</span> Kembali
             </a>
@@ -67,8 +67,8 @@
                     <!-- Avatar -->
                     <div
                         class="w-24 h-24 rounded-full border-4 border-emerald-500 overflow-hidden bg-gradient-to-br from-emerald-600 to-teal-600 shadow-xl">
-                        <img src="https://pbs.twimg.com/media/E8YT2mbVcAIA5vv?format=jpg&name=small"
-                            alt="Profile" class="w-full h-full object-cover">
+                        <img src="https://pbs.twimg.com/media/E8YT2mbVcAIA5vv?format=jpg&name=small" alt="Profile"
+                            class="w-full h-full object-cover">
                     </div>
 
                     <!-- Name and Title -->
@@ -131,11 +131,11 @@
                 <div class="space-y-4">
                     <div class="flex justify-between items-center pb-3 border-b border-white/20">
                         <span class="text-gray-300">Berat Badan</span>
-                        <span class="font-semibold text-white">181 kg</span>
+                        <span class="font-semibold text-white">{{ $anggota->weight }} kg</span>
                     </div>
                     <div class="flex justify-between items-center pb-3 border-b border-white/20">
                         <span class="text-gray-300">Tinggi Badan</span>
-                        <span class="font-semibold text-white">198 cm</span>
+                        <span class="font-semibold text-white">{{ $anggota->height }} cm</span>
                     </div>
                 </div>
             </div>
@@ -192,18 +192,68 @@
                         style="background-color: rgba(77, 145, 132)">
                         Preferensi Latihan
                     </button>
+
+                    <form action="{{ route('logout') }}" method="POST"
+                        onclick="return confirm('Apakah Anda yakin ingin logout?')">
+                        @csrf
+                        <button type="submit"
+                            class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
+                            style="background-color: rgba(255, 77, 77, 0.8)">
+                            Logout
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
 
         <!-- Contact Section -->
-        <div class="w-full max-w-6xl py-8 mt-4 text-center">
+        <div class="w-full max-w-6xl py-8 mt-4 mb-8 text-center">
             <p class="text-white drop-shadow-2xl">
                 Mengalami kendala? Kontak kami di:
             </p>
             <p class="text-emerald-400 hover:underline text-1xl drop-shadow-2xl mt-2">
                 +62 767-6767-6767
             </p>
+        </div>
+
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-sm border-t border-white/10 max-w-md mx-auto">
+        <div class="flex justify-around items-center px-4 py-3">
+            <a href="{{ route('member.dashboard') }}"
+                class="flex flex-col items-center text-white/60 hover:text-emerald-400 transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                    </path>
+                </svg>
+                <span class="text-xs mt-1">Home</span>
+            </a>
+            <a href="{{ route('member.progres') }}"
+                class="flex flex-col items-center text-white/60 hover:text-emerald-400 transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                <span class="text-xs mt-1">Perkembangan</span>
+            </a>
+            <a href="{{ route('member.rewards') }}"
+                class="flex flex-col items-center text-white/60 hover:text-emerald-400 transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                    </path>
+                </svg>
+                <span class="text-xs mt-1">Rewards</span>
+            </a>
+            <a href="{{ route('member.profile') }}" class="flex flex-col items-center text-emerald-400 transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                </svg>
+                <span class="text-xs mt-1">Profile</span>
+            </a>
         </div>
     </div>
 

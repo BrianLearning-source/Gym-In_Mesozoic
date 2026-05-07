@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AnggotaModel;
 use App\Models\PerkembanganModel;
+use App\Models\Rewards;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,12 @@ class AnggotaController extends Controller
     public function rewards()
     {
         $anggota = Auth::guard('member')->user(); // Ambil data anggota yang sedang login
-        return view('rewards', ['anggota' => $anggota]);
+        
+        $rewards = Rewards::where('stock', '>', 0)->get();
+
+        return view('rewards', [
+            'anggota' => $anggota,
+            'rewards' => $rewards]);
     }
 
     public function perkembangan()

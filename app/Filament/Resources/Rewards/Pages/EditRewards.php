@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\GUsers\Pages;
+namespace App\Filament\Resources\Rewards\Pages;
 
-use App\Filament\Resources\GUsers\GUserResource;
+use App\Filament\Resources\Rewards\RewardsResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 
-class EditGUser extends EditRecord
+class EditRewards extends EditRecord
 {
-    protected static string $resource = GUserResource::class;
+    protected static string $resource = RewardsResource::class;
 
     protected function getHeaderActions(): array
     {

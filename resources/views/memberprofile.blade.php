@@ -126,7 +126,7 @@
 
             <!-- Stat Anggota Card -->
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
-                <h3 class="mb-6 text-xl font-bold text-white">Stat Anggota</h3>
+                <h3 class="mb-6 text-xl font-bold text-white">Komposisi Tubuh Anggota</h3>
 
                 <div class="space-y-4">
                     <div class="flex justify-between items-center pb-3 border-b border-white/20">

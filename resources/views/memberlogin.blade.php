@@ -74,15 +74,14 @@
                         class="bg-white bg-opacity-20 text-white placeholder:text-white placeholder:opacity-75 border border-white border-opacity-50 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-white">
                     <button type="submit"
                         class=" text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
-                        style="background-color: rgba(77, 145, 132)">Login</button>
+                        style="background-color: rgba(77, 145, 132)">Masuk</button>
                 </form>
             </div>
         </div>
 
         <div class="py-6">
             <p class="text-white text-1xl text-center drop-shadow-2xl">
-                Jika terdapat kendala seperti lupa kata sandi, mohon
-                kontak kami di
+                Lupa sandi? Kontak kami di
             </p>
             <p class="text-green-400 text-1xl text-center drop-shadow-2xl hover:underline">+62 767-6767-6767</p>
         </div>

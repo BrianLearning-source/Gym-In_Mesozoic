@@ -292,7 +292,7 @@
                         <span class="text-2xl">👆</span>
                         <p class="text-base font-semibold text-emerald-400">Status: Cukup sepi</p>
                     </div>
-                    <p class="text-xs text-gray-400">*Data berdasarkan absen keluar-masuk di kasir.</p>
+                    <p class="text-xs text-gray-400">*Data berdasarkan <i>input</i> keluar-masuknya anggota dari kasir.</p>
                 </div>
             </div>
         </div>

@@ -125,16 +125,15 @@
     </div>
     <!-- End Header -->
 
-    <!-- Gym-In introduction text -->
+    <!-- <i>gym</i>-In introduction text -->
     <div class="section-bg flex flex-col px-10 pb-20 h-screen fade-section" id="intro">
         <div class="bg-image bg-intro"></div>
         <div class="mt-auto md:mx-11">
             <div class="flex flex-col relative z-10">
                 <h1 class="text-2xl font-bold text-white text-left header-glow">Gym-In</h1>
                 <p class="text-white text-left pt-3 max-w-4xl">
-                    Tempat berolahraga dimana anda bisa memantau perkembangan anda, melihat kepadatan gym, serta memberi
-                    anda motivasi untuk berolahraga rutin dengan adanya fitur Streak langsung dari situs web aplikasi
-                    kami!
+                    Tempat untuk memantau perkembangan Anda, melihat kepadatan <i>gym</i>, serta memberi
+                    Anda motivasi untuk berolahraga rutin dengan memberikan hadiah hasil dari olahraga rutin menggunakan situs web aplikasi kami!
                 </p>
             </div>
 
@@ -157,7 +156,7 @@
                 Tetap Konsisten!
             </h1>
             <p class="text-white text-center pt-3 opacity-80">Semakin giat untuk berolahraga, semakin banyak hadiah yang
-                menunggumu!</p>
+                menunggu Anda!</p>
         </div>
 
         <div class="flex flex-row justify-between items-center pt-7">
@@ -167,10 +166,10 @@
             <div style="height: 308px; background: #ffffff;"></div>
         </div>
 
-        <p class="text-white text-center pt-3 opacity-80">Tukarkan Poin Streak kamu dengan berbagai hadiah!</p>
+        <p class="text-white text-center pt-3 opacity-80">Tukarkan Poin <i>Streak</i> Anda dengan berbagai hadiah!</p>
     </div>
 
-    <!-- Kepadatan Gym showcase -->
+    <!-- Kepadatan <i>gym</i> showcase -->
     <div class="section-bg flex flex-col py-16 px-10 fade-section" id="density">
         <div class="bg-image bg-density"></div>
         <div class="md:mx-11">
@@ -179,7 +178,7 @@
                 Khawatir Penuh? <br>
                 Sumpek?
                 </h1>
-                <p class="text-white text-left pt-3 opacity-80">Cek kepadatan gym secara langsung di laman utama aplikasi!
+                <p class="text-white text-left pt-3 opacity-80">Cek kepadatan <i>gym</i> secara langsung di laman utama aplikasi!
                 </p>
             </div>
 
@@ -189,12 +188,12 @@
                 <div style="height: 308px; background: #ffffff;"></div>
             </div>
 
-            <p class="text-white text-left pt-3 opacity-80">Kepadatan gym akan diperbarui setiap kali anggota datang dan
-                keluar dari gym!</p>
+            <p class="text-white text-left pt-3 opacity-80">Kepadatan <i>gym</i> akan diperbarui setiap kali anggota datang dan
+                keluar dari <i>gym</i>!</p>
         </div>
     </div>
 
-    <!-- Perkembangan Gym showcase -->
+    <!-- Perkembangan gym showcase -->
     <div class="flex flex-col py-16 px-10 md:mx-11">
         <div class="flex flex-col justify-end items-end">
             <h1 class="text-2xl text-white text-right font-bold header-glow">
@@ -229,7 +228,7 @@
 
                 <h1 class="text-5xl text-white text-center font-bold py-10"
                     style="text-shadow: 0px 0px 25px rgba(255, 255, 255, 0.4)">
-                    Gym-In
+                    <i>gym</i>-In
                 </h1>
 
                 <button class="mt-8 bg-white text-black font-bold uppercase py-3 px-6 rounded-lg w-fit hover:scale-110">

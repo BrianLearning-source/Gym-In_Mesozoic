@@ -23,8 +23,6 @@ class PerkembanganModel extends Model
 
     protected $casts = [
         'date' => 'date',
-        'start_time' => 'time',
-        'end_time' => 'time',
     ];
 
     public function anggota()

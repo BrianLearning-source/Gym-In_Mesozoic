@@ -124,7 +124,7 @@
 
 
 
-                    {{--
+                    <!-- {{--
                     <div class="reward-card p-4 rounded-xl backdrop-blur-sm bg-white/5">
                         <div class="flex items-start justify-between">
                             <div class="flex items-center gap-3">
@@ -146,10 +146,10 @@
                                 PILIH
                             </button>
                         </div>
-                    </div> --}}
+                    </div> --}} -->
 
-                    {{--
-                    <!-- Reward 2 -->
+                    
+                    <!-- Reward 2
                     <div class="reward-card p-4 rounded-xl backdrop-blur-sm bg-white/5">
                         <div class="flex items-start justify-between">
                             <div class="flex items-center gap-3">
@@ -170,11 +170,10 @@
                                 PILIH
                             </button>
                         </div>
-                    </div> --}}
+                    </div>  -->
 
-                    {{--
                     <!-- Reward 3 -->
-                    <div class="reward-card p-4 rounded-xl backdrop-blur-sm bg-white/5">
+                    <!-- <div class="reward-card p-4 rounded-xl backdrop-blur-sm bg-white/5">
                         <div class="flex items-start justify-between">
                             <div class="flex items-center gap-3">
                                 <div class="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
@@ -196,12 +195,12 @@
                             </button>
                         </div>
                     </div>
-                </div> --}}
+                </div>  -->
 
-                {{--
-                <!-- Second Row -->
-                <div class="grid grid-cols-1 gap-4 mt-4 md:grid-cols-2 lg:grid-cols-3">
-                    <!-- Reward 4 -->
+  
+                <!-- Second Row --> <!-- Reward 4 -->
+
+                <!-- <div class="grid grid-cols-1 gap-4 mt-4 md:grid-cols-2 lg:grid-cols-3">
                     <div class="reward-card p-4 rounded-xl backdrop-blur-sm bg-white/5">
                         <div class="flex items-start justify-between">
                             <div class="flex items-center gap-3">
@@ -223,10 +222,10 @@
                                 PILIH
                             </button>
                         </div>
-                    </div> --}}
+                    </div>  -->
 
-                    {{--
-                    <!-- Reward 5 -->
+     
+                    <!-- Reward 5 --> <!--
                     <div class="reward-card p-4 rounded-xl backdrop-blur-sm bg-white/5">
                         <div class="flex items-start justify-between">
                             <div class="flex items-center gap-3">
@@ -247,10 +246,10 @@
                                 PILIH
                             </button>
                         </div>
-                    </div> --}}
+                    </div> -->
 
-                    {{--
-                    <!-- Reward 6 with BATALKAN button -->
+
+                    <!-- Reward 6 with BATALKAN button --> <!--
                     <div class="reward-card p-4 rounded-xl backdrop-blur-sm bg-white/5">
                         <div class="flex items-start justify-between">
                             <div class="flex items-center gap-3">
@@ -272,7 +271,8 @@
                                 BATALKAN
                             </button>
                         </div>
-                    </div> --}}
+                    </div> 
+                    -->
                 </div>
             </div>
         </div>

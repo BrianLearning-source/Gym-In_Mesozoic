@@ -31,10 +31,10 @@ class AnggotaController extends Controller
 
 
         return view('memberdashboard', [
-            'anggota' => $anggota, 
-            'duration' => $duration, 
-            'calory_burned' => $calory_burned, 
-            ]);
+            'anggota' => $anggota,
+            'duration' => $duration,
+            'calory_burned' => $calory_burned,
+        ]);
     }
 
     public function profile()
@@ -64,15 +64,54 @@ class AnggotaController extends Controller
         return view('memberprofile', ['anggota' => $anggota, 'perkembangan' => $perkembangan, 'totalTrainingTime' => $totalTrainingTime, 'weight' => $weight, 'height' => $height]);
     }
 
+    public function editProfile()
+    {
+        $anggota = Auth::guard('member')->user(); // Ambil data anggota yang sedang login
+        return view('editprofile', ['anggota' => $anggota]);
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $anggota = Auth::guard('member')->user(); // Ambil data anggota yang sedang login
+
+        if (!$anggota) {
+            return redirect()->route('login');
+        }
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:m_anggota,email,' . $anggota->id,
+            'phone_number' => 'nullable|string|max:20',
+            'gender' => 'nullable|in:0,1',
+            'password' => 'nullable|string|min:6|confirmed',
+        ]);
+
+        $anggota->name = $request->name;
+        $anggota->email = $request->email;
+        $anggota->phone_number = $request->phone_number;
+        if ($request->filled('gender')) {
+            $anggota->gender = $request->gender;
+        }
+
+        if ($request->filled('password')) {
+            $anggota->password = $request->password;
+        }
+
+        $anggota->save();
+
+        return redirect()->route('member.profile')->with('success', 'Profil berhasil diperbarui.');
+    }
+
     public function rewards()
     {
         $anggota = Auth::guard('member')->user(); // Ambil data anggota yang sedang login
-        
+
         $rewards = Rewards::where('stock', '>', 0)->get();
 
         return view('rewards', [
             'anggota' => $anggota,
-            'rewards' => $rewards]);
+            'rewards' => $rewards
+        ]);
     }
 
     public function perkembangan()
@@ -134,5 +173,4 @@ class AnggotaController extends Controller
             'weekDays' => $weekDays,
         ]);
     }
-
 }

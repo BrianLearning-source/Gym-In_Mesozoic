@@ -169,17 +169,17 @@
 
                 <!-- Buttons Container -->
                 <div class="flex flex-col gap-4">
-                    <button type="button"
-                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
+                    <a href="{{ route('member.editProfile') }}"
+                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 items-center justify-center flex"
                         style="background-color: rgba(77, 145, 132)">
                         Edit Profil
-                    </button>
+                    </a>
 
-                    <button type="button"
-                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
+                    <a
+                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 items-center justify-center flex"
                         style="background-color: rgba(77, 145, 132)">
                         Ubah Password
-                    </button>
+                    </a>
 
                     <button type="button"
                         class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"

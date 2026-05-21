@@ -21,6 +21,8 @@ Route::post('/loginMember', [LoginController::class, 'login'])->name('login.post
 Route::middleware(['auth:member'])->prefix('member')->group(function () {
     Route::get('/memberDashboard', [AnggotaController::class, 'index'])->name('member.dashboard');
     Route::get('/profile', [AnggotaController::class, 'profile'])->name('member.profile');
+    Route::get('/editProfile', [AnggotaController::class, 'editProfile'])->name('member.editProfile');
+    Route::put('/updateProfile', [AnggotaController::class, 'updateProfile'])->name('member.updateProfile');
     Route::get('/rewards', [AnggotaController::class, 'rewards'])->name('member.rewards');
     Route::get('/progres', [AnggotaController::class, 'perkembangan'])->name('member.progres');
     

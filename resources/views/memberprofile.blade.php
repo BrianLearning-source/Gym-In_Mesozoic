@@ -96,7 +96,7 @@
 
             <!-- Card 3 -->
             <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
-                <p class="text-2xl font-bold text-white md:text-3xl">{{ $anggota->total_training_time }} Jam</p>
+                <p class="text-2xl font-bold text-white md:text-3xl">{{ $totalTrainingTime }} Jam</p>
                 <p class="mt-2 text-sm text-gray-300">Total waktu latihan</p>
             </div>
         </div>
@@ -131,11 +131,11 @@
                 <div class="space-y-4">
                     <div class="flex justify-between items-center pb-3 border-b border-white/20">
                         <span class="text-gray-300">Berat Badan</span>
-                        <span class="font-semibold text-white">{{ $anggota->weight }} kg</span>
+                        <span class="font-semibold text-white">{{ $perkembangan->weight ?? '-' }} kg</span>
                     </div>
                     <div class="flex justify-between items-center pb-3 border-b border-white/20">
                         <span class="text-gray-300">Tinggi Badan</span>
-                        <span class="font-semibold text-white">{{ $anggota->height }} cm</span>
+                        <span class="font-semibold text-white">{{ $perkembangan->height ?? '-' }} cm</span>
                     </div>
                 </div>
             </div>
@@ -228,7 +228,7 @@
                         d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
                     </path>
                 </svg>
-                <span class="text-xs mt-1">Home</span>
+                <span class="text-xs mt-1">Beranda</span>
             </a>
             <a href="{{ route('member.progres') }}"
                 class="flex flex-col items-center text-white/60 hover:text-emerald-400 transition">

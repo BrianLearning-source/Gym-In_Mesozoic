@@ -7,6 +7,7 @@ use App\Models\PerkembanganModel;
 use App\Models\Rewards;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class AnggotaController extends Controller
 {
@@ -14,13 +15,53 @@ class AnggotaController extends Controller
     public function index()
     {
         $anggota = Auth::guard('member')->user(); // Ambil data anggota yang sedang login
-        return view('memberdashboard', ['anggota' => $anggota]);
+        $today = now();
+
+        $duration = PerkembanganModel::where('anggota_id', $anggota->id)
+            ->whereDate('date', $today->format('Y-m-d'))
+            ->selectRaw('TIMESTAMPDIFF(MINUTE, start_time, end_time) AS total_minutes')
+            ->first();
+        $startOfWeek = $today->copy()->startOfWeek(\Carbon\Carbon::MONDAY);
+        $endOfWeek = $today->copy()->endOfWeek(\Carbon\Carbon::SUNDAY);
+
+        $calory_burned = PerkembanganModel::where('anggota_id', $anggota->id)
+            ->whereDate('date', $today->format('Y-m-d'))
+            ->selectRaw('SUM(calory_burned) AS total_calory')
+            ->first();
+
+
+        return view('memberdashboard', [
+            'anggota' => $anggota, 
+            'duration' => $duration, 
+            'calory_burned' => $calory_burned, 
+            ]);
     }
 
     public function profile()
     {
         $anggota = Auth::guard('member')->user(); // Ambil data anggota yang sedang login
-        return view('memberprofile', ['anggota' => $anggota]);
+        $today = now();
+        $perkembangan = PerkembanganModel::where('anggota_id', $anggota->id)
+            ->latest('date')
+            ->first();
+
+        $totalDuration = PerkembanganModel::where('anggota_id', $anggota->id)->get();
+
+        $totalMinutes = 0;
+
+        foreach ($totalDuration as $record) {
+            if ($record->start_time && $record->end_time) {
+                $start = Carbon::parse($record->start_time);
+                $end = Carbon::parse($record->end_time);
+                $totalMinutes += $start->diffInMinutes($end);
+            }
+        }
+
+        $totalTrainingTime = round($totalMinutes / 60, 1);
+
+        $weight = $perkembangan?->weight ?? '-';
+        $height = $perkembangan?->height ?? '-';
+        return view('memberprofile', ['anggota' => $anggota, 'perkembangan' => $perkembangan, 'totalTrainingTime' => $totalTrainingTime, 'weight' => $weight, 'height' => $height]);
     }
 
     public function rewards()

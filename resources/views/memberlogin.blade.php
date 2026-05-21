@@ -70,7 +70,7 @@
 
                     <input type="email" name="email" placeholder="Email"
                         class="bg-white bg-opacity-20 text-white placeholder:text-white placeholder:opacity-75 border border-white border-opacity-50 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-white">
-                    <input type="password" name="password" placeholder="Password"
+                    <input type="password" name="password" placeholder="Kata sandi"
                         class="bg-white bg-opacity-20 text-white placeholder:text-white placeholder:opacity-75 border border-white border-opacity-50 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-white">
                     <button type="submit"
                         class=" text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"

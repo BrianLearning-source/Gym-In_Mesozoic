@@ -16,7 +16,7 @@ class AnggotaModel extends Authenticatable
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'nama',
+        'name',
         'gender',
         'email',
         'password',

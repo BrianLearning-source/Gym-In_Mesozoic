@@ -224,7 +224,7 @@
                     <!-- Duration Card -->
                     <div class="stat-card p-4 rounded-xl backdrop-blur-sm bg-white/5">
                         <div class="text-center">
-                            <p class="text-3xl font-bold text-emerald-400">18 j 21 m</p>
+                            <p class="text-3xl font-bold text-emerald-400">{{ $duration ? $duration->total_minutes : 0 }} menit</p>
                             <p class="mt-1 text-sm text-gray-300">Latihan</p>
                             <div class="flex justify-center gap-4 mt-3">
                                 <span class="text-sm text-gray-400">90 kg</span>
@@ -236,7 +236,7 @@
                     <!-- Calories Card -->
                     <div class="stat-card p-4 rounded-xl backdrop-blur-sm bg-white/5">
                         <div class="text-center">
-                            <p class="text-3xl font-bold text-orange-400">300 Kkal</p>
+                            <p class="text-3xl font-bold text-orange-400">{{ $calory_burned ? $calory_burned->total_calory : 0 }} Kkal</p>
                             <p class="mt-1 text-sm text-gray-300">Kkal</p>
                         </div>
                     </div>
@@ -317,7 +317,7 @@
                         d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
                     </path>
                 </svg>
-                <span class="text-xs mt-1">Home</span>
+                <span class="text-xs mt-1">Beranda</span>
             </a>
             <a href="{{ route('member.progres') }}"
                 class="flex flex-col items-center text-white/60 hover:text-emerald-400 transition">
@@ -342,7 +342,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                 </svg>
-                <span class="text-xs mt-1">Profile</span>
+                <span class="text-xs mt-1">Profil</span>
             </a>
         </div>
     </div>

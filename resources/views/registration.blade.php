@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Daftar - Gym-In</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <style>
         html {
             scroll-behavior: smooth;
@@ -45,6 +46,17 @@
             }
         }
 
+        @keyframes modalPop {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
         .fade-in {
             animation: fadeInUp 0.6s ease-out forwards;
         }
@@ -66,6 +78,10 @@
 
         .notification.fade-out {
             animation: slideOut 0.4s ease-out forwards;
+        }
+
+        .modal-content {
+            animation: modalPop 0.3s ease-out;
         }
 
         input::-webkit-outer-spin-button,
@@ -105,12 +121,6 @@
         </div>
     @endif
 
-    @if (session('success'))
-        <div id="successNotification" class="notification fixed top-5 right-5 bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-semibold px-6 py-4 rounded-xl shadow-2xl z-50" style="opacity: 0;">
-            ✓ {{ session('success') }}
-        </div>
-    @endif
-
     <div class="min-h-screen flex items-center justify-center px-4 py-12">
         <div class="w-full max-w-2xl">
             <!-- Title Section -->
@@ -122,7 +132,7 @@
             </div>
 
             <!-- Form Card -->
-            <form action="/register" method="POST" class="bg-white bg-opacity-5 backdrop-blur-xl border border-white border-opacity-10 rounded-3xl p-8 md:p-12 space-y-6" id="registrationForm">
+            <form action="{{ route('register.submit') }}" method="POST" class="bg-white bg-opacity-5 backdrop-blur-xl border border-white border-opacity-10 rounded-3xl p-8 md:p-12 space-y-6" id="registrationForm">
                 @csrf
 
                 <!-- Row 1: Username & Name -->
@@ -205,7 +215,7 @@
                         Hari Istirahat (0-5) <span class="text-red-500">*</span>
                     </label>
                     <input type="number" name="rest_days" placeholder="Contoh: 2"
-                        required min="0" max="5" value="{{ old('rest_days') }}"
+                        required min="0" max="5" value="{{ old('rest_days', 2) }}"
                         class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-white border-opacity-20 text-white placeholder-white placeholder-opacity-60 focus:bg-opacity-15 focus:border-opacity-40 focus:outline-none transition-all duration-300">
                     <p class="text-gray-400 text-xs mt-2">Bantuan saat Anda melewatkan latihan tanpa kehilangan streak</p>
                     @error('rest_days')
@@ -230,6 +240,95 @@
         </div>
     </div>
 
+    <!-- Success Modal with QR Code - NO REDIRECT -->
+    @if(session('success') && session('qr_code'))
+    <div id="successModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50">
+        <div class="bg-gradient-to-br from-gray-900 to-black rounded-2xl max-w-md w-full mx-4 p-6 border border-purple-500/30 modal-content">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-2xl font-bold text-white flex items-center gap-2">
+                    🎉 Pendaftaran Berhasil!
+                </h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white text-3xl leading-5">&times;</button>
+            </div>
+            
+            <!-- QR Code -->
+            <div class="flex justify-center my-4">
+                <div id="qrCodeContainer" class="bg-white p-4 rounded-xl"></div>
+            </div>
+            
+            <!-- Registration Info -->
+            <div class="bg-white/5 rounded-xl p-4 space-y-2">
+                <p class="text-gray-300 text-sm">
+                    <strong class="text-white">Username:</strong> {{ session('username') }}
+                </p>
+                <p class="text-gray-300 text-sm">
+                    <strong class="text-white">Email:</strong> {{ session('email') }}
+                </p>
+                <p class="text-gray-300 text-sm">
+                    <strong class="text-white">QR Code:</strong> 
+                    <code class="text-yellow-400 text-xs break-all">{{ session('qr_code') }}</code>
+                </p>
+                <div class="border-t border-white/10 my-2 pt-2">
+                    <p class="text-yellow-400 text-xs">🔐 Password sementara: <strong>1234</strong></p>
+                    <p class="text-blue-400 text-xs mt-1">⏳ Akun Anda menunggu aktivasi admin</p>
+                    <p class="text-purple-400 text-xs">💪 Gunakan QR code untuk check-in nanti</p>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="mt-4 space-y-2">
+                <button onclick="closeModal()" class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-2 rounded-lg transition">
+                    Tutup
+                </button>
+                <button onclick="downloadQR()" class="w-full bg-white/10 hover:bg-white/20 text-white font-semibold py-2 rounded-lg transition text-sm">
+                    💾 Download QR Code
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Generate QR Code
+        new QRCode(document.getElementById("qrCodeContainer"), {
+            text: "{{ session('qr_code') }}",
+            width: 180,
+            height: 180,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+        
+        function closeModal() {
+            // Just hide the modal, stay on the same page
+            document.getElementById('successModal').style.display = 'none';
+            // Optional: Clear the form so user can register another account
+            document.getElementById('registrationForm').reset();
+            // Remove the success flag from URL to prevent re-showing
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+        
+        function downloadQR() {
+            const qrCanvas = document.querySelector('#qrCodeContainer canvas');
+            if (qrCanvas) {
+                const link = document.createElement('a');
+                link.download = 'qr-code-{{ session('username') }}.png';
+                link.href = qrCanvas.toDataURL();
+                link.click();
+            } else {
+                alert('Gagal download QR code');
+            }
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+    @endif
+
     <script>
         // Animate form groups on page load
         window.addEventListener('load', () => {
@@ -237,17 +336,8 @@
                 group.style.opacity = '1';
             });
 
-            // Show notifications
-            const successNotif = document.getElementById('successNotification');
+            // Show error notification
             const errorNotif = document.getElementById('errorNotification');
-
-            if (successNotif) {
-                successNotif.style.opacity = '1';
-                setTimeout(() => {
-                    successNotif.classList.add('fade-out');
-                }, 3000);
-            }
-
             if (errorNotif) {
                 errorNotif.style.opacity = '1';
                 setTimeout(() => {

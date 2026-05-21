@@ -12,7 +12,7 @@ Route::get('/', function () {
 });
 
 Route::get('/register', [RegistrationController::class, 'showRegistration'])->name('register');
-Route::post('/register', [RegistrationController::class, 'register'])->name('register.post');
+Route::post('/register', [RegistrationController::class, 'register'])->name('register.submit');
 
 Route::get('/loginMember', [LoginController::class, 'showLogin'])->name('login');
 Route::post('/loginMember', [LoginController::class, 'login'])->name('login.post');

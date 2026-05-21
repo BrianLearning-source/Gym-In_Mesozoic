@@ -18,6 +18,6 @@ class LevelSeeder extends Seeder
             ['level_id' => 1, 'level_kode' => 'MBR', 'level_nama' => 'Member'],
             ['level_id' => 2, 'level_kode' => 'ADM', 'level_nama' => 'Admin'],
         ];
-        DB::table('m_level')->insert($data);
+        DB::table('m_level')->insertOrIgnore($data);
     }
 }

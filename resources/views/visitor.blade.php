@@ -137,9 +137,11 @@
                 </p>
             </div>
 
-            <button class="mt-8 bg-white text-black font-bold uppercase py-3 px-6 rounded-lg w-fit hover:scale-110">
-                MARI BERGABUNG
-            </button>
+            <a href="/register">
+                <button class="mt-8 bg-white text-black font-bold uppercase py-3 px-6 rounded-lg w-fit hover:scale-110">
+                    MARI BERGABUNG
+                </button>
+            </a>
 
             <div class="text-white flex flex-col mt-8 justify-center items-center opacity-75 animate-bounce">
                 <p class="font-semibold">Geser</p>
@@ -228,12 +230,14 @@
 
                 <h1 class="text-5xl text-white text-center font-bold py-10"
                     style="text-shadow: 0px 0px 25px rgba(255, 255, 255, 0.4)">
-                    <i>gym</i>-In
+                    <i>Gym</i>-In
                 </h1>
 
-                <button class="mt-8 bg-white text-black font-bold uppercase py-3 px-6 rounded-lg w-fit hover:scale-110">
-                    MARI BERGABUNG
-                </button>
+                <a href="/register">
+                    <button class="mt-8 bg-white text-black font-bold uppercase py-3 px-6 rounded-lg w-fit hover:scale-110">
+                        MARI BERGABUNG
+                    </button>
+                </a>
             </div>
         </div>
 

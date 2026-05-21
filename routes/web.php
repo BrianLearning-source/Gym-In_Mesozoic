@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,6 +10,9 @@ Route::get('/', function () {
 
     return view('visitor');
 });
+
+Route::get('/register', [RegistrationController::class, 'showRegistration'])->name('register');
+Route::post('/register', [RegistrationController::class, 'register'])->name('register.post');
 
 Route::get('/loginMember', [LoginController::class, 'showLogin'])->name('login');
 Route::post('/loginMember', [LoginController::class, 'login'])->name('login.post');

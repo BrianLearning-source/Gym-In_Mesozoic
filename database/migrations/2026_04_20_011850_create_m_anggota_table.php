@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('m_anggota', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('gender', ['male', 'female']);
+            $table->enum('gender', ['Laki-laki', 'Perempuan']);
             $table->string('email')->unique();
             $table->string('password');
             $table->string('phone_number')->nullable();

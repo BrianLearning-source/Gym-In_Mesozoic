@@ -81,7 +81,7 @@
         </div>
 
         <!-- Stats Grid 1 -->
-        <div class="w-full max-w-6xl gap-4 mt-8 flex flex-row flex-wrap justify-center items-center">
+        <div class="w-full max-w-6xl gap-4 flex flex-row flex-wrap justify-center items-center">
             <!-- Card 1 -->
             <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
                 <p class="text-2xl font-bold text-white md:text-3xl">{{ $anggota->join_date->format('d/m/Y') }}</p>
@@ -102,7 +102,7 @@
         </div>
 
         <!-- Data Anggota & Stat Anggota Section -->
-        <div class="grid w-full max-w-6xl grid-cols-1 gap-6 mt-8 lg:grid-cols-2">
+        <div class="grid w-full max-w-6xl grid-cols-1 gap-6 mt-6 lg:grid-cols-2">
 
             <!-- Data Anggota Card -->
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">

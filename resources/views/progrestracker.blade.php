@@ -8,6 +8,7 @@
     <title>Workout History - GYM-IN</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 
     <style>
         .header-glow {
@@ -76,20 +77,21 @@
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
                 <div class="flex justify-between gap-2">
                     @foreach ($weekDays as $day)
-                        <div class="flex-1 text-center py-3 rounded-lg {{ $day['isToday'] ? 'bg-emerald-500/20 border border-emerald-500/30' : 'bg-white/5' }}">
-                            <p class="text-xs {{ $day['isToday'] ? 'text-emerald-400' : 'text-gray-400' }}">{{ $day['hari_singkat'] }}</p>
-                            <p class="text-sm font-semibold {{ $day['isToday'] ? 'text-emerald-400' : 'text-white' }}">{{ $day['date']->format('j') }}</p>
-                        </div>
+                        <a href="{{ route('member.progres', ['date' => $day['dateUrl']]) }}"
+                            class="flex-1 text-center py-3 rounded-lg transition-all hover:scale-105 {{ $day['isSelected'] ? 'bg-emerald-500/20 border border-emerald-500/30' : 'bg-white/5 hover:bg-white/10' }}">
+                            <p class="text-xs {{ $day['isSelected'] ? 'text-emerald-400' : 'text-gray-400' }}">{{ $day['hari_singkat'] }}</p>
+                            <p class="text-sm font-semibold {{ $day['isSelected'] ? 'text-emerald-400' : 'text-white' }}">{{ $day['date']->format('j') }}</p>
+                        </a>
                     @endforeach
                 </div>
             </div>
         </div>
 
-        <!-- Today's Workout Summary Card -->
+        <!-- Selected Day Workout Summary Card -->
         <div class="w-full max-w-6xl mt-8">
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-lg font-semibold text-white">Latihan Hari Ini</h3>
+                    <h3 class="text-lg font-semibold text-white">Latihan Hari ini</h3>
 <span class="text-sm text-emerald-400">{{ optional($perkembangan->date)->locale('id')->translatedFormat('l, j F Y') ?? 'Tanggal tidak tersedia' }}</span>
                 </div>
                 <div class="flex flex-row flex-wrap items-center justify-center gap-8">
@@ -166,9 +168,9 @@
                 </div>
 
                 @foreach ($weekDays as $day)
-                    <div class="history-row grid grid-cols-5 gap-2 px-4 py-3 {{ !$loop->last ? 'border-b border-white/5' : '' }} {{ $day['isToday'] ? 'rounded-lg bg-emerald-500/10' : '' }} text-sm">
-                        <div class="{{ $day['isToday'] ? 'text-emerald-400 font-semibold' : 'text-white' }}">{{ $day['hari_panjang'] }}</div>
-                        <div class="{{ $day['isToday'] ? 'text-emerald-400' : 'text-gray-300' }}">{{ $day['date']->format('d/m') }}</div>
+                    <div class="history-row grid grid-cols-5 gap-2 px-4 py-3 {{ !$loop->last ? 'border-b border-white/5' : '' }} {{ $day['isSelected'] ? 'rounded-lg bg-emerald-500/10' : '' }} text-sm">
+                        <div class="{{ $day['isSelected'] ? 'text-emerald-400 font-semibold' : 'text-white' }}">{{ $day['hari_panjang'] }}</div>
+                        <div class="{{ $day['isSelected'] ? 'text-emerald-400' : 'text-gray-300' }}">{{ $day['date']->format('d/m') }}</div>
                         <div class="{{ $day['duration'] ? 'text-emerald-400' : 'text-gray-400' }}">@if ($day['duration'])
                                 {{ intdiv($day['duration'], 60) }}j {{ $day['duration'] % 60 }}m
                             @else
@@ -186,38 +188,17 @@
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
                 <h3 class="mb-4 text-lg font-semibold text-white">Progres Berat Badan</h3>
 
-                <!-- Bar chart -->
-                @php
-                    $maxWeight = collect($weekDays)->max('weight') ?: 100;
-                @endphp
-                <div class="flex items-end justify-between gap-2 h-40 mb-4">
-                    @foreach ($weekDays as $day)
-                        @php
-                            $barHeight = $day['weight'] ? max(round(($day['weight'] / $maxWeight) * 160), 10) : 0;
-                            $barStyle = 'height: ' . $barHeight . 'px';
-                        @endphp
-                        <div class="flex-1 flex flex-col items-center">
-
-
-                            <div 
-                                class="w-full rounded-t-lg transition-all hover:opacity-80 {{ $day['weight'] ? ($day['isToday'] ? 'bg-emerald-400' : 'bg-emerald-500') : 'bg-white/20' }}" style="{{ $barStyle }};"></div>
-
-
-
-                            <span class="text-sm mt-2 {{ $day['weight'] ? ($day['isToday'] ? 'text-emerald-400 font-semibold' : 'text-gray-400') : 'text-gray-500' }}">{{ $day['weight'] ? $day['weight'] . ' kg' : '-' }}</span>
-                            <span class="text-xs {{ $day['isToday'] ? 'text-emerald-500' : 'text-gray-500' }}">{{ $day['hari_singkat'] }}</span>
-                        </div>
-                    @endforeach
+                <div class="relative">
+                    <canvas id="weightChart" height="180"></canvas>
                 </div>
 
-                <!-- Legend -->
                 <div class="flex justify-center gap-6 mt-4 pt-4 border-t border-white/10">
                     <div class="flex items-center gap-2">
                         <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
                         <span class="text-sm text-gray-400">Completed</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <div class="w-3 h-3 rounded-full bg-white/20"></div>
+                        <div class="w-3 h-3 rounded" style="background-color: rgba(255,255,255,0.1);"></div>
                         <span class="text-sm text-gray-400">Not yet</span>
                     </div>
                 </div>
@@ -245,7 +226,7 @@
                     <h3 class="mb-4 text-lg font-semibold text-white">Catatan Harian</h3>
                 <textarea id="diaryText" readonly rows="1"
                     class="w-full min-h-[200px] resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                    oninput="autoResizeTextarea(this)">{{ $perkembangan->diary ?? 'Belum ada catatan hari ini.' }}</textarea>
+                    oninput="autoResizeTextarea(this)">{{ $perkembangan->diary ?? 'Belum ada catatan.' }}</textarea>
             </div>
         </div>
 
@@ -320,6 +301,86 @@
             </a>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('weightChart').getContext('2d');
+
+            const labels = @json($chartLabels);
+            const weights = @json($chartWeights);
+
+            const hasData = weights.some(w => w > 0);
+
+            const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+            gradient.addColorStop(0, '#34d399');
+            gradient.addColorStop(1, '#059669');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Berat Badan (kg)',
+                        data: weights,
+                        backgroundColor: weights.map(w => w > 0 ? gradient : 'rgba(255,255,255,0.08)'),
+                        borderColor: weights.map(w => w > 0 ? '#34d399' : 'rgba(255,255,255,0.1)'),
+                        borderWidth: 1,
+                        borderRadius: 6,
+                        borderSkipped: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    animation: {
+                        duration: 800,
+                        easing: 'easeOutQuart'
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0,0,0,0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#34d399',
+                            padding: 10,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.y > 0 ? context.parsed.y + ' kg' : 'Belum latihan';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(255,255,255,0.06)',
+                            },
+                            ticks: {
+                                color: 'rgba(255,255,255,0.5)',
+                                font: { size: 11 },
+                                callback: function(value) {
+                                    return value + ' kg';
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: 'rgba(255,255,255,0.5)',
+                                font: { size: 11 },
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 
 </body>
 

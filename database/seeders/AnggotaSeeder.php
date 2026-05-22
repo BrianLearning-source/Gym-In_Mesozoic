@@ -51,6 +51,8 @@ class AnggotaSeeder extends Seeder
             ['start' => '06:30:00', 'end' => '08:00:00', 'weight' => 81, 'cal' => 350, 'diary' => 'Fokus leg day: squat, lunges, calf raises.'],
             ['start' => '07:15:00', 'end' => '08:45:00', 'weight' => 81, 'cal' => 310, 'diary' => 'Push day: bench press, shoulder press, triceps.'],
             ['start' => '06:45:00', 'end' => '08:15:00', 'weight' => 80, 'cal' => 340, 'diary' => 'Pull day: pull-ups, rows, biceps curls.'],
+            ['start' => '08:49:00', 'end' => '09:49:00', 'weight' => 75, 'cal' => 400, 'diary' => 'treadmill 1 jam'],
+
         ];
 
         foreach ($durations as $i => $d) {

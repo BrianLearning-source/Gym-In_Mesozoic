@@ -114,26 +114,30 @@ class AnggotaController extends Controller
         ]);
     }
 
-    public function perkembangan()
+    public function perkembangan(Request $request)
     {
         $id = Auth::guard('member')->id();
         $today = now();
 
+        $selectedDateStr = $request->query('date', $today->format('Y-m-d'));
+        $selectedDate = \Carbon\Carbon::parse($selectedDateStr);
+
         $perkembangan = PerkembanganModel::where('anggota_id', $id)
-            ->whereDate('date', $today->format('Y-m-d'))
+            ->whereDate('date', $selectedDate->format('Y-m-d'))
             ->first();
 
         if (!$perkembangan) {
             $perkembangan = new PerkembanganModel();
-            $perkembangan->date = $today;
+            $perkembangan->date = $selectedDate;
         }
 
         $duration = PerkembanganModel::where('anggota_id', $id)
-            ->whereDate('date', $today->format('Y-m-d'))
+            ->whereDate('date', $selectedDate->format('Y-m-d'))
             ->selectRaw('TIMESTAMPDIFF(MINUTE, start_time, end_time) AS total_minutes')
             ->first();
-        $startOfWeek = $today->copy()->startOfWeek(\Carbon\Carbon::MONDAY);
-        $endOfWeek = $today->copy()->endOfWeek(\Carbon\Carbon::SUNDAY);
+
+        $startOfWeek = $selectedDate->copy()->startOfWeek(\Carbon\Carbon::MONDAY);
+        $endOfWeek = $selectedDate->copy()->endOfWeek(\Carbon\Carbon::SUNDAY);
 
         $weekRecords = PerkembanganModel::where('anggota_id', $id)
             ->whereBetween('date', [$startOfWeek->format('Y-m-d'), $endOfWeek->format('Y-m-d')])
@@ -161,16 +165,23 @@ class AnggotaController extends Controller
                 'hari_panjang' => $hariPanjang[$i],
                 'date' => $date,
                 'isToday' => $date->isToday(),
+                'isSelected' => $date->format('Y-m-d') === $selectedDate->format('Y-m-d'),
+                'dateUrl' => $date->format('Y-m-d'),
                 'duration' => $dur,
                 'calory_burned' => $record?->calory_burned,
                 'weight' => $record?->weight,
             ];
         }
 
+        $chartLabels = collect($weekDays)->pluck('hari_singkat')->toArray();
+        $chartWeights = collect($weekDays)->pluck('weight')->map(fn($w) => $w ?? 0)->toArray();
+
         return view('progrestracker', [
             'perkembangan' => $perkembangan,
             'duration' => $duration,
             'weekDays' => $weekDays,
+            'chartLabels' => $chartLabels,
+            'chartWeights' => $chartWeights,
         ]);
     }
 }

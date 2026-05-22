@@ -15,7 +15,7 @@ class RewardSeeder extends Seeder
     {
        $data = [
         [   'name' => 'Handuk Gym',
-            'image' => 'rewards/01KQY2X7Y57DZ2W2DRC01GEXA5.jpg',
+            'image' => 'rewards/handuk.jpg',
             'points_required' => 500,
             'stock' => 10,
         ],
@@ -24,6 +24,18 @@ class RewardSeeder extends Seeder
             'points_required' => 600,
             'stock' => 10,
         ],    
+        [
+            'name' => 'Tas Gym',
+            'image' => 'rewards/tasGym.jpg',
+            'points_required' => 1000,
+            'stock' => 5,
+        ],
+        [
+            'name' => 'ShakerBottle',
+            'image' => 'rewards/shaker.jpg',
+            'points_required' => 700,
+            'stock' => 15,
+        ]
        ];
 
        DB::table('m_rewards')->truncate();

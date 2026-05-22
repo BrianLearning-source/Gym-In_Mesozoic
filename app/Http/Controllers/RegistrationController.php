@@ -20,8 +20,7 @@ class RegistrationController extends Controller
             'username' => 'required|string|min:3|max:50|unique:m_anggota,username|regex:/^[a-zA-Z0-9_-]+$/',
             'name' => 'required|string|min:3|max:100',
             'email' => 'required|email|max:100|unique:m_anggota,email',
-            'height' => 'required|numeric|min:50|max:300',
-            'weight' => 'required|numeric|min:20|max:500',
+            'phone_number' => ['required', 'string', 'max:20'],
             'rest_days' => 'required|integer|min:0|max:5',
         ]);
 
@@ -36,8 +35,7 @@ class RegistrationController extends Controller
             $anggota->username = $validated['username'];
             $anggota->name = $validated['name'];
             $anggota->email = $validated['email'];
-            $anggota->height = $validated['height'];
-            $anggota->weight = $validated['weight'];
+            $anggota->phone_number = $validated['phone_number'];
             $anggota->rest_days = $validated['rest_days'];
             $anggota->qr_code = $qrCode;
             $anggota->password = bcrypt($tempPassword);

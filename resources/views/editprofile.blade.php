@@ -86,13 +86,13 @@
                         </select>
                     </div>
                     <div>
-                        <label for="password" class="block text-sm font-medium text-white my-2">Password Baru</label>
+                        <label for="password" class="block text-sm font-medium text-white my-2">Kata Sandi Baru</label>
                         <input type="password" name="password" id="password"
                             class="w-full resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                        <p class="text-xs text-gray-500 mt-1">Kosongkan jika tidak ingin mengganti password.</p>
+                        <p class="text-xs text-gray-500 mt-1">Kosongkan jika tidak ingin mengganti kata sandi.</p>
                     </div>
                     <div>
-                        <label for="password_confirmation" class="block text-sm font-medium text-white my-2">Konfirmasi Password</label>
+                        <label for="password_confirmation" class="block text-sm font-medium text-white my-2">Konfirmasi Kata Sandi</label>
                         <input type="password" name="password_confirmation" id="password_confirmation"
                             class="w-full resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
                     </div>

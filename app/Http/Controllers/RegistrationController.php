@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AnggotaModel;
+use App\Models\Registrasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
@@ -17,9 +17,9 @@ class RegistrationController extends Controller
     public function register(Request $request)
     {
         $validated = $request->validate([
-            'username' => 'required|string|min:3|max:50|unique:m_anggota,username|regex:/^[a-zA-Z0-9_-]+$/',
+            'username' => 'required|string|min:3|max:50|unique:registrasis,username|regex:/^[a-zA-Z0-9_-]+$/',
             'name' => 'required|string|min:3|max:100',
-            'email' => 'required|email|max:100|unique:m_anggota,email',
+            'email' => 'required|email|max:100|unique:registrasis,email',
             'phone_number' => ['required', 'string', 'max:20'],
             'rest_days' => 'required|integer|min:0|max:5',
         ]);
@@ -31,20 +31,16 @@ class RegistrationController extends Controller
             // Generate unique QR code
             $qrCode = $this->generateQRCode();
 
-            $anggota = new AnggotaModel();
-            $anggota->username = $validated['username'];
-            $anggota->name = $validated['name'];
-            $anggota->email = $validated['email'];
-            $anggota->phone_number = $validated['phone_number'];
-            $anggota->rest_days = $validated['rest_days'];
-            $anggota->qr_code = $qrCode;
-            $anggota->password = bcrypt($tempPassword);
-            $anggota->join_date = now();
-            $anggota->points = 0;
-            $anggota->streak = 0;
-            $anggota->highest_streak = 0;
-            $anggota->status = 'pending';
-            $anggota->save();
+            $regis = new Registrasi();
+            $regis->username = $validated['username'];
+            $regis->name = $validated['name'];
+            $regis->email = $validated['email'];
+            $regis->phone_number = $validated['phone_number'];
+            $regis->rest_days = $validated['rest_days'];
+            $regis->qr_code = $qrCode;
+            $regis->password = bcrypt($tempPassword);
+            $regis->join_date = now();
+            $regis->save();
 
             // Log registration
             Log::info('New registration', [
@@ -71,7 +67,7 @@ class RegistrationController extends Controller
     {
         do {
             $qrCode = 'GYM' . Str::upper(Str::random(8));
-        } while (AnggotaModel::where('qr_code', $qrCode)->exists());
+        } while (Registrasi::where('qr_code', $qrCode)->exists());
 
         return $qrCode;
     }

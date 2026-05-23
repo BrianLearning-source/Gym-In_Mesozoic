@@ -2,35 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
-class AnggotaModel extends Authenticatable
+class Registrasi extends Model
 {
-    //
-    use HasFactory;
-
-    protected $table = 'm_anggota';
+    protected $table = 'registrasis';
     protected $primaryKey = 'id';
 
     protected $fillable = [
         'username',
         'name',
-        'gender',
         'email',
-        'password',
         'phone_number',
-        'join_date',
-        'points',
-        'streak',
-        'highest_streak',
-        'qr_code',
+        'password',
         'rest_days',
-        'status',
+        'qr_code',
+        'join_date',
     ];
-
     protected $hidden = [
         'password',
         'remember_token',
@@ -40,4 +28,5 @@ class AnggotaModel extends Authenticatable
         'join_date' => 'date',
         'password' => 'hashed',
     ];
+    
 }

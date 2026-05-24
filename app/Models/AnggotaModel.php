@@ -29,6 +29,7 @@ class AnggotaModel extends Authenticatable
         'qr_code',
         'rest_days',
         'status',
+        'avatar',
     ];
 
     protected $hidden = [

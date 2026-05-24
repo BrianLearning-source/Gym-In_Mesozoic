@@ -58,9 +58,24 @@
         <div class="w-full max-w-6xl mt-6">
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
                 <h2 class="text-2xl font-semibold text-white mb-4">Edit Profil</h2>
-                <form action="{{ route('member.updateProfile') }}" method="POST" class="space-y-4" id="editProfileForm">
+                <form action="{{ route('member.updateProfile') }}" enctype="multipart/form-data" method="POST"
+                    class="space-y-4" id="editProfileForm">
                     @csrf
                     @method('PUT')
+
+                    <!-- Avatar Upload -->
+                    <div class="flex flex-row items-left gap-4">
+                        <img id="avatarPreview"
+                            src="{{ $anggota->avatar ? asset('storage/' . $anggota->avatar) : 'https://pbs.twimg.com/media/E8YT2mbVcAIA5vv?format=jpg&name=small' }}"
+                            alt="Avatar" class="w-24 h-24 rounded-full object-cover border-2 border-white/10">
+
+                        <label for="avatar" class="block text-sm font-medium text-white my-2">Foto Profil</label>
+                        <input type="file" name="avatar" id="avatar" accept="image/*"
+                            onchange="previewImage(this, 'avatarPreview')"
+                            class="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100">
+                    </div>
+
+                    <!-- Form Fields -->
                     <div>
                         <label for="name" class="block text-sm font-medium text-white my-2">Nama Lengkap</label>
                         <input type="text" name="name" id="name" value="{{ $anggota->name }}"
@@ -74,7 +89,8 @@
                     <div>
                         <label for="phone" class="block text-sm font-medium text-white my-2">Nomor Telepon</label>
                         <input type="tel" name="phone_number" id="phone" value="{{ $anggota->phone_number ?? '' }}"
-                            class="w-full resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="contoh: +62 812-3456-7890">
+                            class="w-full resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                            placeholder="contoh: +62 812-3456-7890">
                     </div>
                     <div>
                         <label for="gender" class="block text-sm font-medium text-white my-2">Jenis Kelamin</label>
@@ -92,7 +108,8 @@
                         <p class="text-xs text-gray-500 mt-1">Kosongkan jika tidak ingin mengganti kata sandi.</p>
                     </div>
                     <div>
-                        <label for="password_confirmation" class="block text-sm font-medium text-white my-2">Konfirmasi Kata Sandi</label>
+                        <label for="password_confirmation" class="block text-sm font-medium text-white my-2">Konfirmasi
+                            Kata Sandi</label>
                         <input type="password" name="password_confirmation" id="password_confirmation"
                             class="w-full resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
                     </div>
@@ -101,8 +118,9 @@
 
             <!-- Tombol save dipisah kalo sewaktu-waktu ada card lagi selain yang diatas -->
             <div class="mt-4 flex justify-end">
-                <button form="editProfileForm" type="submit" class="px-6 py-2 text-white font-semibold rounded-lg transition duration-300"
-                style="background-color: rgba(77, 145, 132);">
+                <button form="editProfileForm" type="submit"
+                    class="px-6 py-2 text-white font-semibold rounded-lg transition duration-300"
+                    style="background-color: rgba(77, 145, 132);">
                     Simpan Perubahan
                 </button>
             </div>
@@ -159,5 +177,18 @@
         </div>
     </div>
 </body>
+
+<script>
+    function previewImage(input, previewId) {
+        const [file] = input.files;
+        
+        if (file) {
+            const preview = document.getElementById(previewId);
+            if (preview) {
+                preview.src = URL.createObjectURL(file);
+            }
+        }
+    }
+</script>
 
 </html>

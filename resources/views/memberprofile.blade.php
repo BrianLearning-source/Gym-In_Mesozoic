@@ -67,8 +67,8 @@
                     <!-- Avatar -->
                     <div
                         class="w-24 h-24 rounded-full border-4 border-emerald-500 overflow-hidden bg-gradient-to-br from-emerald-600 to-teal-600 shadow-xl">
-                        <img src="https://pbs.twimg.com/media/E8YT2mbVcAIA5vv?format=jpg&name=small" alt="Profile"
-                            class="w-full h-full object-cover">
+                        <img src="{{ $anggota->avatar ? asset('storage/' . $anggota->avatar) : 'https://pbs.twimg.com/media/E8YT2mbVcAIA5vv?format=jpg&name=small' }}"
+                            alt="Profile" class="w-full h-full object-cover">
                     </div>
 
                     <!-- Name and Title -->

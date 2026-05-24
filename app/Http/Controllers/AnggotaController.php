@@ -8,6 +8,7 @@ use App\Models\Rewards;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class AnggotaController extends Controller
 {
@@ -84,6 +85,7 @@ class AnggotaController extends Controller
             'phone_number' => 'nullable|string|max:20',
             'gender' => 'nullable|in:0,1',
             'password' => 'nullable|string|min:6|confirmed',
+            'avatar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
         $anggota->name = $request->name;
@@ -97,6 +99,13 @@ class AnggotaController extends Controller
             $anggota->password = $request->password;
         }
 
+        // Avatar Upload taruh di public storage, jadi di DB cuma pathnya aja.
+        if ($request->hasFile('avatar')) {
+            if ($anggota->avatar) {
+                Storage::disk('public')->delete($anggota->avatar);
+            }
+            $anggota->avatar = $request->file('avatar')->store('avatars', 'public');
+        }
         $anggota->save();
 
         return redirect()->route('member.profile')->with('success', 'Profil berhasil diperbarui.');

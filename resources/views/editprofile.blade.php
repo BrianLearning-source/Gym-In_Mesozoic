@@ -55,7 +55,7 @@
         </div>
 
         <!-- Edit Profile Form -->
-        <div class="w-full max-w-6xl mt-6">
+        <div class="w-full max-w-6xl mt-6 overflow-hidden">
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
                 <h2 class="text-2xl font-semibold text-white mb-4">Edit Profil</h2>
                 <form action="{{ route('member.updateProfile') }}" enctype="multipart/form-data" method="POST"

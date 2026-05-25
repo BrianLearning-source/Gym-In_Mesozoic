@@ -51,7 +51,7 @@
         </a>
         <!-- Login Form -->
         <div
-            class="flex flex-col justify-center items-center backdrop-blur-sm drop-shadow-2xl bg-white bg-opacity-20 rounded-3xl w-fit h-fit mt-3.5">
+            class="flex flex-col justify-center items-center backdrop-blur-sm drop-shadow-2xl bg-white bg-opacity-20 rounded-3xl w-fit h-fit mt-3.5 overflow-hidden">
             <div class=" m-11">
                 <h1 class="text-2xl font-bold text-white text-center header-glow uppercase">Login</h1>
 
@@ -73,7 +73,7 @@
                     <input type="password" name="password" placeholder="Kata sandi"
                         class="bg-white bg-opacity-20 text-white placeholder:text-white placeholder:opacity-75 border border-white border-opacity-50 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-white">
                     <button type="submit"
-                        class=" text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
+                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 overflow-hidden"
                         style="background-color: rgba(77, 145, 132)">Masuk</button>
                 </form>
             </div>

@@ -55,7 +55,7 @@
         </div>
 
         <!-- Profile Header Section -->
-        <div class="relative w-full max-w-6xl my-6">
+        <div class="relative w-full max-w-6xl my-6 overflow-hidden">
             <!-- Profile Banner -->
             <div
                 class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-800/50 to-teal-800/50 backdrop-blur-sm">
@@ -83,19 +83,19 @@
         <!-- Stats Grid 1 -->
         <div class="w-full max-w-6xl gap-4 flex flex-row flex-wrap justify-center items-center">
             <!-- Card 1 -->
-            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
+            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
                 <p class="text-2xl font-bold text-white md:text-3xl">{{ $anggota->join_date->format('d/m/Y') }}</p>
                 <p class="mt-2 text-sm text-gray-300">Tanggal bergabung</p>
             </div>
 
             <!-- Card 2 -->
-            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
+            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
                 <p class="text-2xl font-bold text-white md:text-3xl">{{ $anggota->highest_streak }} Hari</p>
                 <p class="mt-2 text-sm text-gray-300">Streak tertinggi</p>
             </div>
 
             <!-- Card 3 -->
-            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
+            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
                 <p class="text-2xl font-bold text-white md:text-3xl">{{ $totalTrainingTime }} Jam</p>
                 <p class="mt-2 text-sm text-gray-300">Total waktu latihan</p>
             </div>
@@ -105,7 +105,7 @@
         <div class="grid w-full max-w-6xl grid-cols-1 gap-6 mt-6 lg:grid-cols-2">
 
             <!-- Data Anggota Card -->
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 overflow-hidden">
                 <h3 class="mb-6 text-xl font-bold text-white">Data Anggota</h3>
 
                 <div class="space-y-4">
@@ -125,7 +125,7 @@
             </div>
 
             <!-- Stat Anggota Card -->
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 overflow-hidden">
                 <h3 class="mb-6 text-xl font-bold text-white">Komposisi Tubuh Anggota</h3>
 
                 <div class="space-y-4">
@@ -144,19 +144,19 @@
         <!-- Stats Grid 2 -->
         <div class="w-full max-w-6xl gap-4 mt-4 flex flex-row flex-wrap justify-center items-center">
             <!-- Card 4 -->
-            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
+            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
                 <p class="text-2xl font-bold text-white md:text-3xl">6 jam</p>
                 <p class="mt-2 text-sm text-gray-300">Latihan hari ini</p>
             </div>
 
             <!-- Card 5 -->
-            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
+            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
                 <p class="text-2xl font-bold text-white md:text-3xl">67 Hari</p>
                 <p class="mt-2 text-sm text-gray-300">Streak saat ini</p>
             </div>
 
             <!-- Card 6 -->
-            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
+            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
                 <p class="text-2xl font-bold text-white md:text-3xl">6700</p>
                 <p class="mt-2 text-sm text-gray-300">Poin streak</p>
             </div>
@@ -164,19 +164,19 @@
 
         <!-- Personalisasi Section - Updated with Buttons -->
         <div class="w-full max-w-6xl mt-8">
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 overflow-hidden">
                 <h3 class="mb-6 text-xl font-bold text-white">Personalisasi</h3>
 
                 <!-- Buttons Container -->
                 <div class="flex flex-col gap-4">
                     <a href="{{ route('member.editProfile') }}"
-                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 items-center justify-center flex"
+                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 items-center justify-center flex overflow-hidden"
                         style="background-color: rgba(77, 145, 132)">
                         Edit Profil
                     </a>
 
                     <button type="button"
-                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
+                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 overflow-hidden"
                         style="background-color: rgba(77, 145, 132)">
                         Preferensi Latihan
                     </button>
@@ -185,7 +185,7 @@
                         onclick="return confirm('Apakah Anda yakin ingin logout?')">
                         @csrf
                         <button type="submit"
-                            class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
+                            class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 overflow-hidden"
                             style="background-color: rgba(255, 77, 77, 0.8)">
                             Logout
                         </button>

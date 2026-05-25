@@ -74,7 +74,7 @@
 
         <!-- Weekly Calendar / Day Selector -->
         <div class="w-full max-w-6xl mt-4">
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 overflow-hidden">
                 <div class="flex justify-between gap-2">
                     @foreach ($weekDays as $day)
                     <a href="{{ route('member.progres', ['date' => $day['dateUrl']]) }}"
@@ -91,7 +91,7 @@
 
         <!-- Selected Day Workout Summary Card -->
         <div class="w-full max-w-6xl mt-8">
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 overflow-hidden">
                 <div class="flex items-center justify-between mb-4">
                     <h3 class="text-lg font-semibold text-white">Latihan Hari ini</h3>
                     <span class="text-sm text-emerald-400">{{
@@ -130,7 +130,7 @@
         $maxBerat = collect($weekDays)->max('weight');
         @endphp
         <div class="w-full max-w-6xl mt-8">
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 overflow-hidden">
                 <h3 class="mb-4 text-lg font-semibold text-white">Statistik Minggu Ini</h3>
                 <div class="flex flex-wrap gap-4 items-center justify-center">
                     <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5 w-full max-w-[150px]">
@@ -160,7 +160,7 @@
 
         <!-- Workout History Table -->
         <div class="w-full max-w-6xl mt-8">
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 overflow-hidden">
                 <h3 class="mb-4 text-lg font-semibold text-white">Riwayat Latihan Detail</h3>
 
                 <!-- Table Header -->
@@ -196,7 +196,7 @@
 
         <!-- Progress Chart Section -->
         <div class="w-full max-w-6xl mt-8">
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 overflow-hidden">
                 <h3 class="mb-4 text-lg font-semibold text-white">Progres Berat Badan</h3>
 
                 <div class="relative">
@@ -218,7 +218,7 @@
 
         <!-- Achievement Section -->
         <div class="w-full max-w-6xl mt-8">
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-gradient-to-r from-emerald-900/30 to-teal-900/30">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-gradient-to-r from-emerald-900/30 to-teal-900/30 overflow-hidden">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center">
                         <span class="text-2xl">🏆</span>
@@ -233,7 +233,7 @@
 
         <!-- Diary Textbox -->
         <div class="w-full max-w-6xl mt-8">
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 overflow-hidden">
                 <h3 class="mb-4 text-lg font-semibold text-white">Catatan Harian</h3>
                 <textarea id="diaryText" readonly rows="1"
                     class="w-full min-h-[200px] resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
@@ -247,15 +247,15 @@
                 <h3 class="mb-6 text-xl font-bold text-white">Kelola Data</h3>
 
                 <!-- Buttons Container -->
-                <div class="flex flex-col gap-4">
+                <div class="flex flex-col gap-4 overflow-hidden">
                     <button type="button"
-                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
+                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 overflow-hidden"
                         style="background-color: rgba(77, 145, 132)">
                         Ubah Data
                     </button>
 
                     <button type="submit"
-                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
+                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 overflow-hidden"
                         style="background-color: rgba(255, 77, 77, 0.8)">
                         Hapus Data
                     </button>

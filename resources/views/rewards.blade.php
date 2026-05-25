@@ -92,7 +92,7 @@
 
                     @foreach($rewards as $reward)
                     <!-- Pengulangan dalam membuat item reward -->
-                    <div class="reward-card p-4 rounded-xl backdrop-blur-sm bg-white/5">
+                    <div class="reward-card p-4 rounded-xl backdrop-blur-sm bg-white/5 overflow-hidden">
                         <div class="flex items-start justify-between">
 
                             <div class="flex items-center gap-3">
@@ -125,7 +125,7 @@
 
 
                     <!-- {{--
-                    <div class="reward-card p-4 rounded-xl backdrop-blur-sm bg-white/5">
+                    <div class="reward-card p-4 rounded-xl backdrop-blur-sm bg-white/5 overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div class="flex items-center gap-3">
                                 <div class="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
@@ -150,7 +150,7 @@
 
                     
                     <!-- Reward 2
-                    <div class="reward-card p-4 rounded-xl backdrop-blur-sm bg-white/5">
+                    <div class="reward-card p-4 rounded-xl backdrop-blur-sm bg-white/5 overflow-hidden">
                         <div class="flex items-start justify-between">
                             <div class="flex items-center gap-3">
                                 <div class="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">

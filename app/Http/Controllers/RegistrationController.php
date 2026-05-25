@@ -21,12 +21,14 @@ class RegistrationController extends Controller
             'name' => 'required|string|min:3|max:100',
             'email' => 'required|email|max:100|unique:registrasis,email',
             'phone_number' => ['required', 'string', 'max:20'],
-            'rest_days' => 'required|integer|min:0|max:5',
         ]);
 
         try {
             // Generate temporary password
             $tempPassword = '1234';
+
+            // Generate temporarty rest days
+            $tempRestDays = '3';
 
             // Generate unique QR code
             $qrCode = $this->generateQRCode();
@@ -36,7 +38,7 @@ class RegistrationController extends Controller
             $regis->name = $validated['name'];
             $regis->email = $validated['email'];
             $regis->phone_number = $validated['phone_number'];
-            $regis->rest_days = $validated['rest_days'];
+            $regis->rest_days = $tempRestDays;
             $regis->qr_code = $qrCode;
             $regis->password = bcrypt($tempPassword);
             $regis->join_date = now();

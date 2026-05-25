@@ -30,10 +30,16 @@ class AnggotaController extends Controller
             ->selectRaw('SUM(calory_burned) AS total_calory')
             ->first();
 
+        $rewards = Rewards::orderBy('reward_id')->limit(4)->get();
+
+            if ($rewards->isEmpty()) {
+                return view('memberdashboard', ['rewards' => collect()]);
+        }
 
         return view('memberdashboard', [
             'anggota' => $anggota,
             'duration' => $duration,
+            'rewards' => $rewards,
             'calory_burned' => $calory_burned,
         ]);
     }

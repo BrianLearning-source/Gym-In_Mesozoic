@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Rewards - GYM-IN</title>
+    <title>Bonus - GYM-IN</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -73,7 +73,7 @@
                         <p class="text-3xl font-bold text-white">{{ $anggota->points }}</p>
                     </div>
                     <div class="md:text-right text-center">
-                        <p class="text-gray-300">Hadiah-hadiah yang dipilih akan mengurangi</p>
+                        <p class="text-gray-300">Bonus yang dipilih akan mengurangi</p>
                         <p class="text-2xl font-bold text-red-400">-2500 Poin</p>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
         <!-- Daftar reward yang bisa ditukar Section -->
         <div class="w-full max-w-6xl mt-8">
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
-                <h2 class="mb-6 text-xl font-bold text-white">Daftar hadiah yang bisa ditukar</h2>
+                <h2 class="mb-6 text-xl font-bold text-white">Daftar bonus yang bisa ditukar</h2>
 
                 <!-- Rewards Grid -->
                 <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -314,7 +314,7 @@
                         d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
                     </path>
                 </svg>
-                <span class="text-xs mt-1">Rewards</span>
+                <span class="text-xs mt-1">Bonus</span>
             </a>
             <a href="{{ route('member.profile') }}"
                 class="flex flex-col items-center text-white/60 hover:text-emerald-400 transition">

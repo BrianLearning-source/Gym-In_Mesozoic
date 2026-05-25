@@ -39,9 +39,9 @@
 
         <!-- Login Note -->
         <p class="text-white text-1xl text-center py-3 drop-shadow-2xl">
-            Untuk membuat akun, anda harus menjadi anggota gym.
+            Untuk membuat akun, anda harus menjadi anggota <i>gym</i>.
             Anda bisa mengisi formulir yang berada di halaman utama
-            atau daftar ke gym.
+            atau daftar ke <i>gym</i>.
         </p>
 
         <!-- Back Button -->

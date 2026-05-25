@@ -18,6 +18,7 @@ class AnggotaModel extends Authenticatable
     protected $fillable = [
         'username',
         'name',
+        'title',
         'gender',
         'email',
         'password',

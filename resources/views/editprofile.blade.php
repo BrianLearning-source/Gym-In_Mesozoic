@@ -69,7 +69,7 @@
                             src="{{ $anggota->avatar ? asset('storage/' . $anggota->avatar) : 'https://pbs.twimg.com/media/E8YT2mbVcAIA5vv?format=jpg&name=small' }}"
                             alt="Avatar" class="w-24 h-24 rounded-full object-cover border-2 border-white/10">
 
-                        <label for="avatar" class="block text-sm font-medium text-white my-2">Foto Profil</label>
+                        {{-- <label for="avatar" class="block text-sm font-medium text-white my-2">Foto Profil</label> --}}
                         <input type="file" name="avatar" id="avatar" accept="image/*"
                             onchange="previewImage(this, 'avatarPreview')"
                             class="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100">
@@ -79,6 +79,11 @@
                     <div>
                         <label for="name" class="block text-sm font-medium text-white my-2">Nama Lengkap</label>
                         <input type="text" name="name" id="name" value="{{ $anggota->name }}"
+                            class="w-full resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    </div>
+                    <div>
+                        <label for="title" class="block text-sm font-medium text-white my-2">Julukan</label>
+                        <input type="text" name="title" id="title" value="{{ $anggota->title }}"
                             class="w-full resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
                     </div>
                     <div>

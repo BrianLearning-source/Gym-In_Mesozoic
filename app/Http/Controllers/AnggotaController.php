@@ -81,6 +81,7 @@ class AnggotaController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
+            'title' => 'nullable|string|max:255',
             'email' => 'required|email|unique:m_anggota,email,' . $anggota->id,
             'phone_number' => 'nullable|string|max:20',
             'gender' => 'nullable|in:0,1',
@@ -89,6 +90,7 @@ class AnggotaController extends Controller
         ]);
 
         $anggota->name = $request->name;
+        $anggota->title = $request->title;
         $anggota->email = $request->email;
         $anggota->phone_number = $request->phone_number;
         if ($request->filled('gender')) {

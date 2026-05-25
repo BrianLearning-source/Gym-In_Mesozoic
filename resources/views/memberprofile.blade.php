@@ -67,14 +67,14 @@
                     <!-- Avatar -->
                     <div
                         class="w-24 h-24 rounded-full border-4 border-emerald-500 overflow-hidden bg-gradient-to-br from-emerald-600 to-teal-600 shadow-xl">
-                        <img src="{{ $anggota->avatar ? asset('storage/' . $anggota->avatar) : 'https://pbs.twimg.com/media/E8YT2mbVcAIA5vv?format=jpg&name=small' }}"
-                            alt="Profile" class="w-full h-full object-cover">
+                        <img src="{{ $anggota->avatar ? asset('storage/' . $anggota->avatar) : 'https://pbs.twimg.com/media/E8YT2mbVcAIA5vv?format=jpg&name=small' }}" alt="Profile"
+                            class="w-full h-full object-cover">
                     </div>
 
                     <!-- Name and Title -->
-                    <div class="mx-2 my-4 flex flex-col justify-center items-center">
+                    <div class="mx-2 flex flex-col justify-center items-center">
                         <h2 class="text-2xl font-bold text-white md:text-3xl text-center">{{ $anggota->name }}</h2>
-                        <p class="text-emerald-400 text-center">The Veteran Bodybuilder</p>
+                        <p class="text-emerald-400 text-center">{{ $anggota->title ?? 'Enthusiast Bodybuilder' }}</p>
                     </div>
                 </div>
             </div>

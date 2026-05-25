@@ -77,11 +77,13 @@
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
                 <div class="flex justify-between gap-2">
                     @foreach ($weekDays as $day)
-                        <a href="{{ route('member.progres', ['date' => $day['dateUrl']]) }}"
-                            class="flex-1 text-center py-3 rounded-lg transition-all hover:scale-105 {{ $day['isSelected'] ? 'bg-emerald-500/20 border border-emerald-500/30' : 'bg-white/5 hover:bg-white/10' }}">
-                            <p class="text-xs {{ $day['isSelected'] ? 'text-emerald-400' : 'text-gray-400' }}">{{ $day['hari_singkat'] }}</p>
-                            <p class="text-sm font-semibold {{ $day['isSelected'] ? 'text-emerald-400' : 'text-white' }}">{{ $day['date']->format('j') }}</p>
-                        </a>
+                    <a href="{{ route('member.progres', ['date' => $day['dateUrl']]) }}"
+                        class="flex-1 text-center py-3 rounded-lg transition-all hover:scale-105 {{ $day['isSelected'] ? 'bg-emerald-500/20 border border-emerald-500/30' : 'bg-white/5 hover:bg-white/10' }}">
+                        <p class="text-xs {{ $day['isSelected'] ? 'text-emerald-400' : 'text-gray-400' }}">{{
+                            $day['hari_singkat'] }}</p>
+                        <p class="text-sm font-semibold {{ $day['isSelected'] ? 'text-emerald-400' : 'text-white' }}">{{
+                            $day['date']->format('j') }}</p>
+                    </a>
                     @endforeach
                 </div>
             </div>
@@ -92,14 +94,17 @@
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
                 <div class="flex items-center justify-between mb-4">
                     <h3 class="text-lg font-semibold text-white">Latihan Hari ini</h3>
-<span class="text-sm text-emerald-400">{{ optional($perkembangan->date)->locale('id')->translatedFormat('l, j F Y') ?? 'Tanggal tidak tersedia' }}</span>
+                    <span class="text-sm text-emerald-400">{{
+                        optional($perkembangan->date)->locale('id')->translatedFormat('l, j F Y') ?? 'Tanggal tidak
+                        tersedia' }}</span>
                 </div>
                 <div class="flex flex-row flex-wrap items-center justify-center gap-8">
                     <div class="text-center">
-                        <p class="text-3xl font-bold text-emerald-400">@if ($duration && $duration->total_minutes !== null)
-                                {{ intdiv($duration->total_minutes, 60) }} jam {{ $duration->total_minutes % 60 }} menit
+                        <p class="text-3xl font-bold text-emerald-400">@if ($duration && $duration->total_minutes !==
+                            null)
+                            {{ intdiv($duration->total_minutes, 60) }} jam {{ $duration->total_minutes % 60 }} menit
                             @else
-                                Durasi tidak tersedia
+                            Durasi tidak tersedia
                             @endif</p>
                         <p class="text-sm text-gray-300">Durasi</p>
                     </div>
@@ -119,10 +124,10 @@
 
         <!-- Weekly Stats Cards -->
         @php
-            $totalLatihan = collect($weekDays)->whereNotNull('weight')->count();
-            $totalMenit = collect($weekDays)->sum('duration');
-            $totalKalori = collect($weekDays)->sum('calory_burned');
-            $maxBerat = collect($weekDays)->max('weight');
+        $totalLatihan = collect($weekDays)->whereNotNull('weight')->count();
+        $totalMenit = collect($weekDays)->sum('duration');
+        $totalKalori = collect($weekDays)->sum('calory_burned');
+        $maxBerat = collect($weekDays)->max('weight');
         @endphp
         <div class="w-full max-w-6xl mt-8">
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
@@ -134,14 +139,15 @@
                     </div>
                     <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5 w-full max-w-[150px]">
                         <div class="text-2xl font-bold text-emerald-400">@if ($totalMenit)
-                                {{ intdiv($totalMenit, 60) }} jam {{ $totalMenit % 60 }} menit
+                            {{ intdiv($totalMenit, 60) }} jam {{ $totalMenit % 60 }} menit
                             @else
-                                0 jam
+                            0 jam
                             @endif</div>
                         <p class="text-sm text-gray-300">Total Jam <br>Latihan</p>
                     </div>
                     <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5 w-full max-w-[150px]">
-                        <div class="text-2xl font-bold text-emerald-400">{{ $totalKalori ? number_format($totalKalori) : 0 }} kkal</div>
+                        <div class="text-2xl font-bold text-emerald-400">{{ $totalKalori ? number_format($totalKalori) :
+                            0 }} kkal</div>
                         <p class="text-sm text-gray-300">Total <br>Kalori</p>
                     </div>
                     <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5 w-full max-w-[150px]">
@@ -168,17 +174,22 @@
                 </div>
 
                 @foreach ($weekDays as $day)
-                    <div class="history-row grid grid-cols-5 gap-2 px-4 py-3 {{ !$loop->last ? 'border-b border-white/5' : '' }} {{ $day['isSelected'] ? 'rounded-lg bg-emerald-500/10' : '' }} text-sm">
-                        <div class="{{ $day['isSelected'] ? 'text-emerald-400 font-semibold' : 'text-white' }}">{{ $day['hari_panjang'] }}</div>
-                        <div class="{{ $day['isSelected'] ? 'text-emerald-400' : 'text-gray-300' }}">{{ $day['date']->format('d/m') }}</div>
-                        <div class="{{ $day['duration'] ? 'text-emerald-400' : 'text-gray-400' }}">@if ($day['duration'])
-                                {{ intdiv($day['duration'], 60) }}j {{ $day['duration'] % 60 }}m
-                            @else
-                                -
-                            @endif</div>
-                        <div class="{{ $day['calory_burned'] ? 'text-orange-400' : 'text-gray-400' }}">{{ $day['calory_burned'] ? $day['calory_burned'] . ' kkal' : '-' }}</div>
-                        <div class="{{ $day['weight'] ? 'text-blue-400' : 'text-gray-400' }}">{{ $day['weight'] ? $day['weight'] . ' kg' : '-' }}</div>
-                    </div>
+                <div
+                    class="history-row grid grid-cols-5 gap-2 px-4 py-3 {{ !$loop->last ? 'border-b border-white/5' : '' }} {{ $day['isSelected'] ? 'rounded-lg bg-emerald-500/10' : '' }} text-sm">
+                    <div class="{{ $day['isSelected'] ? 'text-emerald-400 font-semibold' : 'text-white' }}">{{
+                        $day['hari_panjang'] }}</div>
+                    <div class="{{ $day['isSelected'] ? 'text-emerald-400' : 'text-gray-300' }}">{{
+                        $day['date']->format('d/m') }}</div>
+                    <div class="{{ $day['duration'] ? 'text-emerald-400' : 'text-gray-400' }}">@if ($day['duration'])
+                        {{ intdiv($day['duration'], 60) }}j {{ $day['duration'] % 60 }}m
+                        @else
+                        -
+                        @endif</div>
+                    <div class="{{ $day['calory_burned'] ? 'text-orange-400' : 'text-gray-400' }}">{{
+                        $day['calory_burned'] ? $day['calory_burned'] . ' kkal' : '-' }}</div>
+                    <div class="{{ $day['weight'] ? 'text-blue-400' : 'text-gray-400' }}">{{ $day['weight'] ?
+                        $day['weight'] . ' kg' : '-' }}</div>
+                </div>
                 @endforeach
             </div>
         </div>
@@ -223,7 +234,7 @@
         <!-- Diary Textbox -->
         <div class="w-full max-w-6xl mt-8">
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
-                    <h3 class="mb-4 text-lg font-semibold text-white">Catatan Harian</h3>
+                <h3 class="mb-4 text-lg font-semibold text-white">Catatan Harian</h3>
                 <textarea id="diaryText" readonly rows="1"
                     class="w-full min-h-[200px] resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     oninput="autoResizeTextarea(this)">{{ $perkembangan->diary ?? 'Belum ada catatan.' }}</textarea>

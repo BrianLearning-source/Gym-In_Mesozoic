@@ -224,25 +224,10 @@
                         <input type="phone_number" name="phone_number" placeholder="Masukkan Nomor Telepon"
                             value="{{ old('phone_number') }}" required maxlength="100"
                             class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-white border-opacity-20 text-white placeholder-white placeholder-opacity-60 focus:bg-opacity-15 focus:border-opacity-40 focus:outline-none transition-all duration-300">
-                        @error('email')
+                        @error('phone_number')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
-                </div>
-
-                <!-- Row 4: Rest Days -->
-                <div class="form-group fade-in fade-in-delay-4">
-                    <label class="block text-white text-sm font-semibold mb-2">
-                        Hari Istirahat (0-5) <span class="text-red-500">*</span>
-                    </label>
-                    <input type="number" name="rest_days" placeholder="Contoh: 2" required min="0" max="5"
-                        value="{{ old('rest_days', 2) }}"
-                        class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-white border-opacity-20 text-white placeholder-white placeholder-opacity-60 focus:bg-opacity-15 focus:border-opacity-40 focus:outline-none transition-all duration-300">
-                    <p class="text-gray-400 text-xs mt-2">Bantuan saat Anda melewatkan latihan tanpa kehilangan streak
-                    </p>
-                    @error('rest_days')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
                 </div>
 
                 <!-- Submit Button -->

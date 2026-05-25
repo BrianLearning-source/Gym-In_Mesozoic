@@ -20,10 +20,12 @@ class AnggotaSeeder extends Seeder
         $data = [ //data dummy anggota
             [
                 'name' => 'Grand Regentt Brian',
+                'title' => 'Athlete',
                 'gender' => 'Laki-laki',
                 'email' => 'brianseraf@gmail.com',
                 'password' => Hash::make('1234'),
                 'phone_number' => '+62 812-3456-7890',
+                'avatar' => null,
                 'join_date' => '2020-01-15',
                 'points' => 1000,
                 'streak' => 7,

@@ -101,15 +101,21 @@ class AnggotaController extends Controller
             $anggota->password = $request->password;
         }
 
+        $oldAvatar = $anggota->avatar;
+
         // Avatar Upload taruh di public storage, jadi di DB cuma pathnya aja.
         if ($request->hasFile('avatar')) {
-            if ($anggota->avatar) {
-                Storage::disk('public')->delete($anggota->avatar);
-            }
             $anggota->avatar = $request->file('avatar')->store('avatars', 'public');
         }
+
         $anggota->save();
 
+        // Delete old avatar upon upload
+        if ($request->hasFile('avatar') && $oldAvatar) {
+            if (Storage::disk('public')->exists($oldAvatar)) {
+                Storage::disk('public')->delete($oldAvatar);
+            }
+        }
         return redirect()->route('member.profile')->with('success', 'Profil berhasil diperbarui.');
     }
 

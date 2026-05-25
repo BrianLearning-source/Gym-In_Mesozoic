@@ -243,11 +243,11 @@
 
         <!-- Personalisasi Section  -->
         <div class="w-full max-w-6xl mt-8">
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 overflow-hidden">
                 <h3 class="mb-6 text-xl font-bold text-white">Kelola Data</h3>
 
                 <!-- Buttons Container -->
-                <div class="flex flex-col gap-4 overflow-hidden">
+                <div class="flex flex-col gap-4">
                     <button type="button"
                         class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 overflow-hidden"
                         style="background-color: rgba(77, 145, 132)">

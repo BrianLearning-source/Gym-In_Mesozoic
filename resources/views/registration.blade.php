@@ -283,7 +283,7 @@
                 <div class="border-t border-white/10 my-2 pt-2">
                     <p class="text-yellow-400 text-xs">🔐 Password sementara: <strong>1234</strong></p>
                     <p class="text-blue-400 text-xs mt-1">⏳ Akun Anda menunggu aktivasi admin</p>
-                    <p class="text-purple-400 text-xs">💪 Gunakan QR code untuk check-in nanti</p>
+                    <p class="text-purple-400 text-xs">💪 Gunakan <i>QR code</i> untuk daftar nanti</p>
                 </div>
             </div>
 

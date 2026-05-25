@@ -106,7 +106,39 @@
                 <div>
                     <h3 class="mb-4 text-sm font-semibold text-gray-300">Tukar poin untuk hadiah:</h3>
                     <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-                        <!-- Reward 1 -->
+
+                        @foreach($rewards as $reward)
+                    <!-- Pengulangan dalam membuat item reward -->
+                    <div class="reward-card p-4 rounded-xl backdrop-blur-sm bg-white/5 overflow-hidden">
+                        <div class="flex items-start justify-between">
+
+                            <div class="flex items-center gap-3">
+
+                                <!-- Gambar -->
+                                <div class="w-12 h-12 rounded-full overflow-hidden">
+                                    <img src="{{ asset('storage/' . $reward->image) }}"
+                                        class="w-full h-full object-cover">
+                                </div>
+
+                                <div>
+                                    <p class="font-semibold text-white">
+                                        {{ $reward->name }}
+                                    </p>
+                                    <p class="text-sm text-emerald-400">
+                                        ({{ $reward->points_required }} Poin)
+                                    </p>
+                                </div>
+                            </div>
+
+                            <button
+                                class="btn-pilih bg-emerald-600/80 text-white px-4 py-2 rounded-lg text-sm font-semibold">
+                                PILIH
+                            </button>
+
+                        </div>
+                    </div>
+                    @endforeach
+                        {{-- <!-- Reward 1 -->
                         <div class="reward-card p-4 rounded-xl backdrop-blur-sm bg-white/5 overflow-hidden">
                             <div class="flex items-start justify-between">
                                 <div class="flex items-center gap-3">
@@ -203,7 +235,7 @@
                                     TUKAR
                                 </button>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 

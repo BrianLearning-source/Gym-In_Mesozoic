@@ -20,12 +20,13 @@ class TestDataSeeder extends Seeder
         ]);
 
         // --- m_anggota ---
-        $anggotaId = DB::table('m_anggota')->insertGetId([
+        $anggotaId = DB::table('m_anggota')->insertOrIgnore([
             'name' => 'User Uji Coba',
             'gender' => 'Laki-laki',
             'email' => 'testuser@example.com',
             'password' => Hash::make('1234'),
             'phone_number' => '+62 812-9876-5432',
+            'avatar' => null,
             'join_date' => '2026-01-01',
             'points' => 15000,
             'streak' => 7,

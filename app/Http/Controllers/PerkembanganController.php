@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\PerkembanganModel;
 
 class PerkembanganController extends Controller
@@ -66,5 +67,57 @@ class PerkembanganController extends Controller
             'duration' => $duration,
             'weekDays' => $weekDays,
         ]);
+    }
+
+    public function form(Request $request)
+    {
+        $id = Auth::guard('member')->id();
+        $selectedDateStr = $request->query('date', now()->format('Y-m-d'));
+        $selectedDate = \Carbon\Carbon::parse($selectedDateStr);
+
+        $perkembangan = PerkembanganModel::where('anggota_id', $id)
+            ->whereDate('date', $selectedDate->format('Y-m-d'))
+            ->first();
+
+        if (!$perkembangan) {
+            $perkembangan = new PerkembanganModel();
+            $perkembangan->date = $selectedDate;
+        }
+
+        return view('progressform', [
+            'perkembangan' => $perkembangan,
+            'selectedDate' => $selectedDate,
+        ]);
+    }
+
+    public function save(Request $request)
+    {
+        $id = Auth::guard('member')->id();
+
+        $validated = $request->validate([
+            'date' => 'required|date',
+            'weight' => 'nullable|numeric|min:0',
+            'height' => 'nullable|numeric|min:0',
+            'calory_burned' => 'nullable|numeric|min:0',
+            'diary' => 'nullable|string|max:2000',
+        ]);
+
+        $selectedDate = \Carbon\Carbon::parse($validated['date']);
+
+        $perkembangan = PerkembanganModel::updateOrCreate(
+            [
+                'anggota_id' => $id,
+                'date' => $selectedDate->format('Y-m-d'),
+            ],
+            [
+                'weight' => $validated['weight'],
+                'height' => $validated['height'],
+                'calory_burned' => $validated['calory_burned'],
+                'diary' => $validated['diary'],
+            ]
+        );
+
+        return redirect()->route('member.progres', ['date' => $selectedDate->format('Y-m-d')])
+            ->with('success', 'Data perkembangan berhasil disimpan.');
     }
 }

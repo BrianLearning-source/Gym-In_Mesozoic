@@ -119,6 +119,14 @@
                         <p class="text-sm text-gray-300">Berat Badan</p>
                     </div>
                 </div>
+
+                <!-- Diary Textbox -->
+                <div class="mt-6">
+                    <h4 class="mb-3 text-base font-semibold text-white">Catatan Latihan</h4>
+                    <textarea id="diaryText" readonly rows="1"
+                        class="w-full min-h-[160px] resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                        oninput="autoResizeTextarea(this)">{{ $perkembangan->diary ?? 'Belum ada catatan untuk tanggal ini.' }}</textarea>
+                </div>
             </div>
         </div>
 
@@ -134,7 +142,7 @@
                 <h3 class="mb-4 text-lg font-semibold text-white">Statistik Minggu Ini</h3>
                 <div class="flex flex-wrap gap-4 items-center justify-center">
                     <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5 w-full max-w-[150px]">
-                        <div class="text-2xl font-bold text-emerald-400">{{ $totalLatihan }} hari</div>
+                        <div class="text-2xl font-bold text-emerald-400">{{ $totalLatihan }} <br> hari</div>
                         <p class="text-sm text-gray-300"> Latihan <br>Minggu Ini</p>
                     </div>
                     <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5 w-full max-w-[150px]">
@@ -147,11 +155,11 @@
                     </div>
                     <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5 w-full max-w-[150px]">
                         <div class="text-2xl font-bold text-emerald-400">{{ $totalKalori ? number_format($totalKalori) :
-                            0 }} kkal</div>
+                            0 }} <br> kkal</div>
                         <p class="text-sm text-gray-300">Total <br>Kalori</p>
                     </div>
                     <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5 w-full max-w-[150px]">
-                        <div class="text-2xl font-bold text-emerald-400">{{ $maxBerat ? $maxBerat : 0 }} kg</div>
+                        <div class="text-2xl font-bold text-emerald-400">{{ $maxBerat ? $maxBerat : 0 }} <br> kg</div>
                         <p class="text-sm text-gray-300">Berat Badan Minggu Ini</p>
                     </div>
                 </div>
@@ -248,11 +256,11 @@
 
                 <!-- Buttons Container -->
                 <div class="flex flex-col gap-4">
-                    <button type="button"
-                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 overflow-hidden"
+                    <a href="{{ route('member.progressForm', ['date' => optional($perkembangan->date)->format('Y-m-d')]) }}"
+                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full text-center hover:scale-110 transform transition duration-300 overflow-hidden"
                         style="background-color: rgba(77, 145, 132)">
-                        Ubah Data
-                    </button>
+                        {{ $perkembangan->exists ? 'Ubah Data' : 'Tambah Data' }}
+                    </a>
 
                     <button type="submit"
                         class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 overflow-hidden"

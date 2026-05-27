@@ -74,28 +74,43 @@
                             onchange="previewImage(this, 'avatarPreview')"
                             class="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100">
                     </div>
+                    @error('avatar')
+                        <p class="text-sm text-red-400 my-2">{{ $message }}</p>
+                    @enderror
 
                     <!-- Form Fields -->
                     <div>
                         <label for="name" class="block text-sm font-medium text-white my-2">Nama Lengkap</label>
                         <input type="text" name="name" id="name" value="{{ $anggota->name }}"
                             class="w-full resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        @error('name')
+                            <p class="text-sm text-red-400 my-2">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div>
                         <label for="title" class="block text-sm font-medium text-white my-2">Julukan</label>
                         <input type="text" name="title" id="title" value="{{ $anggota->title }}"
                             class="w-full resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        @error('title')
+                            <p class="text-sm text-red-400 my-2">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div>
                         <label for="email" class="block text-sm font-medium text-white my-2">Email</label>
                         <input type="email" name="email" id="email" value="{{ $anggota->email }}"
                             class="w-full resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        @error('email')
+                            <p class="text-sm text-red-400 my-2">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div>
                         <label for="phone" class="block text-sm font-medium text-white my-2">Nomor Telepon</label>
                         <input type="tel" name="phone_number" id="phone" value="{{ $anggota->phone_number ?? '' }}"
                             class="w-full resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                             placeholder="contoh: +62 812-3456-7890">
+                        @error('phone_number')
+                            <p class="text-sm text-red-400 my-2">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div>
                         <label for="gender" class="block text-sm font-medium text-white my-2">Jenis Kelamin</label>
@@ -105,18 +120,27 @@
                             <option value="1" @selected(($anggota->gender ?? null) == 1)>Laki-laki</option>
                             <option value="0" @selected(($anggota->gender ?? null) == 0)>Perempuan</option>
                         </select>
+                        @error('gender')
+                            <p class="text-sm text-red-400 my-2">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div>
                         <label for="password" class="block text-sm font-medium text-white my-2">Kata Sandi Baru</label>
                         <input type="password" name="password" id="password"
                             class="w-full resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
                         <p class="text-xs text-gray-500 mt-1">Kosongkan jika tidak ingin mengganti kata sandi.</p>
+                        @error('password')
+                            <p class="text-sm text-red-400 my-2">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div>
                         <label for="password_confirmation" class="block text-sm font-medium text-white my-2">Konfirmasi
                             Kata Sandi</label>
                         <input type="password" name="password_confirmation" id="password_confirmation"
                             class="w-full resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        @error('password_confirmation')
+                            <p class="text-sm text-red-400 my-2">{{ $message }}</p>
+                        @enderror
                     </div>
                 </form>
             </div>

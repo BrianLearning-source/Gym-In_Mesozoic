@@ -147,7 +147,7 @@
                     </div>
                     <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5 w-full max-w-[150px]">
                         <div class="text-2xl font-bold text-emerald-400">@if ($totalMenit)
-                            {{ intdiv($totalMenit, 60) }} jam {{ $totalMenit % 60 }} menit
+                            {{ intdiv($totalMenit, 60) }} jam <br> {{ $totalMenit % 60 }} menit
                             @else
                             0 jam
                             @endif</div>

@@ -8,6 +8,7 @@
     <title>Gym-In</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         .header-glow {
@@ -118,8 +119,11 @@
         id="header">
         <div class="flex items-center justify-between h-14 px-6 md:mx-11">
             <h1 class="text-2xl font-bold text-white">Gym-In</h1>
-            <a href="/loginMember/">
-                <div class="bg-white w-8 h-8 rounded-full hover:scale-110 transition-transform duration-300"></div>
+            <a href="/loginMember/" class="flex items-center gap-2">
+                <h1 class="text-white font-semibold hover:text-gray-300">Masuk</h1>
+                <div class="bg-black w-8 h-8 rounded-full hover:scale-110 transition-transform duration-300 flex items-center justify-center">
+                    <i class="fas fa-user text-white text-sm"></i>
+                </div>
             </a>
         </div>
     </div>

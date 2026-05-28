@@ -147,7 +147,7 @@
                     </div>
                     <div class="stat-card p-4 text-center rounded-xl backdrop-blur-sm bg-white/5 w-full max-w-[150px]">
                         <div class="text-2xl font-bold text-emerald-400">@if ($totalMenit)
-                            {{ intdiv($totalMenit, 60) }} jam <br> {{ $totalMenit % 60 }} menit
+                            {{ intdiv($totalMenit, 60) }} jam {{ $totalMenit % 60 }} menit
                             @else
                             0 jam
                             @endif</div>
@@ -226,7 +226,8 @@
 
         <!-- Achievement Section -->
         <div class="w-full max-w-6xl mt-8">
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-gradient-to-r from-emerald-900/30 to-teal-900/30 overflow-hidden">
+            <div
+                class="p-6 rounded-xl backdrop-blur-sm bg-gradient-to-r from-emerald-900/30 to-teal-900/30 overflow-hidden">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center">
                         <span class="text-2xl">🏆</span>
@@ -251,7 +252,7 @@
 
         <!-- Personalisasi Section  -->
         <div class="w-full max-w-6xl mt-8">
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 overflow-hidden">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
                 <h3 class="mb-6 text-xl font-bold text-white">Kelola Data</h3>
 
                 <!-- Buttons Container -->
@@ -262,11 +263,17 @@
                         {{ $perkembangan->exists ? 'Ubah Data' : 'Tambah Data' }}
                     </a>
 
-                    <button type="submit"
-                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 overflow-hidden"
-                        style="background-color: rgba(255, 77, 77, 0.8)">
-                        Hapus Data
-                    </button>
+                    <form action="{{ route('member.progressDelete') }}" method="POST"
+                        onsubmit="return confirm('Yakin ingin menghapus data untuk tanggal {{ optional($perkembangan->date)->locale('id')->translatedFormat('j F Y') }}? Aksi ini akan bersifat permanen dan tidak dapet dikembalikan.');">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="date" value="{{ optional($perkembangan->date)->format('Y-m-d') }}">
+                        <button type="submit"
+                            class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full transform transition duration-300 overflow-hidden {{ $perkembangan->exists ? 'hover:scale-110 bg-red-600' : 'bg-white/10 text-gray-400 cursor-not-allowed' }}"
+                            {{ !$perkembangan->exists ? 'disabled' : '' }}>
+                            Hapus Data
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

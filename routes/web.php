@@ -25,9 +25,11 @@ Route::middleware(['auth:member'])->prefix('member')->group(function () {
     Route::get('/editProfile', [AnggotaController::class, 'editProfile'])->name('member.editProfile');
     Route::put('/updateProfile', [AnggotaController::class, 'updateProfile'])->name('member.updateProfile');
     Route::get('/rewards', [AnggotaController::class, 'rewards'])->name('member.rewards');
+
     Route::get('/progres', [AnggotaController::class, 'perkembangan'])->name('member.progres');
     Route::get('/progres/form', [PerkembanganController::class, 'form'])->name('member.progressForm');
     Route::post('/progres', [PerkembanganController::class, 'save'])->name('member.progressSave');
+    Route::delete('/progres', [PerkembanganController::class, 'destroy'])->name('member.progressDelete');
     
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });

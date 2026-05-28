@@ -120,4 +120,15 @@ class PerkembanganController extends Controller
         return redirect()->route('member.progres', ['date' => $selectedDate->format('Y-m-d')])
             ->with('success', 'Data perkembangan berhasil disimpan.');
     }
+
+    public function destroy(Request $request)
+    {
+        $id = Auth::guard('member')->id();
+        $date = $request->input('date');
+        $selectedDate = \Carbon\Carbon::parse($date);
+        PerkembanganModel::where('anggota_id', $id)
+            ->whereDate('date', $selectedDate->format('Y-m-d'))
+            ->delete();
+        return redirect()->route('member.progres', ['date' => $selectedDate->format('Y-m-d')])->with('success', 'Data perkembangan dihapus.');
+    }
 }

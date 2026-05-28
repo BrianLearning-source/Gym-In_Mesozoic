@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PerkembanganModel;
+use App\Models\Presensi;
 
 class PerkembanganController extends Controller
 {
@@ -84,9 +85,14 @@ class PerkembanganController extends Controller
             $perkembangan->date = $selectedDate;
         }
 
+        $presensiExists = Presensi::where('anggota_id', $id)
+            ->whereDate('created_at', $selectedDate->format('Y-m-d'))
+            ->exists();
+
         return view('progressform', [
             'perkembangan' => $perkembangan,
             'selectedDate' => $selectedDate,
+            'presensiExists' => $presensiExists,
         ]);
     }
 

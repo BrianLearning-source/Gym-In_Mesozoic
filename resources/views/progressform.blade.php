@@ -34,7 +34,6 @@
     <div class="flex flex-col items-center justify-center px-4 py-8 md:px-10">
 
         <h1 class="mt-6 text-6xl font-bold text-center text-white md:mt-12 header-glow">GYM-IN</h1>
-
         <div class="w-full max-w-6xl mt-8">
             <a href="{{ route('member.progres', ['date' => $selectedDate->format('Y-m-d')]) }}"
                 class="text-white font-semibold hover:underline hover:scale-105 transform transition duration-300 inline-flex items-center gap-2">
@@ -65,48 +64,54 @@
                     </div>
                 @endif
 
-                <form action="{{ route('member.progressSave') }}" method="POST" class="space-y-5" id="progressForm">
-                    @csrf
-
-                    <input type="hidden" name="date" value="{{ $selectedDate->format('Y-m-d') }}">
-
-                    <div>
-                        <label for="weight" class="block text-sm font-medium text-white mb-2">Berat Badan (kg)</label>
-                        <input type="number" name="weight" id="weight" step="0.1" min="0"
-                            value="{{ old('weight', $perkembangan->weight) }}"
-                            class="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                @if (!$presensiExists)
+                    <div class="rounded-2xl border border-white/10 bg-white/10 p-6 text-center">
+                        <p class="text-lg font-semibold text-white">Presensi belum tercatat</p>
+                        <p class="mt-2 text-sm text-gray-300">Presensi Anda belum tercatat. Silahkan ke kasir untuk mencatat presensi.</p>
                     </div>
+                @else
+                    <form action="{{ route('member.progressSave') }}" method="POST" class="space-y-5" id="progressForm">
+                        @csrf
 
-                    <div>
-                        <label for="height" class="block text-sm font-medium text-white mb-2">Tinggi Badan (cm)</label>
-                        <input type="number" name="height" id="height" step="1" min="0"
-                            value="{{ old('height', $perkembangan->height) }}"
-                            class="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                    </div>
+                        <input type="hidden" name="date" value="{{ $selectedDate->format('Y-m-d') }}">
 
-                    <div>
-                        <label for="calory_burned" class="block text-sm font-medium text-white mb-2">Kalori Terbakar (kkal)</label>
-                        <input type="number" name="calory_burned" id="calory_burned" step="1" min="0"
-                            value="{{ old('calory_burned', $perkembangan->calory_burned) }}"
-                            class="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                    </div>
+                        <div>
+                            <label for="weight" class="block text-sm font-medium text-white mb-2">Berat Badan (kg)</label>
+                            <input type="number" name="weight" id="weight" step="0.1" min="0"
+                                value="{{ old('weight', $perkembangan->weight) }}"
+                                class="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        </div>
 
-                    <div>
-                        <label for="diary" class="block text-sm font-medium text-white mb-2">Catatan / Diary</label>
-                        <textarea name="diary" id="diary" rows="6"
-                            class="w-full resize-none rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                            placeholder="Tulis catatan latihan hari ini...">{{ old('diary', $perkembangan->diary) }}</textarea>
-                    </div>
-                </form>
-            </div>
+                        <div>
+                            <label for="height" class="block text-sm font-medium text-white mb-2">Tinggi Badan (cm)</label>
+                            <input type="number" name="height" id="height" step="1" min="0"
+                                value="{{ old('height', $perkembangan->height) }}"
+                                class="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        </div>
 
-            <div class="mt-4 flex justify-end">
-                <button form="progressForm" type="submit"
-                    class="px-6 py-2 text-white font-semibold rounded-lg transition duration-300"
-                    style="background-color: rgba(77, 145, 132);">
-                    Simpan Perkembangan
-                </button>
-            </div>
+                        <div>
+                            <label for="calory_burned" class="block text-sm font-medium text-white mb-2">Kalori Terbakar (kkal)</label>
+                            <input type="number" name="calory_burned" id="calory_burned" step="1" min="0"
+                                value="{{ old('calory_burned', $perkembangan->calory_burned) }}"
+                                class="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        </div>
+
+                        <div>
+                            <label for="diary" class="block text-sm font-medium text-white mb-2">Catatan / Diary</label>
+                            <textarea name="diary" id="diary" rows="6"
+                                class="w-full resize-none rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                                placeholder="Tulis catatan latihan hari ini...">{{ old('diary', $perkembangan->diary) }}</textarea>
+                        </div>
+
+                        <div class="mt-4 flex justify-end">
+                            <button type="submit"
+                                class="px-6 py-2 text-white font-semibold rounded-lg transition duration-300"
+                                style="background-color: rgba(77, 145, 132);">
+                                Simpan Perkembangan
+                            </button>
+                        </div>
+                    </form>
+                @endif
         </div>
 
         <div class="w-full max-w-6xl py-8 mt-4 mb-8 text-center">

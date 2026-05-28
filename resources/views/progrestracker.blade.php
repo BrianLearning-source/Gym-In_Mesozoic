@@ -269,7 +269,8 @@
                         @method('DELETE')
                         <input type="hidden" name="date" value="{{ optional($perkembangan->date)->format('Y-m-d') }}">
                         <button type="submit"
-                            class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full transform transition duration-300 overflow-hidden {{ $perkembangan->exists ? 'hover:scale-110 bg-red-600' : 'bg-white/10 text-gray-400 cursor-not-allowed' }}"
+                            class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full transform transition duration-300 overflow-hidden 
+                            {{ $perkembangan->exists ? 'hover:scale-110 bg-red-600' : 'bg-white/10 text-gray-400 cursor-not-allowed' }}"
                             {{ !$perkembangan->exists ? 'disabled' : '' }}>
                             Hapus Data
                         </button>

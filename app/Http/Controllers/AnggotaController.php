@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AnggotaModel;
+use App\Models\Penukaran;
 use App\Models\PerkembanganModel;
 use App\Models\Rewards;
 use Illuminate\Http\Request;
@@ -127,13 +128,31 @@ class AnggotaController extends Controller
 
     public function rewards()
     {
-        $anggota = Auth::guard('member')->user(); // Ambil data anggota yang sedang login
+        $anggota = Auth::guard('member')->user();
 
         $rewards = Rewards::where('stock', '>', 0)->get();
 
+        $lastClaimed = Penukaran::where('anggota_id', $anggota->id)
+            ->where('status', 'claimed')
+            ->latest('claimed_at')
+            ->first();
+
+        $hariTersisa = 0;
+        $bisaTukar = true;
+
+        if ($lastClaimed && $lastClaimed->claimed_at) {
+            $tanggalKlaim = \Carbon\Carbon::parse($lastClaimed->claimed_at);
+
+            $hariTerlewat = (int) $tanggalKlaim->diffInDays(now());
+            $hariTersisa = max(0, 28 - $hariTerlewat);
+            $bisaTukar = $hariTersisa === 0;
+        }
+
         return view('rewards', [
-            'anggota' => $anggota,
-            'rewards' => $rewards
+            'anggota'     => $anggota,
+            'rewards'     => $rewards,
+            'bisaTukar'   => $bisaTukar,
+            'hariTersisa' => $hariTersisa,
         ]);
     }
 

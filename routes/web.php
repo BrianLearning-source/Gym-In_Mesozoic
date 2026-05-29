@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PerkembanganController;
+use App\Http\Controllers\PenukaranController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,7 @@ Route::middleware(['auth:member'])->prefix('member')->group(function () {
     Route::get('/progres/form', [PerkembanganController::class, 'form'])->name('member.progressForm');
     Route::post('/progres', [PerkembanganController::class, 'save'])->name('member.progressSave');
     Route::delete('/progres', [PerkembanganController::class, 'destroy'])->name('member.progressDelete');
-    
+    Route::post('/penukaran', [PenukaranController::class, 'store'])->name('member.penukaran');
+
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });

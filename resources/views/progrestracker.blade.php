@@ -240,7 +240,7 @@
             </div>
         </div>
 
-        <!-- Diary Textbox -->
+        {{-- <!-- Diary Textbox -->
         <div class="w-full max-w-6xl mt-8">
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 overflow-hidden">
                 <h3 class="mb-4 text-lg font-semibold text-white">Catatan Harian</h3>
@@ -248,7 +248,7 @@
                     class="w-full min-h-[200px] resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                     oninput="autoResizeTextarea(this)">{{ $perkembangan->diary ?? 'Belum ada catatan.' }}</textarea>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Personalisasi Section  -->
         <div class="w-full max-w-6xl mt-8">

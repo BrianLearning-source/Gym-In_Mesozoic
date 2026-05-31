@@ -14,10 +14,13 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class RewardsResource extends Resource
 {
     protected static ?string $model = Rewards::class;
+
+    protected static string | UnitEnum | null $navigationGroup = 'Fitur';
 
     // protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 

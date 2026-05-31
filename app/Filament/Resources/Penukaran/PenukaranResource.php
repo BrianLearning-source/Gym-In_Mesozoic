@@ -12,6 +12,7 @@ use Illuminate\Contracts\Support\Htmlable;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class PenukaranResource extends Resource
 {
@@ -19,6 +20,8 @@ class PenukaranResource extends Resource
 
     protected static ?string $navigationLabel = 'Penukaran';
     protected static ?string $pluralLabel = 'Penukaran';
+
+    protected static string | UnitEnum | null $navigationGroup = 'Fitur';
 
     public static function getNavigationIcon(): string | BackedEnum | Htmlable | null
     {

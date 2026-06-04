@@ -44,8 +44,13 @@
     <div class="flex flex-col items-center justify-center px-4 py-8 md:px-10">
 
         <!-- Title -->
-        <h1 class="mt-6 text-6xl font-bold text-center text-white md:mt-12 header-glow">GYM-IN</h1>
-
+        <div class="flex justify-center mt-12">
+            <img src="{{ asset('img/GymInLogo.png') }}" 
+                alt="Gym-In Logo" 
+                class="h-20 md:h-28 w-auto header-glow"
+                style="max-height: 112px;">
+        </div>
+        
         <!-- Back Button -->
         <div class="w-full max-w-6xl mt-8">
             <a href="{{ route('member.dashboard') }}"

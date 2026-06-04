@@ -25,7 +25,12 @@
 <body class="bg-black md:mx-11">
     <div class="fixed inset-0 pointer-events-none -z-10"><div class="bg-image"></div></div>
     <div class="flex flex-col items-center px-4 py-8 md:px-10">
-        <h1 class="mt-6 text-6xl font-bold text-center text-white">GYM-IN</h1>
+        <div class="flex justify-center mt-12">
+            <img src="{{ asset('img/GymInLogo.png') }}" 
+                alt="Gym-In Logo" 
+                class="h-20 md:h-28 w-auto header-glow"
+                style="max-height: 112px;">
+        </div>
         <div class="w-full max-w-6xl mt-8"><a href="{{ route('member.dashboard') }}" class="text-white font-semibold hover:underline inline-flex items-center gap-2">← Kembali</a></div>
 
         <!-- Points Card -->

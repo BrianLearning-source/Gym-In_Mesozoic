@@ -117,8 +117,13 @@
     <!-- Header -->
     <div class="sticky top-0 bg-black bg-opacity-80 backdrop-blur-md w-full z-50 transition-all duration-300"
         id="header">
-        <div class="flex items-center justify-between h-14 px-6 md:mx-11">
-            <h1 class="text-2xl font-bold text-white">Gym-In</h1>
+        <div class="flex items-center justify-between h-20 px-6 md:mx-11">
+            <a href="/" class="flex items-center">
+                <img src="{{ asset('img/GymInLogo.png') }}" 
+                    alt="Gym-In Logo" 
+                    class="h-8 md:h-10 w-auto" 
+                    style="max-height: 40px;">
+            </a>
             <a href="/loginMember/" class="flex items-center gap-2">
                 <h1 class="text-white font-semibold hover:text-gray-300">Masuk</h1>
                 <div class="bg-black w-8 h-8 rounded-full hover:scale-110 transition-transform duration-300 flex items-center justify-center">

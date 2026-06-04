@@ -33,9 +33,14 @@
     </div>
 
     <!-- Title -->
-    <h1 class="text-6xl font-bold text-white text-center header-glow mt-12">Gym-In</h1>
+    <div class="flex justify-center mt-12">
+        <img src="{{ asset('img/GymInLogo.png') }}" 
+            alt="Gym-In Logo" 
+            class="h-20 md:h-28 w-auto header-glow"
+            style="max-height: 112px;">
+    </div>
 
-    <div class="flex flex-col justify-center items-center mt-20 px-10">
+    <div class="flex flex-col justify-center items-center mt-5 px-10">
 
         <!-- Login Note -->
         <p class="text-white text-1xl text-center py-3 drop-shadow-2xl">
@@ -56,10 +61,11 @@
                 <h1 class="text-2xl font-bold text-white text-center header-glow uppercase">Login</h1>
 
                 <form action="{{ route('login.post') }}" method="POST" class="flex flex-col gap-4 p-6">
-                    <!-- Error -->
+                    @csrf  <!-- Add this line! -->
+                    
+                    <!-- Error messages -->
                     @if ($errors->any())
-                    <div
-                        class="bg-red-500 bg-opacity-20 border border-red-500 text-red-500 px-4 py-2 rounded-lg text-sm mb-4">
+                    <div class="bg-red-500 bg-opacity-20 border border-red-500 text-red-500 px-4 py-2 rounded-lg text-sm mb-4">
                         <ul>
                             @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>

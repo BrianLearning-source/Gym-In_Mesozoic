@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::table('m_anggota', function (Blueprint $table) {
             $table->string('username')->unique()->nullable()->after('id');
-            $table->string('title')->nullable()->after('name');
             $table->decimal('height', 5, 2)->nullable()->after('phone_number');
             $table->decimal('weight', 5, 2)->nullable()->after('height');
             $table->integer('rest_days')->default(0)->after('weight');

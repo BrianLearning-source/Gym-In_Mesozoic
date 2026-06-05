@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Registrasis;
 use App\Filament\Resources\Registrasis\Pages\CreateRegistrasi;
 use App\Filament\Resources\Registrasis\Pages\EditRegistrasi;
 use App\Filament\Resources\Registrasis\Pages\ListRegistrasis;
+use App\Filament\Resources\Registrasis\Pages\ScanRegistrasi;
 use App\Filament\Resources\Registrasis\Schemas\RegistrasiForm;
 use App\Filament\Resources\Registrasis\Tables\RegistrasisTable;
 use App\Models\Registrasi;
@@ -48,6 +49,7 @@ class RegistrasiResource extends Resource
             'index' => ListRegistrasis::route('/'),
             'create' => CreateRegistrasi::route('/create'),
             'edit' => EditRegistrasi::route('/{record}/edit'),
+            'scan'  => ScanRegistrasi::route('/scan'),
         ];
     }
 }

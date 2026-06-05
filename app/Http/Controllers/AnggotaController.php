@@ -37,11 +37,40 @@ class AnggotaController extends Controller
                 return view('memberdashboard', ['rewards' => collect()]);
         }
 
+        $kapasitas = 30;
+        $nowTime = now()->format('H:i:s');
+        $memberActive = Presensi::whereDate('created_at', today())
+            ->whereTime('start_time', '<=', $nowTime)
+            ->whereTime('end_time', '>', $nowTime)
+            ->count();
+
+        $occupancyPercent = min(round(($memberActive / $kapasitas) * 100), 100);
+
+        if ($occupancyPercent < 30) {
+            $occupancyStatus = 'Sepi';
+            $occupancyColor = 'text-emerald-400';
+            $handleColor = '#10b981';
+        } elseif ($occupancyPercent < 66) {
+            $occupancyStatus = 'Normal';
+            $occupancyColor = 'text-yellow-400';
+            $handleColor = '#eab308';
+        } else {
+            $occupancyStatus = 'Padat';
+            $occupancyColor = 'text-red-400';
+            $handleColor = '#ef4444';
+        }
+
         return view('memberdashboard', [
             'anggota' => $anggota,
             'duration' => $duration,
             'rewards' => $rewards,
             'calory_burned' => $calory_burned,
+            'kapasitas'        => $kapasitas,
+            'memberActive'     => $memberActive,
+            'occupancyPercent' => $occupancyPercent,
+            'occupancyStatus' => $occupancyStatus,
+            'occupancyColor' => $occupancyColor,
+            'handleColor' => $handleColor,
         ]);
     }
 

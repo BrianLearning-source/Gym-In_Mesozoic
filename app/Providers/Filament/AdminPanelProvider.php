@@ -18,6 +18,7 @@ use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use DiogoGPinto\AuthUIEnhancer\AuthUIEnhancerPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -27,8 +28,11 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->authGuard('web')
             ->login()
+            ->brandLogo(asset('img/GymInLogo.png'))
+            ->brandLogoHeight('7rem')
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -55,6 +59,16 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            
+            ->plugins([
+                AuthUIEnhancerPlugin::make()
+                    ->formPanelWidth('40%')
+                    ->formPanelPosition('left')
+                    ->emptyPanelBackgroundImageURL('https://images.pexels.com/photos/3837433/pexels-photo-3837433.jpeg')
+                    ->emptyPanelBackgroundImageOpacity('90%') 
+                    ->showEmptyPanelOnMobile(false)
+            ])
+            ->viteTheme('resources/css/filament/admin/theme.css');
     }
 }

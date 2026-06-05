@@ -119,14 +119,15 @@
 
 <body class="bg-black">
     <!-- Header -->
-    <div class="sticky top-0 bg-black bg-opacity-80 backdrop-blur-md w-full z-50 transition-all duration-300">
-        <div class="flex items-center justify-between h-14 px-6 md:mx-11">
-            <a href="/">
-                <h1 class="text-2xl font-bold text-white hover:text-gray-300 transition">Gym-In</h1>
-            </a>
-            <a href="/loginMember/">
-                <div class="bg-white w-8 h-8 rounded-full hover:scale-110 transition-transform duration-300"></div>
-            </a>
+    <div class="sticky top-0 bg-black bg-opacity-80 backdrop-blur-md w-full z-50 transition-all duration-300"
+        id="header">
+        <div class="flex items-center justify-between h-20 px-6 md:mx-11">
+            <a href="/" class="flex items-center">
+                <img src="{{ asset('img/GymInLogo.png') }}" 
+                    alt="Gym-In Logo" 
+                    class="h-8 md:h-10 w-auto" 
+                    style="max-height: 40px;">
+        </a>
         </div>
     </div>
 

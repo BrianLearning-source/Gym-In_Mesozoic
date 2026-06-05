@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AnggotaModel;
 use App\Models\Penukaran;
+use App\Models\Presensi;
 use App\Models\PerkembanganModel;
 use App\Models\Rewards;
 use Illuminate\Http\Request;
@@ -37,11 +38,40 @@ class AnggotaController extends Controller
                 return view('memberdashboard', ['rewards' => collect()]);
         }
 
+        $kapasitas = 30;
+        $nowTime = now()->format('H:i:s');
+        $memberActive = Presensi::whereDate('created_at', today())
+            ->whereTime('start_time', '<=', $nowTime)
+            ->whereTime('end_time', '>', $nowTime)
+            ->count();
+
+        $occupancyPercent = min(round(($memberActive / $kapasitas) * 100), 100);
+
+        if ($occupancyPercent < 30) {
+            $occupancyStatus = 'Sepi';
+            $occupancyColor = 'text-emerald-400';
+            $handleColor = '#10b981';
+        } elseif ($occupancyPercent < 66) {
+            $occupancyStatus = 'Normal';
+            $occupancyColor = 'text-yellow-400';
+            $handleColor = '#eab308';
+        } else {
+            $occupancyStatus = 'Padat';
+            $occupancyColor = 'text-red-400';
+            $handleColor = '#ef4444';
+        }
+
         return view('memberdashboard', [
             'anggota' => $anggota,
             'duration' => $duration,
             'rewards' => $rewards,
             'calory_burned' => $calory_burned,
+            'kapasitas'        => $kapasitas,
+            'memberActive'     => $memberActive,
+            'occupancyPercent' => $occupancyPercent,
+            'occupancyStatus' => $occupancyStatus,
+            'occupancyColor' => $occupancyColor,
+            'handleColor' => $handleColor,
         ]);
     }
 
@@ -225,5 +255,29 @@ class AnggotaController extends Controller
             'chartLabels' => $chartLabels,
             'chartWeights' => $chartWeights,
         ]);
+    }
+
+    public function editPreference()
+    {
+        $anggota = Auth::guard('member')->user(); // Get logged in member
+        return view('editpreference', ['anggota' => $anggota]);
+    }
+
+    public function updatePreference(Request $request)
+    {
+        $anggota = Auth::guard('member')->user();
+
+        if (!$anggota) {
+            return redirect()->route('login');
+        }
+
+        $request->validate([
+            'rest_day' => 'nullable|integer|min:0|max:5',
+        ]);
+
+        $anggota->rest_days = $request->rest_day;
+        $anggota->save();
+
+        return redirect()->route('member.profile')->with('success', 'Preferensi latihan berhasil diperbarui.');
     }
 }

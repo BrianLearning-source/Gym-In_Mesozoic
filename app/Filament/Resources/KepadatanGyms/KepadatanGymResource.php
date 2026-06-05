@@ -7,12 +7,15 @@ use App\Models\KepadatanGym;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Support\Icons\Heroicon;
+use UnitEnum;
 
 class KepadatanGymResource extends Resource
 {
     protected static ?string $model = KepadatanGym::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+
+    protected static string | UnitEnum | null $navigationGroup = 'Fitur';
 
     public static function getPages(): array
     {

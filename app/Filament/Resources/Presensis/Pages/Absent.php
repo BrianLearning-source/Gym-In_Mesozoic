@@ -70,6 +70,23 @@ class Absent extends Page implements HasForms, HasTable
     {
         $data = $this->form->getState();
 
+        $bentrok = Presensi::where('anggota_id', $data['anggota_id'])
+            ->whereDate('created_at', today())
+            ->where(function ($q) use ($data) {
+                $q->whereTime('start_time', '<', $data['end_time'])
+                  ->whereTime('end_time', '>', $data['start_time']);
+            })
+            ->exists();
+
+        if ($bentrok) {
+            Notification::make()
+                ->title('Duplikasi Absensi')
+                ->body('Anggota ini sudah memiliki absensi pada rentang waktu yang sama hari ini.')
+                ->danger()
+                ->send();
+            return;
+        }
+
         Presensi::create([
             'anggota_id' => $data['anggota_id'],
             'name' => AnggotaModel::find($data['anggota_id'])?->name,

@@ -180,11 +180,16 @@
                         Edit Profil
                     </a>
 
-                    <button type="button"
+                    {{-- <button type="button"
                         class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 overflow-hidden"
                         style="background-color: rgba(77, 145, 132)">
                         Preferensi Latihan
-                    </button>
+                    </button> --}}
+                    <a href="{{ route('preference.edit') }}"
+                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 items-center justify-center flex overflow-hidden"
+                        style="background-color: rgba(77, 145, 132)">
+                        Edit Preferensi Latihan
+                    </a>
 
                     <form action="{{ route('logout') }}" method="POST"
                         onclick="return confirm('Apakah Anda yakin ingin logout?')">

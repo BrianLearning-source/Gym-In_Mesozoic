@@ -226,4 +226,28 @@ class AnggotaController extends Controller
             'chartWeights' => $chartWeights,
         ]);
     }
+
+    public function editPreference()
+    {
+        $anggota = Auth::guard('member')->user(); // Get logged in member
+        return view('editpreference', ['anggota' => $anggota]);
+    }
+
+    public function updatePreference(Request $request)
+    {
+        $anggota = Auth::guard('member')->user();
+
+        if (!$anggota) {
+            return redirect()->route('login');
+        }
+
+        $request->validate([
+            'rest_day' => 'nullable|integer|min:0|max:5',
+        ]);
+
+        $anggota->rest_days = $request->rest_day;
+        $anggota->save();
+
+        return redirect()->route('member.profile')->with('success', 'Preferensi latihan berhasil diperbarui.');
+    }
 }

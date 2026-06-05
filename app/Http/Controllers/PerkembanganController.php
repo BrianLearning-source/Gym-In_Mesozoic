@@ -110,12 +110,18 @@ class PerkembanganController extends Controller
 
         $selectedDate = \Carbon\Carbon::parse($validated['date']);
 
+        $presensi = Presensi::where('anggota_id', $id)
+            ->whereDate('created_at', $selectedDate->format('Y-m-d'))
+            ->first();
+
         $perkembangan = PerkembanganModel::updateOrCreate(
             [
                 'anggota_id' => $id,
                 'date' => $selectedDate->format('Y-m-d'),
             ],
             [
+                'start_time'    => $presensi?->start_time,
+                'end_time'      => $presensi?->end_time,
                 'weight' => $validated['weight'],
                 'height' => $validated['height'],
                 'calory_burned' => $validated['calory_burned'],

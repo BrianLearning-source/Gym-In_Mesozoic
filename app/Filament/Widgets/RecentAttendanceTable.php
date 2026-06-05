@@ -12,7 +12,7 @@ class RecentAttendanceTable extends TableWidget
     public function table(Table $table): Table
     {
         return $table
-            ->query(Presensi::latest()->limit(10))
+            ->query(Presensi::latest()->limit(5))
             ->columns([
                 TextColumn::make('name')
                     ->label('Nama')

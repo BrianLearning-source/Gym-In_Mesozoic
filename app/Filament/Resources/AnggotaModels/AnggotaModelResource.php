@@ -13,12 +13,15 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class AnggotaModelResource extends Resource
 {
     protected static ?string $model = AnggotaModel::class;
 
     protected static ?string $modelLabel = "Anggota";
+
+    protected static string | UnitEnum | null $navigationGroup = 'Keanggotaan';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 

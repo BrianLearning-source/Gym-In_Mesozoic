@@ -143,104 +143,6 @@
                         </div>
                     </div>
                     @endforeach
-                        {{-- <!-- Reward 1 -->
-                        <div class="reward-card p-4 rounded-xl backdrop-blur-sm bg-white/5 overflow-hidden">
-                            <div class="flex items-start justify-between">
-                                <div class="flex items-center gap-3">
-                                    <div
-                                        class="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                                        <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.5 6M17 13l1.5 6M9 21h6M12 15v6">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-white">Handuk Gym</p>
-                                        <p class="text-sm text-emerald-400">(500 Poin)</p>
-                                    </div>
-                                </div>
-                                <button
-                                    class="btn-tukar bg-emerald-600/80 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-emerald-600 transition overflow-hidden">
-                                    TUKAR
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Reward 2 -->
-                        <div class="reward-card p-4 rounded-xl backdrop-blur-sm bg-white/5 overflow-hidden">
-                            <div class="flex items-start justify-between">
-                                <div class="flex items-center gap-3">
-                                    <div
-                                        class="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                                        <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-white">Tumblr</p>
-                                        <p class="text-sm text-emerald-400">(600 Poin)</p>
-                                    </div>
-                                </div>
-                                <button
-                                    class="btn-tukar bg-emerald-600/80 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-emerald-600 transition overflow-hidden">
-                                    TUKAR
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Reward 3 -->
-                        <div class="reward-card p-4 rounded-xl backdrop-blur-sm bg-white/5 overflow-hidden">
-                            <div class="flex items-start justify-between">
-                                <div class="flex items-center gap-3">
-                                    <div
-                                        class="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                                        <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-white">Diskon 20%</p>
-                                        <p class="text-sm text-emerald-400">(700 Poin)</p>
-                                    </div>
-                                </div>
-                                <button
-                                    class="btn-tukar bg-emerald-600/80 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-emerald-600 transition overflow-hidden">
-                                    TUKAR
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Reward 4 -->
-                        <div class="reward-card p-4 rounded-xl backdrop-blur-sm bg-white/5 overflow-hidden">
-                            <div class="flex items-start justify-between">
-                                <div class="flex items-center gap-3">
-                                    <div
-                                        class="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                                        <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-white">Personal Trainer</p>
-                                        <p class="text-sm text-emerald-400">(1000 Poin)</p>
-                                    </div>
-                                </div>
-                                <button
-                                    class="btn-tukar bg-emerald-600/80 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-emerald-600 transition overflow-hidden">
-                                    TUKAR
-                                </button>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
 
@@ -298,9 +200,13 @@
                 <h2 class="mb-6 text-xl font-bold text-white">Kepadatan Gym</h2>
 
                 <div class="mb-6">
+                    <p class="text-sm text-gray-400">Kapasitas Gym: <span class="font-semibold text-white">{{ $kapasitas }}</span> orang</p>
+                </div>
+
+                <div class="mb-6">
                     <div class="flex justify-between mb-3">
-                        <span class="text-sm text-gray-300">Occupancy</span>
-                        <span class="text-sm font-semibold text-emerald-400">35%</span>
+                        <span class="text-sm text-gray-300">Sedang Latihan</span>
+                        <span class="text-sm font-semibold {{ $occupancyColor }}">{{ $memberActive }} member</span>
                     </div>
 
                     <!-- Slider Container -->
@@ -308,15 +214,16 @@
                         <!-- Gradient Line -->
                         <div class="density-slider"></div>
 
-                        <!-- Handle/Knob showing 35% position -->
-                        <div class="absolute w-5 h-5 bg-white rounded-full shadow-lg border-2 border-emerald-500"
-                            style="left: 35%; top: 50%; transform: translate(-50%, -50%);">
+                        <!-- Handle/Knob showing dynamic position -->
+                        <div class="absolute w-5 h-5 bg-white rounded-full shadow-lg"
+                            style="left: {{ $occupancyPercent }}%; top: 50%; transform: translate(-50%, -50%); border: 2px solid {{ $handleColor }};">
                             <div class="absolute -top-7 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
                                 <span
-                                    class="text-xs font-semibold text-white bg-black/50 px-2 py-0.5 rounded-full">35%</span>
+                                    class="text-xs font-semibold text-white bg-black/50 px-2 py-0.5 rounded-full">{{ $occupancyPercent }}%</span>
                             </div>
                         </div>
                     </div>
+
 
                     <!-- Gradient Legend -->
                     <div class="flex justify-between mt-4 text-xs">
@@ -330,13 +237,14 @@
                 <div class="text-center">
                     <div class="flex items-center justify-center gap-2 mb-2">
                         <span class="text-2xl">👆</span>
-                        <p class="text-base font-semibold text-emerald-400">Status: Cukup sepi</p>
+                        <p class="text-base font-semibold {{ $occupancyColor }}">Status: {{ $occupancyStatus }}</p>
                     </div>
                     <p class="text-xs text-gray-400">*Data berdasarkan <i>input</i> keluar-masuknya anggota dari kasir.
                     </p>
                 </div>
             </div>
         </div>
+
 
 
         <!-- Contact Section -->

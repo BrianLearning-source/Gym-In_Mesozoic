@@ -25,6 +25,14 @@ return new class extends Migration
             $table->integer('streak')->default(0);
             $table->integer('highest_streak')->default(0);
             $table->timestamps();
+            
+            $table->string('username')->unique()->nullable()->after('id');
+            $table->decimal('height', 5, 2)->nullable()->after('phone_number');
+            $table->decimal('weight', 5, 2)->nullable()->after('height');
+            $table->integer('rest_days')->default(0)->after('weight');
+            $table->string('qr_code')->unique()->nullable()->after('rest_days');
+
+            $table->enum('status', ['pending', 'active', 'suspended'])->default('pending')->after('qr_code');
         });
     }
 

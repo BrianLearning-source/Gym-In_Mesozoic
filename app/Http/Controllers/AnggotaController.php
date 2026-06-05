@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AnggotaModel;
 use App\Models\Penukaran;
+use App\Models\Presensi;
 use App\Models\PerkembanganModel;
 use App\Models\Rewards;
 use Illuminate\Http\Request;

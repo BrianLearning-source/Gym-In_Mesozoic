@@ -259,7 +259,7 @@
 
         <!-- Bottom Navigation Bar -->
         <div
-            class="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-sm border-t border-white/10 max-w-md mx-auto">
+            class="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-sm border-t border-white/10 mx-auto">
             <div class="flex justify-around items-center px-4 py-3">
                 <a href="{{ route('member.dashboard') }}"
                     class="flex flex-col items-center text-emerald-400 transition">

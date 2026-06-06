@@ -169,7 +169,7 @@
 
         <!-- Personalisasi Section - Updated with Buttons -->
         <div class="w-full max-w-6xl mt-8">
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 overflow-hidden">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
                 <h3 class="mb-6 text-xl font-bold text-white">Personalisasi</h3>
 
                 <!-- Buttons Container -->
@@ -217,7 +217,7 @@
     </div>
 
     <!-- Bottom Navigation Bar -->
-    <div class="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-sm border-t border-white/10 max-w-md mx-auto">
+    <div class="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-sm border-t border-white/10 mx-auto">
         <div class="flex justify-around items-center px-4 py-3">
             <a href="{{ route('member.dashboard') }}"
                 class="flex flex-col items-center text-white/60 hover:text-emerald-400 transition">

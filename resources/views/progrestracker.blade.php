@@ -79,6 +79,17 @@
         <!-- Weekly Calendar / Day Selector -->
         <div class="w-full max-w-6xl mt-4">
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 overflow-hidden">
+                <form method="GET" action="{{ route('member.progres') }}" class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                        <label for="selected_date" class="text-sm font-medium text-gray-200">Pilih tanggal</label>
+                        <input type="date" id="selected_date" name="date" value="{{ request('date', now()->format('Y-m-d')) }}"
+                            class="mt-1 rounded-xl border border-white/10 bg-black/20 px-3 py-2 text-sm text-white shadow-sm outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/30" />
+                    </div>
+                    <button type="submit"
+                        class="inline-flex items-center justify-center rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-400">
+                        Tampilkan
+                    </button>
+                </form>
                 <div class="flex justify-between gap-2">
                     @foreach ($weekDays as $day)
                     <a href="{{ route('member.progres', ['date' => $day['dateUrl']]) }}"
@@ -295,7 +306,7 @@
     </div>
 
     <!-- Bottom Navigation Bar -->
-    <div class="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-sm border-t border-white/10 max-w-md mx-auto">
+    <div class="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-sm border-t border-white/10 mx-auto">
         <div class="flex justify-around items-center px-4 py-3">
             <a href="{{ route('member.dashboard') }}"
                 class="flex flex-col items-center text-white/60 hover:text-emerald-400 transition">

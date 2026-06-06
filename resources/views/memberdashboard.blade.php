@@ -121,7 +121,7 @@
 
                                 <!-- Gambar -->
                                 <div class="w-12 h-12 rounded-full overflow-hidden">
-                                    <img src="{{ asset('storage/' . $reward->image) }}"
+                                    <img src="{{ asset('rewards/' . $reward->image) }}"
                                         class="w-full h-full object-cover">
                                 </div>
 
@@ -134,12 +134,7 @@
                                     </p>
                                 </div>
                             </div>
-
-                            <button
-                                class="btn-pilih bg-emerald-600/80 text-white px-4 py-2 rounded-lg text-sm font-semibold">
-                                PILIH
-                            </button>
-
+                        <span class="text-sm text-gray-400">Stok: {{ $reward->stock}} </span>
                         </div>
                     </div>
                     @endforeach
@@ -151,45 +146,6 @@
                     <a href="{{ route('member.rewards') }}" class="text-emerald-400 hover:underline text-sm">
                         Jelajahi reward lainnya →
                     </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Today's Summary Section -->
-        <div class="w-full max-w-6xl mt-8">
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 overflow-hidden">
-                <h2 class="mb-6 text-xl font-bold text-white">Ringkasan Hari ini</h2>
-
-                <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
-                    <!-- Duration Card -->
-                    <div class="stat-card p-4 rounded-xl backdrop-blur-sm bg-white/5 overflow-hidden">
-                        <div class="text-center">
-                            <p class="text-3xl font-bold text-emerald-400">{{ $duration ? $duration->total_minutes : 0
-                                }} menit</p>
-                            <p class="mt-1 text-sm text-gray-300">Latihan</p>
-                            <div class="flex justify-center gap-4 mt-3">
-                                <span class="text-sm text-gray-400">{{ $yesterdayWeight ?? '0'}} kg</span>
-                                <span class="text-sm text-gray-400">{{ $todayWeight ?? '0'}} kg</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Calories Card -->
-                    <div class="stat-card p-4 rounded-xl backdrop-blur-sm bg-white/5 overflow-hidden">
-                        <div class="text-center">
-                            <p class="text-3xl font-bold text-orange-400">{{ $calory_burned ?
-                                $calory_burned->total_calory : 0 }} Kkal</p>
-                            <p class="mt-1 text-sm text-gray-300">Kkal</p>
-                        </div>
-                    </div>
-
-                    <!-- Progress Link Card -->
-                    <div
-                        class="stat-card p-4 rounded-xl backdrop-blur-sm bg-white/5 flex flex-col items-center justify-center overflow-hidden">
-                        <a href="{{ route('member.progres') }}" class="text-emerald-400 hover:underline text-sm">
-                            Catat dan lihat perkembangan lebih lanjut →
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -206,7 +162,7 @@
                 <div class="mb-6">
                     <div class="flex justify-between mb-3">
                         <span class="text-sm text-gray-300">Sedang Latihan</span>
-                        <span class="text-sm font-semibold {{ $occupancyColor }}">{{ $memberActive }} member</span>
+                        <span class="text-sm font-semibold {{ $occupancyColor }}">{{ $memberActive }} anggota</span>
                     </div>
 
                     <!-- Slider Container -->
@@ -246,6 +202,44 @@
         </div>
 
 
+        <!-- Today's Summary Section -->
+        <div class="w-full max-w-6xl mt-8">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 overflow-hidden">
+                <h2 class="mb-6 text-xl font-bold text-white">Ringkasan Hari ini</h2>
+
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+                    <!-- Duration Card -->
+                    <div class="stat-card p-4 rounded-xl backdrop-blur-sm bg-white/5 overflow-hidden">
+                        <div class="text-center">
+                            <p class="text-3xl font-bold text-emerald-400">{{ $duration ? $duration->total_minutes : 0
+                                }} menit</p>
+                            <p class="mt-1 text-sm text-gray-300">Latihan</p>
+                            <div class="flex justify-center gap-4 mt-3">
+                                <span class="text-sm text-gray-400">{{ $yesterdayWeight ?? '0'}} kg</span>
+                                <span class="text-sm text-gray-400">{{ $todayWeight ?? '0'}} kg</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calories Card -->
+                    <div class="stat-card p-4 rounded-xl backdrop-blur-sm bg-white/5 overflow-hidden">
+                        <div class="text-center">
+                            <p class="text-3xl font-bold text-orange-400">{{ $calory_burned ?
+                                $calory_burned->total_calory : 0 }} Kkal</p>
+                            <p class="mt-1 text-sm text-gray-300">Kkal</p>
+                        </div>
+                    </div>
+
+                    <!-- Progress Link Card -->
+                    <div
+                        class="stat-card p-4 rounded-xl backdrop-blur-sm bg-white/5 flex flex-col items-center justify-center overflow-hidden">
+                        <a href="{{ route('member.progres') }}" class="text-emerald-400 hover:underline text-sm">
+                            Catat dan lihat perkembangan lebih lanjut →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Contact Section -->
         <div class="w-full max-w-6xl py-8 mt-4 mb-8 text-center">

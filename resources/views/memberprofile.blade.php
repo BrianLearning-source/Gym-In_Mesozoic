@@ -101,7 +101,7 @@
 
             <!-- Card 3 -->
             <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
-                <p class="text-2xl font-bold text-white md:text-3xl">{{ $totalTrainingTime }} Jam</p>
+                <p class="text-2xl font-bold text-white md:text-3xl"> {{ intdiv($totalTrainingTime, 60) }} jam {{ $totalTrainingTime % 60 }} menit</p>
                 <p class="mt-2 text-sm text-gray-300">Total waktu latihan</p>
             </div>
         </div>
@@ -150,19 +150,19 @@
         <div class="w-full max-w-6xl gap-4 mt-4 flex flex-row flex-wrap justify-center items-center">
             <!-- Card 4 -->
             <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
-                <p class="text-2xl font-bold text-white md:text-3xl">6 jam</p>
+                <p class="text-2xl font-bold text-white md:text-3xl">{{ $duration ? $duration->total_minutes : '0' }} menit</p>
                 <p class="mt-2 text-sm text-gray-300">Latihan hari ini</p>
             </div>
 
             <!-- Card 5 -->
             <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
-                <p class="text-2xl font-bold text-white md:text-3xl">67 Hari</p>
+                <p class="text-2xl font-bold text-white md:text-3xl">{{ $anggota->streak ?? '0' }} Hari</p>
                 <p class="mt-2 text-sm text-gray-300">Streak saat ini</p>
             </div>
 
             <!-- Card 6 -->
             <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
-                <p class="text-2xl font-bold text-white md:text-3xl">6700</p>
+                <p class="text-2xl font-bold text-white md:text-3xl">{{ $anggota->points ?? '0' }}</p>
                 <p class="mt-2 text-sm text-gray-300">Poin streak</p>
             </div>
         </div>

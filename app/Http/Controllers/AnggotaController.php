@@ -32,6 +32,14 @@ class AnggotaController extends Controller
             ->selectRaw('SUM(calory_burned) AS total_calory')
             ->first();
 
+        $todayWeight = PerkembanganModel::where('anggota_id', $anggota->id)
+            ->whereDate('date', $today->format('Y-m-d'))
+            ->value('weight');
+
+        $yesterdayWeight = PerkembanganModel::where('anggota_id', $anggota->id)
+            ->whereDate('date', $today->copy()->subDay()->format('Y-m-d'))
+            ->value('weight');
+
         $rewards = Rewards::orderBy('reward_id')->limit(4)->get();
 
             if ($rewards->isEmpty()) {
@@ -66,6 +74,8 @@ class AnggotaController extends Controller
             'duration' => $duration,
             'rewards' => $rewards,
             'calory_burned' => $calory_burned,
+            'todayWeight' => $todayWeight,
+            'yesterdayWeight' => $yesterdayWeight,
             'kapasitas'        => $kapasitas,
             'memberActive'     => $memberActive,
             'occupancyPercent' => $occupancyPercent,
@@ -102,7 +112,7 @@ class AnggotaController extends Controller
         $startOfWeek = $today->copy()->startOfWeek(\Carbon\Carbon::MONDAY);
         $endOfWeek = $today->copy()->endOfWeek(\Carbon\Carbon::SUNDAY);
 
-        $totalTrainingTime = round($totalMinutes / 60, 1);
+        $totalTrainingTime = $totalMinutes; 
 
         $weight = $perkembangan?->weight ?? '-';
         $height = $perkembangan?->height ?? '-';

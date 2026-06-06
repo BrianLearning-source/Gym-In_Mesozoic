@@ -79,6 +79,7 @@
         <!-- Weekly Calendar / Day Selector -->
         <div class="w-full max-w-6xl mt-4">
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 overflow-hidden">
+                <!-- Date Picker Form -->
                 <form method="GET" action="{{ route('member.progres') }}" class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                         <label for="selected_date" class="text-sm font-medium text-gray-200">Pilih tanggal</label>

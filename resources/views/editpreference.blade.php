@@ -48,10 +48,12 @@
         </p>
 
         <!-- Back Button -->
-        <a href="/"
-            class="text-white font-semibold w-full text-left hover:underline hover:scale-105 transform transition duration-300">
-            ← Kembali
-        </a>
+        <div class="w-full max-w-6xl mt-8">
+            <a href="{{ route('member.profile') }}"
+                class="text-white font-semibold hover:underline hover:scale-105 transform transition duration-300 inline-flex items-center gap-2">
+                <span>←</span> Kembali
+            </a>
+        </div>
         <!-- Login Form -->
         <div
             class="flex flex-col justify-center items-center backdrop-blur-sm drop-shadow-2xl bg-white bg-opacity-20 rounded-3xl w-fit h-fit mt-3.5 overflow-hidden">

@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Presensis\Pages;
 
 use App\Filament\Resources\Presensis\PresensiResource;
 use App\Filament\Resources\Presensis\Tables\PresensisTable;
+use App\Models\PerkembanganModel;
 use App\Models\Presensi;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TimePicker;
@@ -99,6 +100,17 @@ class Absent extends Page implements HasForms, HasTable
         if ($member) {
             app(StreakService::class)->updateStreak($member);
         }
+
+        PerkembanganModel::updateOrCreate(
+            [
+                'anggota_id' => $data['anggota_id'],
+                'date'       => today()->format('Y-m-d'),
+            ],
+            [
+                'start_time' => $data['start_time'],
+                'end_time'   => $data['end_time'],
+            ]
+        );
 
         Notification::make()
             ->title('Absensi berhasil dicatat')

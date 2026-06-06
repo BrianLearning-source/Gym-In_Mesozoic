@@ -168,8 +168,8 @@
                                 }} menit</p>
                             <p class="mt-1 text-sm text-gray-300">Latihan</p>
                             <div class="flex justify-center gap-4 mt-3">
-                                <span class="text-sm text-gray-400">90 kg</span>
-                                <span class="text-sm text-gray-400">100 kg</span>
+                                <span class="text-sm text-gray-400">{{ $yesterdayWeight ?? '0'}} kg</span>
+                                <span class="text-sm text-gray-400">{{ $todayWeight ?? '0'}} kg</span>
                             </div>
                         </div>
                     </div>

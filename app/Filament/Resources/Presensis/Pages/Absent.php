@@ -10,6 +10,7 @@ use Filament\Forms\Components\TimePicker;
 use Filament\Resources\Pages\Page;
 use Filament\Notifications\Notification;
 use App\Models\AnggotaModel;
+use App\Services\StreakService;
 use Filament\Schemas\Schema;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -93,6 +94,12 @@ class Absent extends Page implements HasForms, HasTable
             'start_time' => $data['start_time'],
             'end_time' => $data['end_time'],
         ]);
+
+        $member = AnggotaModel::find($data['anggota_id']);
+        if ($member) {
+            app(StreakService::class)->updateStreak($member);
+        }
+
         Notification::make()
             ->title('Absensi berhasil dicatat')
             ->success()

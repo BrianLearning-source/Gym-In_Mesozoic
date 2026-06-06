@@ -95,11 +95,25 @@ class AnggotaController extends Controller
             }
         }
 
+        $duration = PerkembanganModel::where('anggota_id', $anggota->id)
+            ->whereDate('date', $today->format('Y-m-d'))
+            ->selectRaw('TIMESTAMPDIFF(MINUTE, start_time, end_time) AS total_minutes')
+            ->first();
+        $startOfWeek = $today->copy()->startOfWeek(\Carbon\Carbon::MONDAY);
+        $endOfWeek = $today->copy()->endOfWeek(\Carbon\Carbon::SUNDAY);
+
         $totalTrainingTime = round($totalMinutes / 60, 1);
 
         $weight = $perkembangan?->weight ?? '-';
         $height = $perkembangan?->height ?? '-';
-        return view('memberprofile', ['anggota' => $anggota, 'perkembangan' => $perkembangan, 'totalTrainingTime' => $totalTrainingTime, 'weight' => $weight, 'height' => $height]);
+        return view('memberprofile', [
+            'anggota' => $anggota, 
+            'perkembangan' => $perkembangan, 
+            'totalTrainingTime' => $totalTrainingTime, 
+            'weight' => $weight, 
+            'height' => $height,
+            'duration' => $duration,
+            ]);
     }
 
     public function editProfile()

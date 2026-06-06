@@ -33,7 +33,15 @@
 
     <div class="flex flex-col items-center justify-center px-4 py-8 md:px-10">
 
-        <h1 class="mt-6 text-6xl font-bold text-center text-white md:mt-12 header-glow">GYM-IN</h1>
+        <!-- Title -->
+        <div class="flex justify-center mt-12">
+            <img src="{{ asset('img/GymInLogo.png') }}" 
+                alt="Gym-In Logo" 
+                class="h-20 md:h-28 w-auto header-glow"
+                style="max-height: 112px;">
+        </div>
+
+        
         <div class="w-full max-w-6xl mt-8">
             <a href="{{ route('member.progres', ['date' => $selectedDate->format('Y-m-d')]) }}"
                 class="text-white font-semibold hover:underline hover:scale-105 transform transition duration-300 inline-flex items-center gap-2">

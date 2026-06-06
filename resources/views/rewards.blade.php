@@ -37,13 +37,13 @@
         <div class="w-full max-w-6xl mt-6">
             <div class="p-6 rounded-xl backdrop-blur-sm bg-gradient-to-r from-emerald-900/40 to-teal-900/40">
                 <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                    <div>
+                    <div class="md:text-left text-center">
                         <p class="text-gray-300">Poin <i>streak</i> anda</p>
                         <p class="text-3xl font-bold text-white" id="userPoints">{{ $anggota->points ?? 0 }}</p>
                     </div>
                     <div class="text-center md:text-right bg-black/30 px-4 py-2 rounded-xl">
                         @if (!$bisaTukar)
-                            <p class="text-yellow-400 text-sm font-semibold mt-2">⏳ Tunggu {{ $hariTersisa }} hari lagi untuk menukar</p>
+                            <p class="text-yellow-400 text-sm font-semibold">⏳ Tunggu {{ $hariTersisa }} hari lagi untuk menukar</p>
                         @else
                             <p class="text-gray-200 text-sm">Total poin yang akan dikurangi</p>
                             <p class="text-2xl font-bold text-red-400">-<span id="totalPoints">0</span> <span class="text-sm">Poin</span></p>

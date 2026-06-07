@@ -68,7 +68,7 @@ class RegistrationController extends Controller
     private function generateQRCode(): string
     {
         do {
-            $qrCode = 'GYM' . Str::upper(Str::random(8));
+            $qrCode = 'REG' . Str::upper(Str::random(6));
         } while (Registrasi::where('qr_code', $qrCode)->exists());
 
         return $qrCode;

@@ -1,27 +1,5 @@
 <x-filament-panels::page>
-    <style>
-        #qr-reader {
-            width: 100% !important;
-            max-width: 350px !important;
-            margin: 0 auto !important;
-            border: none !important;
-            border-radius: 1rem !important;
-            overflow: hidden !important;
-            background: transparent !important;
-        }
-        #qr-reader video {
-            object-fit: cover !important;
-            width: 100% !important;
-            height: 100% !important;
-            border-radius: 1rem !important;
-        }
-        #qr-reader__scan_region { background-color: transparent !important; }
-        #qr-reader__dashboard_section_csr span, 
-        #qr-reader__dashboard_section_swaplink { display: none !important; }
-    </style>
-
     <div class="flex flex-col md:flex-row gap-6 items-start w-full">
-        
         {{-- BAGIAN KIRI: Form Input Manual --}}
         <div class="w-full md:w-1/2 space-y-6">
             <x-filament::section>
@@ -38,13 +16,6 @@
                     </div>
                 </form>
             </x-filament::section>
-
-            <x-filament::section>
-                <x-slot name="heading">Hasil Scan Terakhir</x-slot>
-                <p class="text-sm text-gray-400 mt-2">
-                    Hasil dari proses scan maupun input manual akan muncul di notifikasi sistem.
-                </p>
-            </x-filament::section>
         </div>
 
         {{-- BAGIAN KANAN: Scanner Kamera --}}
@@ -54,93 +25,114 @@
                 <x-slot name="description">Arahkan kamera ke QR code yang ditunjukkan oleh calon anggota.</x-slot>
 
                 <div class="flex flex-col items-center justify-center mt-4 w-full">
-                    <div class="w-full flex justify-center items-center rounded-2xl bg-black/40 p-3 border border-white/10 shadow-lg">
-                        <div id="qr-reader"></div>
-                    </div>
-                    
-                    <div class="mt-6 text-center text-sm font-semibold text-gray-400 px-5 py-2.5 bg-gray-800/60 rounded-full border border-gray-700" id="scan-status">
+                    <div id="qr-reader" style="width: 100%; max-width: 500px; margin: 0 auto;"></div>
+                    <div id="qr-status" class="mt-4 text-center text-sm text-gray-400">
                         Menunggu scan...
                     </div>
+                    <button id="restart-btn" class="mt-4 hidden px-4 py-2 bg-primary-600 text-white rounded-lg text-sm hover:bg-primary-700">
+                        Mulai Ulang Scanner
+                    </button>
                 </div>
             </x-filament::section>
         </div>
-        
     </div>
-
-    @push('scripts')
-    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const statusEl = document.getElementById('scan-status');
-            const readerEl = document.getElementById('qr-reader');
-            const scanner = new Html5Qrcode('qr-reader');
-            let scanning = false;
-
-            if (!readerEl) return;
-
-            function onScanSuccess(decodedText) {
-                if (scanning) return;
-                scanning = true;
-                scanner.stop().catch(() => {});
-                statusEl.textContent = '✅ Kode terbaca: ' + decodedText;
-                statusEl.classList.remove('text-gray-400', 'text-yellow-400', 'text-red-400');
-                statusEl.classList.add('text-emerald-400');
-                Livewire.dispatch('scan-result', { kode: decodedText });
-                setTimeout(() => { scanning = false; }, 2000);
-            }
-
-            function onScanFailure(err) {
-            }
-
-            function startScanner(cameraId) {
-                const config = { facingMode: cameraId ? undefined : 'user' };
-                const deviceConfig = cameraId
-                    ? { deviceId: { exact: cameraId } }
-                    : { facingMode: 'user' };
-
-                return scanner.start(deviceConfig, {
-                    fps: 5,
-                    qrbox: { width: 280, height: 280 },
-                }, onScanSuccess, onScanFailure);
-            }
-
-            function initScanner() {
-                statusEl.textContent = '🔍 Mencari kamera...';
-                statusEl.classList.remove('text-gray-400', 'text-yellow-400', 'text-red-400');
-                statusEl.classList.add('text-yellow-400');
-
-                Html5Qrcode.getCameras().then((cameras) => {
-                    if (!cameras || cameras.length === 0) {
-                        statusEl.textContent = '⚠️ Tidak ada kamera ditemukan. Gunakan input manual.';
-                        statusEl.classList.add('text-red-400');
-                        return;
-                    }
-                    startScanner(cameras[0].id).catch((err) => {
-                        statusEl.textContent = '⚠️ Gagal akses kamera. Izinkan akses kamera di browser, lalu klik "Coba Lagi".';
-                        statusEl.classList.add('text-red-400');
-                        console.warn('QR Scanner start error:', err);
-                    });
-                }).catch((err) => {
-                    statusEl.textContent = '⚠️ Gagal akses kamera. Izinkan akses kamera di browser, lalu klik "Coba Lagi".';
-                    statusEl.classList.add('text-red-400');
-                    console.warn('QR Scanner getCameras error:', err);
-                });
-            }
-
-            initScanner();
-
-            const retryBtn = document.createElement('button');
-            retryBtn.textContent = '🔄 Coba Lagi';
-            retryBtn.className = 'mt-4 px-5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full text-sm font-semibold transition-all';
-            retryBtn.onclick = (e) => {
-                e.preventDefault();
-                initScanner();
-            };
-            statusEl.parentNode.appendChild(retryBtn);
-
-            Livewire.on('scan-result', (data) => {
-            });
-        });
-    </script>
-    @endpush
 </x-filament-panels::page>
+
+@push('scripts')
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let html5QrCode = null;
+        let isProcessing = false;
+        
+        function onScanSuccess(decodedText, decodedResult) {
+            if (isProcessing) return;
+            isProcessing = true;
+            
+            console.log('QR Code detected:', decodedText);
+            
+            const statusEl = document.getElementById('qr-status');
+            statusEl.textContent = '✅ Kode terbaca: ' + decodedText;
+            statusEl.className = 'mt-4 text-center text-sm text-green-500 font-semibold';
+            
+            if (html5QrCode) {
+                html5QrCode.stop().catch(err => console.log('Stop error:', err));
+            }
+            
+            Livewire.dispatch('scan-result', { kode: decodedText });
+            
+            const restartBtn = document.getElementById('restart-btn');
+            restartBtn.classList.remove('hidden');
+        }
+        
+        function onScanFailure(error) {
+            // Silently ignore
+        }
+        
+        function startScanner() {
+            const readerElement = document.getElementById('qr-reader');
+            const statusEl = document.getElementById('qr-status');
+            
+            if (!readerElement) {
+                console.error('Reader element not found');
+                return;
+            }
+            
+            if (html5QrCode) {
+                html5QrCode.clear();
+                readerElement.innerHTML = '';
+            }
+            
+            statusEl.textContent = '🔍 Memulai kamera...';
+            statusEl.className = 'mt-4 text-center text-sm text-yellow-500';
+            
+            html5QrCode = new Html5Qrcode("qr-reader");
+            
+            const config = {
+                fps: 10,
+                qrbox: { width: 300, height: 300 },
+                aspectRatio: 1.0,
+            };
+            
+            html5QrCode.start(
+                { facingMode: "environment" },
+                config,
+                onScanSuccess,
+                onScanFailure
+            ).then(() => {
+                statusEl.textContent = '📷 Kamera siap. Arahkan ke QR code...';
+                statusEl.className = 'mt-4 text-center text-sm text-green-500';
+            }).catch(err => {
+                console.error('Camera error:', err);
+                statusEl.textContent = '❌ Gagal mengakses kamera: ' + err.message;
+                statusEl.className = 'mt-4 text-center text-sm text-red-500';
+            });
+        }
+        
+        startScanner();
+        
+        const restartBtn = document.getElementById('restart-btn');
+        restartBtn.addEventListener('click', function() {
+            isProcessing = false;
+            this.classList.add('hidden');
+            
+            if (html5QrCode) {
+                html5QrCode.clear();
+            }
+            
+            const readerElement = document.getElementById('qr-reader');
+            if (readerElement) {
+                readerElement.innerHTML = '';
+            }
+            
+            startScanner();
+        });
+        
+        window.addEventListener('beforeunload', function() {
+            if (html5QrCode && html5QrCode.isScanning) {
+                html5QrCode.stop().catch(() => {});
+            }
+        });
+    });
+</script>
+@endpush

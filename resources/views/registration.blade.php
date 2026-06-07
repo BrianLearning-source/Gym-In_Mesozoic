@@ -7,8 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Daftar - Gym-In</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-    <style>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>    <style>
         html {
             scroll-behavior: smooth;
         }
@@ -134,7 +133,7 @@
     <!-- Notification Container -->
     @if ($errors->any())
     <div id="errorNotification"
-        class="notification fixed top-5 right-5 bg-gradient-to-r from-pink-500 to-rose-600 text-white font-semibold px-6 py-4 rounded-xl shadow-2xl z-50"
+        class="notification fixed top-5 right-5 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-semibold px-6 py-4 rounded-xl shadow-2xl z-50"
         style="opacity: 0;">
         <div class="text-lg mb-2">⚠️ Validasi Gagal</div>
         <ul class="text-sm space-y-1">
@@ -254,7 +253,7 @@
     @if(session('success') && session('qr_code'))
     <div id="successModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50">
         <div
-            class="bg-gradient-to-br from-gray-900 to-black rounded-2xl max-w-md w-full mx-4 p-6 border border-purple-500/30 modal-content">
+            class="bg-gradient-to-br from-gray-900 to-black rounded-2xl max-w-md w-full mx-4 p-6 border border-emerald-500/30 modal-content">
             <!-- Header -->
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-2xl font-bold text-white flex items-center gap-2">
@@ -284,14 +283,14 @@
                 <div class="border-t border-white/10 my-2 pt-2">
                     <p class="text-yellow-400 text-xs">🔐 Password sementara: <strong>1234</strong></p>
                     <p class="text-blue-400 text-xs mt-1">⏳ Akun Anda menunggu aktivasi admin</p>
-                    <p class="text-purple-400 text-xs">💪 Gunakan <i>QR code</i> untuk daftar nanti</p>
+                    <p class="text-emerald-400 text-xs">💪 Gunakan <i>QR code</i> untuk daftar nanti</p>
                 </div>
             </div>
 
             <!-- Action Buttons -->
             <div class="mt-4 space-y-2">
                 <button onclick="closeModal()"
-                    class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-2 rounded-lg transition">
+                    class="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-emerald-700 hover:to-emerald-700 text-white font-bold py-2 rounded-lg transition">
                     Tutup
                 </button>
                 <button onclick="downloadQR()"
@@ -303,15 +302,29 @@
     </div>
 
     <script>
+    const qrContainer = document.getElementById('qrCodeContainer');
+
+    const canvas = document.createElement('canvas');
+
+    canvas.width = 300;
+    canvas.height = 300;
+
+    qrContainer.appendChild(canvas);
+
+    console.log("QR:", "{{ session('qr_code') }}");
+    console.log("QRCode:", QRCode);
+
         // Generate QR Code
-        new QRCode(document.getElementById("qrCodeContainer"), {
-            text: "{{ session('qr_code') }}",
-            width: 180,
-            height: 180,
-            colorDark: "#000000",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.H
-        });
+      QRCode.toCanvas(canvas, "{{ session('qr_code') }}", {
+    width: 300,
+    margin: 2,
+    color: {
+        dark: '#000000',
+        light: '#FFFFFF'
+    },
+    errorCorrectionLevel: 'H'
+});
+
         
         function closeModal() {
             // Just hide the modal, stay on the same page

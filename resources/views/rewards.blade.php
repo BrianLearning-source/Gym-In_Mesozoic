@@ -84,16 +84,17 @@
 
     <!-- Modal Success -->
     <div id="successModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 hidden">
-        <div class="bg-gradient-to-br from-gray-900 to-black rounded-2xl max-w-md w-full mx-4 p-6 border border-purple-500/30 modal-content">
+        <div class="bg-gradient-to-br from-gray-900 to-black rounded-2xl max-w-md w-full mx-4 p-6 border border-emerald-500/30 modal-content">
             <div class="flex justify-between items-center mb-4"><h3 class="text-2xl font-bold text-white">🎉 Penukaran Berhasil!</h3><button onclick="closeModal()" class="text-gray-400 hover:text-white text-3xl">&times;</button></div>
             <div class="flex justify-center my-4"><div id="qrContainer" class="bg-white p-4 rounded-xl" style="display: inline-block;"></div></div>
             <div class="bg-white/5 rounded-xl p-4 space-y-2">
-                <p class="text-gray-300 text-sm"><strong class="text-white">Bonus:</strong> <span id="modalReward"></span></p>
+                <p class="text-gray-300 text-sm"><strong class="text-white">Bonus:</strong></p>
+                <ul id="modalRewardList" class="space-y-1 mb-2"></ul>
                 <p class="text-gray-300 text-sm"><strong class="text-white">Poin digunakan:</strong> <span id="modalPoints"></span></p>
                 <p class="text-gray-300 text-sm break-all"><strong class="text-white">Kode:</strong> <code id="modalKode" class="text-yellow-400 text-xs"></code></p>
                 <div class="border-t border-white/10 pt-2"><p class="text-yellow-400 text-xs">🔐 Tunjukkan QR ini ke admin untuk aktivasi.</p></div>
             </div>
-            <div class="mt-4 space-y-2"><button onclick="closeModal()" class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:opacity-90 text-white font-bold py-2 rounded-lg">Tutup</button><button onclick="downloadQR()" class="w-full bg-white/10 hover:bg-white/20 text-white py-2 rounded-lg text-sm">💾 Download QR</button></div>
+            <div class="mt-4 space-y-2"><button onclick="closeModal()" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-90 text-white font-bold py-2 rounded-lg">Tutup</button><button onclick="downloadQR()" class="w-full bg-white/10 hover:bg-white/20 text-white py-2 rounded-lg text-sm">💾 Download QR</button></div>
         </div>
     </div>
 
@@ -119,9 +120,7 @@
 
     <script>
         // ---------- STATE ----------
-        let selectedId = null;
-        let selectedPoints = 0;
-        let selectedName = '';
+        let selectedIds = new Map(); // key: reward_id → { name, points }
         let bisaTukar = {{ $bisaTukar ? 'true' : 'false' }};
         let userPoints = parseInt(document.getElementById('userPoints')?.innerText || '0');
 
@@ -145,14 +144,16 @@
                 return;
             }
 
-            let enoughPoints = selectedPoints <= userPoints;
-            confirmBtn.disabled = (selectedId === null) || !enoughPoints;
+            const count = selectedIds.size;
+            const total = [...selectedIds.values()].reduce((sum, v) => sum + v.points, 0);
+            const enoughPoints = count > 0 && total <= userPoints;
+            confirmBtn.disabled = !enoughPoints;
 
-            if (selectedId !== null) {
-                if(totalPointsEl) totalPointsEl.innerText = selectedPoints;
-                if(selectedInfoEl) selectedInfoEl.innerText = `1 bonus dipilih · total ${selectedPoints} poin`;
+            if (count > 0) {
+                if(totalPointsEl) totalPointsEl.innerText = total;
+                if(selectedInfoEl) selectedInfoEl.innerText = `${count} bonus dipilih · total ${total} poin`;
                 
-                if(!enoughPoints) showToast(`❌ Poin kurang! butuh ${selectedPoints}, tersisa ${userPoints}`, true);
+                if(!enoughPoints) showToast(`❌ Poin kurang! butuh ${total}, tersisa ${userPoints}`, true);
             } else {
                 if(totalPointsEl) totalPointsEl.innerText = '0';
                 if(selectedInfoEl) selectedInfoEl.innerText = 'Belum ada bonus dipilih';
@@ -175,42 +176,35 @@
         }
 
         function selectReward(card, id, name, points) {
-            if (selectedId === id) {
+            if (selectedIds.has(id)) {
+                selectedIds.delete(id);
                 card.classList.remove('selected');
                 updatePilihButton(card, false);
-                selectedId = null;
-                selectedPoints = 0;
-                selectedName = '';
                 showToast(`✖️ ${name} dibatalkan`);
                 updateUI();
                 return;
             }
 
-            if (points > userPoints) {
-                showToast(`❌ Poin tidak cukup! butuh ${points} poin`, true);
+            const currentTotal = [...selectedIds.values()].reduce((sum, v) => sum + v.points, 0);
+            if (currentTotal + points > userPoints) {
+                showToast(`❌ Poin tidak cukup! butuh ${currentTotal + points}, tersisa ${userPoints}`, true);
                 return;
             }
 
-            document.querySelectorAll('.reward-card.selected').forEach(c => {
-                c.classList.remove('selected');
-                updatePilihButton(c, false);
-            });
-            
+            selectedIds.set(id, { name, points });
             card.classList.add('selected');
             updatePilihButton(card, true);
-            selectedId = id;
-            selectedPoints = points;
-            selectedName = name;
             showToast(`✅ ${name} dipilih (${points} poin)`);
             updateUI();
         }
 
         async function handleConfirm() {
-            if (!selectedId) {
+            if (selectedIds.size === 0) {
                 showToast('⚠️ Pilih hadiah terlebih dahulu', true);
                 return;
             }
-            if (selectedPoints > userPoints) {
+            const total = [...selectedIds.values()].reduce((sum, v) => sum + v.points, 0);
+            if (total > userPoints) {
                 showToast('❌ Poin tidak mencukupi!', true);
                 return;
             }
@@ -230,7 +224,7 @@
                         'X-CSRF-TOKEN': '{{ csrf_token() }}',
                         'Accept': 'application/json'
                     },
-                    body: JSON.stringify({ reward_id: selectedId }),
+                    body: JSON.stringify({ reward_ids: [...selectedIds.keys()] }),
                 });
 
                 console.log('Response status:', res.status);
@@ -258,12 +252,16 @@
                 console.log('Success:', data);
                 
                 // Update modal info
-                document.getElementById('modalReward').innerText = data.reward;
-                document.getElementById('modalPoints').innerText = data.points_used;
+                const list = document.getElementById('modalRewardList');
+                if (list) {
+                    list.innerHTML = data.rewards.map(r => `<li class="text-emerald-400">✅ ${r}</li>`).join('');
+                }
+                document.getElementById('modalPoints').innerText = data.total_points;
                 document.getElementById('modalKode').innerText = data.kode_penukaran;
                 
                 // Update user points in UI
-                userPoints -= selectedPoints;
+                const usedPoints = [...selectedIds.values()].reduce((sum, v) => sum + v.points, 0);
+                userPoints -= usedPoints;
                 document.getElementById('userPoints').innerText = userPoints;
 
                 // Generate QR code using canvas (reliable method)
@@ -319,9 +317,7 @@
                     c.classList.remove('selected');
                     updatePilihButton(c, false);
                 });
-                selectedId = null;
-                selectedPoints = 0;
-                selectedName = '';
+                selectedIds.clear();
                 
                 // Disable further exchanges
                 bisaTukar = false;
@@ -336,7 +332,7 @@
                 showToast(err.message, true);
             } finally {
                 confirmBtn.textContent = '✅ KONFIRMASI TUKAR';
-                confirmBtn.disabled = !bisaTukar || selectedId === null;
+                confirmBtn.disabled = !bisaTukar || selectedIds.size === 0;
             }
         }
 
@@ -344,7 +340,7 @@
             document.querySelectorAll('.reward-card').forEach(card => {
                 card.addEventListener('click', () => {
                     if (!bisaTukar) {
-                        showToast('⏳ Anda sudah menukarkan hadiah, tunggu {{ $hariTersisa }} hari lagi', true);
+                        showToast('⏳ tunggu {{ $hariTersisa }} hari lagi', true);
                         return;
                     }
                     const id = parseInt(card.dataset.id);

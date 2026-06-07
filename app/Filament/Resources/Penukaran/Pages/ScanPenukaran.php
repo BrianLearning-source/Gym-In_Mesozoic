@@ -53,29 +53,33 @@ class ScanPenukaran extends Page implements HasForms
 
         try {
             DB::transaction(function () use ($kode) {
-                $penukaran = Penukaran::where('kode_penukaran', $kode)
+                $penukarans = Penukaran::where('kode_penukaran', $kode)
                     ->where('status', 'pending')
-                    ->first();
+                    ->get();
 
-                if (!$penukaran) {
+                if ($penukarans->isEmpty()) {
                     throw new \Exception('Kode penukaran tidak valid atau sudah diproses.');
                 }
 
-                $anggota = $penukaran->anggota;
-                $reward = $penukaran->reward;
+                $anggota = $penukarans->first()->anggota;
 
-                if ($reward->stock < 1) {
-                    $penukaran->update(['status' => 'cancelled']);
-                    $anggota->increment('points', $penukaran->points_used);
-                    throw new \Exception('Stok hadiah sudah habis. Penukaran dibatalkan.');
+                foreach ($penukarans as $penukaran) {
+                    if ($penukaran->reward->stock < 1) {
+                        foreach ($penukarans as $p) {
+                            $p->update(['status' => 'cancelled']);
+                            $anggota->increment('points', $p->points_used);
+                        }
+                        throw new \Exception("Stok {$penukaran->reward->name} sudah habis. Semua penukaran dibatalkan.");
+                    }
                 }
 
-                $reward->decrement('stock');
-
-                $penukaran->update([
-                    'status'     => 'claimed',
-                    'claimed_at' => now(),
-                ]);
+                foreach ($penukarans as $penukaran) {
+                    $penukaran->reward->decrement('stock');
+                    $penukaran->update([
+                        'status'     => 'claimed',
+                        'claimed_at' => now(),
+                    ]);
+                }
             });
 
             Notification::make()

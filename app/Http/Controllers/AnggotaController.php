@@ -46,6 +46,9 @@ class AnggotaController extends Controller
                 return view('memberdashboard', ['rewards' => collect()]);
         }
 
+        $stock = $rewards->pluck('stock')->toArray();
+        $totalStock = array_sum($stock);
+
         $kapasitas = 30;
         $nowTime = now()->format('H:i:s');
         $memberActive = Presensi::whereDate('created_at', today())
@@ -73,6 +76,7 @@ class AnggotaController extends Controller
             'anggota' => $anggota,
             'duration' => $duration,
             'rewards' => $rewards,
+            'totalStock' => $totalStock,
             'calory_burned' => $calory_burned,
             'todayWeight' => $todayWeight,
             'yesterdayWeight' => $yesterdayWeight,

@@ -65,10 +65,10 @@ class TestDataSeeder extends Seeder
 
         // --- m_rewards ---
         DB::table('m_rewards')->insertOrIgnore([
-            ['name' => 'Handuk Gym', 'image' => 'rewards/handuk.jpg', 'points_required' => 500, 'stock' => 10],
-            ['name' => 'Tumbler Gym', 'image' => 'rewards/tumbler.png', 'points_required' => 600, 'stock' => 10],
-            ['name' => 'Gym Bag', 'image' => 'rewards/gymbag.jpg', 'points_required' => 1200, 'stock' => 5],
-            ['name' => 'Shaker Bottle', 'image' => 'rewards/shaker.png', 'points_required' => 300, 'stock' => 15],
+            ['name' => 'Handuk Gym', 'image' => 'handuk.jpg', 'points_required' => 500, 'stock' => 10],
+            ['name' => 'Tumbler Gym', 'image' => 'tumbler.png', 'points_required' => 600, 'stock' => 10],
+            ['name' => 'Gym Bag', 'image' => 'gymbag.jpg', 'points_required' => 1200, 'stock' => 5],
+            ['name' => 'Shaker Bottle', 'image' => 'shaker.png', 'points_required' => 300, 'stock' => 15],
         ]);
 
         // --- users (admin login) ---

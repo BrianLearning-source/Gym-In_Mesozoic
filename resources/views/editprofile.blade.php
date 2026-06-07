@@ -62,7 +62,7 @@
         <!-- Edit Profile Form -->
         <div class="w-full max-w-6xl mt-6 overflow-hidden">
             <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
-                <h2 class="text-2xl font-semibold text-white mb-4">Edit Profil</h2>
+                <h2 class="text-2xl font-semibold text-white mb-4">Ubah Profil</h2>
                 <form action="{{ route('member.updateProfile') }}" enctype="multipart/form-data" method="POST"
                     class="space-y-4" id="editProfileForm">
                     @csrf
@@ -74,10 +74,23 @@
                             src="{{ $anggota->avatar ? asset('storage/' . $anggota->avatar) : 'https://pbs.twimg.com/media/E8YT2mbVcAIA5vv?format=jpg&name=small' }}"
                             alt="Avatar" class="w-24 h-24 rounded-full object-cover border-2 border-white/10">
 
-                        {{-- <label for="avatar" class="block text-sm font-medium text-white my-2">Foto Profil</label> --}}
+                        <!-- Custom File Input Wrapper -->
+                       <div class="relative w-full overflow-hidden"> <input type="file" name="avatar" id="avatar" accept="image/*"
+                            onchange="previewImage(this, 'avatarPreview'); ubahNamaFile(this)"
+                            class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+        
+                            <div class="flex items-center w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100">
+                                <span class="bg-white/20 text-white font-medium px-3 py-1 rounded-lg mr-3 shadow-sm border border-white/10 shrink-0 whitespace-nowrap">
+                                    Pilih File
+                                </span>
+                                    <span id="namaFileTeks" class="truncate text-gray-400">Tidak ada file yang dipilih</span>
+                            </div>
+                        </div>
+
+                        {{-- <label for="avatar" class="block text-sm font-medium text-white my-2">Foto Profil</label>
                         <input type="file" name="avatar" id="avatar" accept="image/*"
                             onchange="previewImage(this, 'avatarPreview')"
-                            class="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100">
+                            class="w-full rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100"> --}}
                     </div>
                     @error('avatar')
                         <p class="text-sm text-red-400 my-2">{{ $message }}</p>
@@ -101,7 +114,7 @@
                         @enderror
                     </div>
                     <div>
-                        <label for="email" class="block text-sm font-medium text-white my-2">Email</label>
+                        <label for="email" class="block text-sm font-medium text-white my-2">Surel</label>
                         <input type="email" name="email" id="email" value="{{ $anggota->email }}"
                             class="w-full resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
                         @error('email')
@@ -121,9 +134,9 @@
                         <label for="gender" class="block text-sm font-medium text-white my-2">Jenis Kelamin</label>
                         <select name="gender" id="gender"
                             class="w-full resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                            <option value="">Pilih Jenis Kelamin</option>
-                            <option value="1" @selected(($anggota->gender ?? null) == 1)>Laki-laki</option>
-                            <option value="0" @selected(($anggota->gender ?? null) == 0)>Perempuan</option>
+                            <option value="" class="bg-gray-800 text-gray-100">Pilih Jenis Kelamin</option>
+                            <option value="1" class="bg-gray-800 text-gray-100" @selected(($anggota->gender ?? null) == 1)>Laki-laki</option>
+                            <option value="0" class="bg-gray-800 text-gray-100" @selected(($anggota->gender ?? null) == 0)>Perempuan</option>
                         </select>
                         @error('gender')
                             <p class="text-sm text-red-400 my-2">{{ $message }}</p>
@@ -199,14 +212,14 @@
                         d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
                     </path>
                 </svg>
-                <span class="text-xs mt-1">Rewards</span>
+                <span class="text-xs mt-1">Bonus</span>
             </a>
             <a href="{{ route('member.profile') }}" class="flex flex-col items-center text-emerald-400 transition">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                 </svg>
-                <span class="text-xs mt-1">Profile</span>
+                <span class="text-xs mt-1">Profil</span>
             </a>
         </div>
     </div>

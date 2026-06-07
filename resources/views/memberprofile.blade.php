@@ -177,7 +177,7 @@
                     <a href="{{ route('member.editProfile') }}"
                         class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 items-center justify-center flex overflow-hidden"
                         style="background-color: rgba(77, 145, 132)">
-                        Edit Profil
+                        Ubah Profil
                     </a>
 
                     {{-- <button type="button"
@@ -188,7 +188,7 @@
                     <a href="{{ route('preference.edit') }}"
                         class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 items-center justify-center flex overflow-hidden"
                         style="background-color: rgba(77, 145, 132)">
-                        Edit Preferensi Latihan
+                        Ubah Preferensi Latihan
                     </a>
 
                     <form action="{{ route('logout') }}" method="POST"
@@ -197,7 +197,7 @@
                         <button type="submit"
                             class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 overflow-hidden"
                             style="background-color: rgba(255, 77, 77, 0.8)">
-                            Logout
+                            Keluar
                         </button>
                     </form>
                 </div>

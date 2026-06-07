@@ -44,7 +44,7 @@
 
         <!-- Login Note -->
         <p class="text-white text-1xl text-center py-3 drop-shadow-2xl">
-            Edit preferensi latihan Anda di sini.
+            Ubah preferensi latihan Anda di sini.
         </p>
 
         <!-- Back Button -->
@@ -78,7 +78,7 @@
                     <input type="number" name="rest_day" 
                         value="{{ old('rest_day', $anggota->rest_days ?? '') }} "placeholder="Hari Libur (0-5)" min="0" max="5"
                         class="bg-white bg-opacity-20 text-white placeholder:text-white placeholder:opacity-75 border border-white border-opacity-50 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-white">
-                        <p class="text-white text-sm">*Masukkan jumlah hari libur dalam seminggu (0-5), untuk cushion <i>streak</i> Anda.</p>
+                        <p class="text-white text-sm">*Masukkan jumlah hari libur dalam seminggu (0-5), untuk mempertahankan <i>streak</i> Anda.</p>
                     <button type="submit"
                         class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 overflow-hidden"
                         style="background-color: rgba(77, 145, 132)">Simpan</button>

@@ -219,6 +219,8 @@ class AnggotaController extends Controller
         $id = Auth::guard('member')->id();
         $today = now();
 
+        $anggota = Auth::guard('member')->user();
+
         $selectedDateStr = $request->query('date', $today->format('Y-m-d'));
         $selectedDate = \Carbon\Carbon::parse($selectedDateStr);
 
@@ -282,6 +284,7 @@ class AnggotaController extends Controller
             'weekDays' => $weekDays,
             'chartLabels' => $chartLabels,
             'chartWeights' => $chartWeights,
+            'anggota' => $anggota,
         ]);
     }
 

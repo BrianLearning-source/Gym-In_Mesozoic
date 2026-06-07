@@ -120,17 +120,16 @@
                             null)
                             {{ intdiv($duration->total_minutes, 60) }} jam {{ $duration->total_minutes % 60 }} menit
                             @else
-                            Durasi tidak tersedia
+                            0
                             @endif</p>
                         <p class="text-sm text-gray-300">Durasi</p>
                     </div>
                     <div class="text-center">
-                        <p class="text-3xl font-bold text-orange-400">{{ $perkembangan->calory_burned ?? 'Kalori tidak
-                            tersedia' }} kkal</p>
+                        <p class="text-3xl font-bold text-orange-400">{{ $perkembangan->calory_burned ?? '0' }} kkal</p>
                         <p class="text-sm text-gray-300">Total kalori</p>
                     </div>
                     <div class="text-center">
-                        <p class="text-3xl font-bold text-blue-400">{{ $perkembangan->weight ?? 'Berat tidak tersedia'
+                        <p class="text-3xl font-bold text-blue-400">{{ $perkembangan->weight ?? '0'
                             }} kg</p>
                         <p class="text-sm text-gray-300">Berat Badan</p>
                     </div>
@@ -210,7 +209,7 @@
                         -
                         @endif</div>
                     <div class="{{ $day['calory_burned'] ? 'text-orange-400' : 'text-gray-400' }}">{{
-                        $day['calory_burned'] ? $day['calory_burned'] . ' kkal' : '-' }}</div>
+                        $day['calory_burned'] ? $day['calory_burned'] . ' kkal' : '0' }}</div>
                     <div class="{{ $day['weight'] ? 'text-blue-400' : 'text-gray-400' }}">{{ $day['weight'] ?
                         $day['weight'] . ' kg' : '-' }}</div>
                 </div>
@@ -250,7 +249,7 @@
                     </div>
                     <div>
                         <p class="text-base font-semibold text-white">Pencapaian Terbaru!</p>
-                        <p class="text-sm text-emerald-400">7 hari berturut-turut berolahraga</p>
+                        <p class="text-sm text-emerald-400">{{ $anggota->highest_streak}} hari berturut-turut berolahraga</p>
                     </div>
                 </div>
             </div>

@@ -20,17 +20,30 @@ class PenukaranController extends Controller
         }
 
         $request->validate([
-            'reward_id' => 'required|exists:m_rewards,reward_id',
+            'reward_ids'   => 'required|array|min:1',
+            'reward_ids.*' => 'exists:m_rewards,reward_id',
         ]);
 
-        $reward = Rewards::findOrFail($request->reward_id);
+        $rewards = Rewards::whereIn('reward_id', $request->reward_ids)->get();
 
-        if ($reward->stock < 1) {
-            return response()->json(['error' => 'Stok hadiah sudah habis.'], 422);
+        if ($rewards->count() !== count($request->reward_ids)) {
+            return response()->json(['error' => 'Hadiah tidak ditemukan.'], 422);
         }
 
-        if ($anggota->points < $reward->points_required) {
-            return response()->json(['error' => 'Poin tidak mencukupi.'], 422);
+        $totalPoints = $rewards->sum('points_required');
+
+        foreach ($rewards as $reward) {
+            if ($reward->stock < 1) {
+                return response()->json([
+                    'error' => "Stok {$reward->name} sudah habis."
+                ], 422);
+            }
+        }
+
+        if ($anggota->points < $totalPoints) {
+            return response()->json([
+                'error' => "Poin tidak mencukupi. Butuh {$totalPoints}, tersisa {$anggota->points}."
+            ], 422);
         }
 
         $lastClaimed = Penukaran::where('anggota_id', $anggota->id)
@@ -38,7 +51,6 @@ class PenukaranController extends Controller
             ->latest('claimed_at')
             ->first();
 
-        // FIX: Added null check for claimed_at
         if ($lastClaimed && $lastClaimed->claimed_at && $lastClaimed->claimed_at->diffInDays(now()) < 28) {
             $sisa = 28 - (int) $lastClaimed->claimed_at->diffInDays(now());
             return response()->json([
@@ -46,24 +58,35 @@ class PenukaranController extends Controller
             ], 422);
         }
 
-        $penukaran = DB::transaction(function () use ($anggota, $reward) {
-            $penukaran = Penukaran::create([
-                'anggota_id'     => $anggota->id,
-                'reward_id'      => $reward->reward_id,
-                'points_used'    => $reward->points_required,
-                'kode_penukaran' => 'GYMIN:' . (string) Str::uuid(),
-                'status'         => 'pending',
-            ]);
+        $kodePenukaran = $this->generateKodePenukaran();
 
-            $anggota->decrement('points', $reward->points_required);
+        DB::transaction(function () use ($anggota, $rewards, $totalPoints, $kodePenukaran) {
+            foreach ($rewards as $reward) {
+                Penukaran::create([
+                    'anggota_id'     => $anggota->id,
+                    'reward_id'      => $reward->reward_id,
+                    'points_used'    => $reward->points_required,
+                    'kode_penukaran' => $kodePenukaran,
+                    'status'         => 'pending',
+                ]);
+            }
 
-            return $penukaran;
+            $anggota->decrement('points', $totalPoints);
         });
 
         return response()->json([
-            'kode_penukaran' => $penukaran->kode_penukaran,
-            'reward'         => $reward->name,
-            'points_used'    => $reward->points_required,
+            'kode_penukaran' => $kodePenukaran,
+            'rewards'        => $rewards->pluck('name'),
+            'total_points'   => $totalPoints,
         ]);
+    }
+
+    private function generateKodePenukaran(): string
+    {
+        do {
+            $kode = 'TKN' . Str::upper(Str::random(6));
+        } while (Penukaran::where('kode_penukaran', $kode)->exists());
+
+        return $kode;
     }
 }

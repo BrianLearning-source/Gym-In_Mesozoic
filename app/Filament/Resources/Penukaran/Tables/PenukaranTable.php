@@ -6,6 +6,7 @@ use App\Models\Penukaran;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Notifications\Notification;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
@@ -85,12 +86,61 @@ class PenukaranTable
                             ->required(),
                     ])
                     ->action(function (array $data, Penukaran $record) {
-                        $originalStatus = $record->status;
-                        $record->update($data);
+                        $new = $data['status'];
+                        $orig = $record->status;
+                        if ($orig === $new) return;
 
-                        if ($originalStatus !== 'cancelled' && $data['status'] === 'cancelled') {
-                            $record->anggota->increment('points', $record->points_used);
+                        $anggota = $record->anggota;
+                        $reward  = $record->reward;
+                        $points  = $record->points_used;
+
+                        if ($new === 'claimed') {
+                            if ($reward->stock < 1) {
+                                Notification::make()
+                                    ->title("Stok {$reward->name} habis")
+                                    ->danger()
+                                    ->send();
+                                return;
+                            }
+                            if ($orig === 'cancelled') {
+                                if ($anggota->points < $points) {
+                                    Notification::make()
+                                        ->title('Poin anggota tidak mencukupi')
+                                        ->danger()
+                                        ->send();
+                                    return;
+                                }
+                                $anggota->decrement('points', $points);
+                            }
+                            $reward->decrement('stock');
+                            $data['claimed_at'] = now();
                         }
+
+                        if ($new === 'cancelled' && $orig !== 'cancelled') {
+                            $anggota->increment('points', $points);
+                            if ($orig === 'claimed') {
+                                $reward->increment('stock');
+                            }
+                            $data['claimed_at'] = null;
+                        }
+
+                        if ($new === 'pending' && $orig === 'claimed') {
+                            $reward->increment('stock');
+                            $data['claimed_at'] = null;
+                        }
+
+                        if ($new === 'pending' && $orig === 'cancelled') {
+                            if ($anggota->points < $points) {
+                                Notification::make()
+                                    ->title('Poin anggota tidak mencukupi')
+                                    ->danger()
+                                    ->send();
+                                return;
+                            }
+                            $anggota->decrement('points', $points);
+                        }
+
+                        $record->update($data);
                     }),
             ])
             ->toolbarActions([

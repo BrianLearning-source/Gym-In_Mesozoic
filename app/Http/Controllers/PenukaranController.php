@@ -38,7 +38,8 @@ class PenukaranController extends Controller
             ->latest('claimed_at')
             ->first();
 
-        if ($lastClaimed && $lastClaimed->claimed_at->diffInDays(now()) < 28) {
+        // FIX: Added null check for claimed_at
+        if ($lastClaimed && $lastClaimed->claimed_at && $lastClaimed->claimed_at->diffInDays(now()) < 28) {
             $sisa = 28 - (int) $lastClaimed->claimed_at->diffInDays(now());
             return response()->json([
                 'error' => "Anda sudah menukarkan hadiah. Tunggu {$sisa} hari lagi untuk menukar kembali."
@@ -50,7 +51,7 @@ class PenukaranController extends Controller
                 'anggota_id'     => $anggota->id,
                 'reward_id'      => $reward->reward_id,
                 'points_used'    => $reward->points_required,
-                'kode_penukaran' => (string) Str::uuid(),
+                'kode_penukaran' => 'GYMIN:' . (string) Str::uuid(),
                 'status'         => 'pending',
             ]);
 

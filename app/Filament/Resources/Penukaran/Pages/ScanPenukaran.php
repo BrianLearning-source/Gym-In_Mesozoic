@@ -4,30 +4,30 @@ namespace App\Filament\Resources\Penukaran\Pages;
 
 use App\Filament\Resources\Penukaran\PenukaranResource;
 use App\Models\Penukaran;
-use Filament\Forms\Components\TextInput;
 use Filament\Resources\Pages\Page;
-use Filament\Notifications\Notification;
-use Filament\Schemas\Schema;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Illuminate\Support\Facades\DB;
+use Filament\Notifications\Notification;
+use Filament\Schemas\Schema;
 use Livewire\Attributes\On;
+use Marcelorodrigo\FilamentBarcodeScannerField\Forms\Components\BarcodeInput;
 
 class ScanPenukaran extends Page implements HasForms
 {
     use InteractsWithForms;
 
     protected static string $resource = PenukaranResource::class;
-
     protected string $view = 'filament.resources.penukaran.pages.scan';
-
+    
     public ?array $data = [];
-
+    
     public function mount(): void
     {
         $this->form->fill();
     }
-
+    
     public function form(Schema $form): Schema
     {
         return $form
@@ -39,7 +39,13 @@ class ScanPenukaran extends Page implements HasForms
             ])
             ->statePath('data');
     }
-
+    
+    public function prosesManual(): void
+    {
+        $data = $this->form->getState();
+        $this->prosesScan($data['kode']);
+    }
+    
     #[On('scan-result')]
     public function prosesScan(string $kode): void
     {
@@ -85,11 +91,5 @@ class ScanPenukaran extends Page implements HasForms
                 ->danger()
                 ->send();
         }
-    }
-
-    public function prosesManual(): void
-    {
-        $data = $this->form->getState();
-        $this->prosesScan($data['kode']);
     }
 }

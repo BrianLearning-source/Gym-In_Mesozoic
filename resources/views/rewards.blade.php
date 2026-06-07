@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Bonus - GYM-IN</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
     <style>
         .bg-image { position: absolute; inset: 0; background-image: url("https://images.pexels.com/photos/4162449/pexels-photo-4162449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"); background-size: cover; background-position: center; opacity: 0.25; }
         .reward-card { transition: all 0.3s ease; cursor: pointer; }
@@ -18,7 +19,6 @@
         .toast-notif.show { transform: translateX(-50%) translateY(0); }
         .toast-notif.error { border-left-color: #ef4444; }
         .btn-disabled { opacity: 0.5; cursor: not-allowed; }
-        /* Fitur visual dari temanmu */
         .selected-highlight { background: rgba(16,185,129,0.2) !important; border-left: 4px solid #10b981; }
     </style>
 </head>
@@ -86,7 +86,7 @@
     <div id="successModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 hidden">
         <div class="bg-gradient-to-br from-gray-900 to-black rounded-2xl max-w-md w-full mx-4 p-6 border border-purple-500/30 modal-content">
             <div class="flex justify-between items-center mb-4"><h3 class="text-2xl font-bold text-white">🎉 Penukaran Berhasil!</h3><button onclick="closeModal()" class="text-gray-400 hover:text-white text-3xl">&times;</button></div>
-            <div class="flex justify-center my-4"><div id="qrContainer" class="bg-white p-4 rounded-xl"></div></div>
+            <div class="flex justify-center my-4"><div id="qrContainer" class="bg-white p-4 rounded-xl" style="display: inline-block;"></div></div>
             <div class="bg-white/5 rounded-xl p-4 space-y-2">
                 <p class="text-gray-300 text-sm"><strong class="text-white">Bonus:</strong> <span id="modalReward"></span></p>
                 <p class="text-gray-300 text-sm"><strong class="text-white">Poin digunakan:</strong> <span id="modalPoints"></span></p>
@@ -145,11 +145,9 @@
                 return;
             }
 
-            // Validasi apakah poin cukup
             let enoughPoints = selectedPoints <= userPoints;
             confirmBtn.disabled = (selectedId === null) || !enoughPoints;
 
-            // Integrasi UI visual dari temanmu
             if (selectedId !== null) {
                 if(totalPointsEl) totalPointsEl.innerText = selectedPoints;
                 if(selectedInfoEl) selectedInfoEl.innerText = `1 bonus dipilih · total ${selectedPoints} poin`;
@@ -167,18 +165,17 @@
                 btn.textContent = 'BATAL';
                 btn.classList.remove('bg-emerald-600/80');
                 btn.classList.add('bg-red-600/80', 'hover:bg-red-700');
-                card.classList.add('selected-highlight'); // UI Teman
+                card.classList.add('selected-highlight');
             } else {
                 btn.textContent = 'PILIH';
                 btn.classList.remove('bg-red-600/80', 'hover:bg-red-700');
                 btn.classList.add('bg-emerald-600/80');
-                card.classList.remove('selected-highlight'); // UI Teman
+                card.classList.remove('selected-highlight');
             }
         }
 
         function selectReward(card, id, name, points) {
             if (selectedId === id) {
-                // Membatalkan pilihan
                 card.classList.remove('selected');
                 updatePilihButton(card, false);
                 selectedId = null;
@@ -189,13 +186,11 @@
                 return;
             }
 
-            // Cek jika poin tidak cukup dari awal
             if (points > userPoints) {
                 showToast(`❌ Poin tidak cukup! butuh ${points} poin`, true);
                 return;
             }
 
-            // Memilih hadiah (Single Select)
             document.querySelectorAll('.reward-card.selected').forEach(c => {
                 c.classList.remove('selected');
                 updatePilihButton(c, false);
@@ -225,45 +220,101 @@
             confirmBtn.textContent = '⏳ Memproses...';
 
             try {
-                // Fetch API dari kodemu
-                const res = await fetch('{{ route("member.penukaran") }}', {
+                const url = '{{ route("member.penukaran") }}';
+                console.log('Sending to URL:', url);
+                
+                const res = await fetch(url, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json'
                     },
                     body: JSON.stringify({ reward_id: selectedId }),
                 });
 
-                const data = await res.json();
-
+                console.log('Response status:', res.status);
+                
+                const contentType = res.headers.get('content-type');
+                console.log('Content-Type:', contentType);
+                
                 if (!res.ok) {
-                    throw new Error(data.error || 'Terjadi kesalahan');
+                    if (contentType && contentType.includes('application/json')) {
+                        const errorData = await res.json();
+                        throw new Error(errorData.error || 'Terjadi kesalahan');
+                    } else {
+                        const text = await res.text();
+                        console.log('HTML response:', text.substring(0, 500));
+                        
+                        if (text.includes('login')) {
+                            throw new Error('Sesi anda habis. Silakan login kembali.');
+                        } else {
+                            throw new Error('Server error. Silakan coba lagi.');
+                        }
+                    }
                 }
 
-                // Sukses
+                const data = await res.json();
+                console.log('Success:', data);
+                
+                // Update modal info
                 document.getElementById('modalReward').innerText = data.reward;
                 document.getElementById('modalPoints').innerText = data.points_used;
                 document.getElementById('modalKode').innerText = data.kode_penukaran;
                 
-                // Update sisa poin di UI
+                // Update user points in UI
                 userPoints -= selectedPoints;
                 document.getElementById('userPoints').innerText = userPoints;
 
-                const qrDiv = document.getElementById('qrContainer');
-                qrDiv.innerHTML = '';
-                new QRCode(qrDiv, {
-                    text: data.kode_penukaran,
-                    width: 180,
-                    height: 180,
-                    colorDark: '#000000',
-                    colorLight: '#ffffff',
-                    correctLevel: QRCode.CorrectLevel.H,
+                // Generate QR code using canvas (reliable method)
+                const qrContainer = document.getElementById('qrContainer');
+                qrContainer.innerHTML = '';
+
+                // Create canvas element for QR
+                const canvas = document.createElement('canvas');
+                canvas.width = 300;
+                canvas.height = 300;
+                canvas.style.width = '300px';
+                canvas.style.height = '300px';
+                canvas.style.margin = '0 auto';
+                canvas.style.display = 'block';
+                qrContainer.appendChild(canvas);
+
+                // Generate QR code on canvas
+                QRCode.toCanvas(canvas, data.kode_penukaran, {
+                    width: 300,
+                    margin: 2,
+                    color: {
+                        dark: '#000000',
+                        light: '#FFFFFF'
+                    },
+                    errorCorrectionLevel: 'H'
+                }, function(error) {
+                    if (error) {
+                        console.error('QR Error:', error);
+                        // Fallback: show text code if QR fails
+                        qrContainer.innerHTML = `
+                            <div class="text-center p-4">
+                                <p class="text-gray-600 mb-2">Kode Penukaran:</p>
+                                <code class="bg-gray-100 p-3 rounded block break-all font-mono text-sm">
+                                    ${data.kode_penukaran}
+                                </code>
+                                <p class="text-xs text-gray-500 mt-3">⚠️ QR tidak dapat dibuat, gunakan kode manual</p>
+                            </div>
+                        `;
+                    } else {
+                        console.log('QR generated successfully');
+                        // Add styling for better contrast
+                        canvas.style.backgroundColor = 'white';
+                        canvas.style.padding = '15px';
+                        canvas.style.borderRadius = '12px';
+                        canvas.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+                    }
                 });
                 
                 document.getElementById('successModal').classList.remove('hidden');
 
-                // Reset pilihan
+                // Reset selection
                 document.querySelectorAll('.reward-card.selected').forEach(c => {
                     c.classList.remove('selected');
                     updatePilihButton(c, false);
@@ -271,15 +322,21 @@
                 selectedId = null;
                 selectedPoints = 0;
                 selectedName = '';
-                bisaTukar = false; // Matikan fitur tukar
-                updateUI();
+                
+                // Disable further exchanges
+                bisaTukar = false;
+                if(confirmBtn) confirmBtn.disabled = true;
+                
+                showToast('✅ Penukaran berhasil! Simpan QR code anda.');
                 
             } catch (err) {
+                console.error('Error details:', err);
                 document.getElementById('errorMessage').innerText = err.message;
                 document.getElementById('errorModal').classList.remove('hidden');
+                showToast(err.message, true);
             } finally {
                 confirmBtn.textContent = '✅ KONFIRMASI TUKAR';
-                updateUI(); // Akan mendisable tombol karena bisaTukar = false
+                confirmBtn.disabled = !bisaTukar || selectedId === null;
             }
         }
 

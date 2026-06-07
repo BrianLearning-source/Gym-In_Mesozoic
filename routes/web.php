@@ -35,5 +35,8 @@ Route::middleware(['auth:member'])->prefix('member')->group(function () {
     Route::delete('/progres', [PerkembanganController::class, 'destroy'])->name('member.progressDelete');
     Route::post('/penukaran', [PenukaranController::class, 'store'])->name('member.penukaran');
 
+    Route::get('/test-scanner', function () {
+    return view('filament.resources.penukaran.pages.test-scan');
+});
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });

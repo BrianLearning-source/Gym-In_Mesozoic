@@ -102,7 +102,7 @@
                     </p>
                     <div class="flex items-center justify-center gap-2 mt-2">
                         <span class="text-yellow-400 text-xl">🪙</span>
-                        <p class="text-white">Poin Streak anda: <span class="font-bold text-emerald-400">{{
+                        <p class="text-white">Poin <i>Streak</i> anda: <span class="font-bold text-emerald-400">{{
                                 $anggota->points }}</span></p>
                     </div>
                 </div>

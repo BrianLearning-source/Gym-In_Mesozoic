@@ -154,7 +154,7 @@
                     Bergabunglah dengan
                     <br>
                     <span
-                        class="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent"><i>Gym</i>-In</span>
+                        class="bg-gradient-to-r from-emerald-400 to-green-600 bg-clip-text text-transparent"><i>Gym</i>-In</span>
                 </h1>
                 <p class="text-gray-300 text-lg">Mulai perjalananmu menuju tubuh impian hari ini</p>
             </div>
@@ -176,7 +176,7 @@
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-white text-sm font-semibold mb-2">
-                                Nama User <span class="text-red-500">*</span>
+                                Nama Pengguna <span class="text-red-500">*</span>
                             </label>
                             <input type="text" name="username" placeholder="Masukkan nama user"
                                 value="{{ old('username') }}" required minlength="3" maxlength="50"
@@ -234,7 +234,7 @@
                 <!-- Submit Button -->
                 <div class="form-group fade-in fade-in-delay-5 pt-6">
                     <button type="submit"
-                        class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold uppercase py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl"
+                        class="w-full bg-gradient-to-r bg-emerald-500 hover:from-emerald-600 hover:to-green-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold uppercase py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl"
                         id="submitBtn">
                         Daftar Sekarang
                     </button>
@@ -243,7 +243,7 @@
                 <!-- Login Link -->
                 <p class="text-center text-gray-400 text-sm">
                     Sudah punya akun?
-                    <a href="/loginMember" class="text-purple-400 hover:text-purple-300 font-semibold transition">Masuk
+                    <a href="/loginMember" class="text-emerald-400 hover:text-emerald-300 font-semibold transition">Masuk
                         di sini</a>
                 </p>
             </form>

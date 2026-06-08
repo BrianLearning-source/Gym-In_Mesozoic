@@ -96,7 +96,7 @@
             <!-- Card 2 -->
             <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
                 <p class="text-2xl font-bold text-white md:text-3xl">{{ $anggota->highest_streak }} Hari</p>
-                <p class="mt-2 text-sm text-gray-300">Streak tertinggi</p>
+                <p class="mt-2 text-sm text-gray-300"><i>Streak</i> tertinggi</p>
             </div>
 
             <!-- Card 3 -->
@@ -157,13 +157,13 @@
             <!-- Card 5 -->
             <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
                 <p class="text-2xl font-bold text-white md:text-3xl">{{ $anggota->streak ?? '0' }} Hari</p>
-                <p class="mt-2 text-sm text-gray-300">Streak saat ini</p>
+                <p class="mt-2 text-sm text-gray-300"><i>Streak</i> saat ini</p>
             </div>
 
             <!-- Card 6 -->
             <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
                 <p class="text-2xl font-bold text-white md:text-3xl">{{ $anggota->points ?? '0' }}</p>
-                <p class="mt-2 text-sm text-gray-300">Poin streak</p>
+                <p class="mt-2 text-sm text-gray-300">Poin <i>Streak</i></p>
             </div>
         </div>
 

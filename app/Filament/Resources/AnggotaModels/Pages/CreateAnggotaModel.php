@@ -6,10 +6,18 @@ use App\Filament\Resources\AnggotaModels\AnggotaModelResource;
 use App\Models\AnggotaModel;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Str;
+use Filament\Support\Enums\MaxWidth;
 
 class CreateAnggotaModel extends CreateRecord
 {
     protected static string $resource = AnggotaModelResource::class;
+
+    protected function getFormActions(): array
+    {
+        return [
+            $this->getCancelFormAction(),
+        ];
+    }
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {

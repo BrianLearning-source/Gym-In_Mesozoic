@@ -46,6 +46,7 @@ class Absent extends Page implements HasForms, HasTable
             ->schema([
                 Select::make('anggota_id')
                     ->label('Pilih Anggota')
+                    ->placeholder('Pilih Anggota')
                     ->options(AnggotaModel::all()->mapWithKeys(fn($m) => [
                         $m->id => $m->username
                             ? "ID: {$m->id} - {$m->username} ({$m->name})"

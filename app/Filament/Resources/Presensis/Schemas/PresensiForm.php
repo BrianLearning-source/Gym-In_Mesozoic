@@ -15,6 +15,7 @@ class PresensiForm
                 Select::make('anggota_id')
                     ->label('Anggota')
                     ->relationship('anggota', 'name')
+                    ->placeholder('Pilih Anggota')
                     ->searchable()
                     ->preload()
                     ->required(),

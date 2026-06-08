@@ -52,7 +52,7 @@ class RewardsResource extends Resource
     {
         return [
             'index' => ListRewards::route('/'),
-            'create' => CreateRewards::route('/create'),
+            // 'create' => CreateRewards::route('/create'),
             'edit' => EditRewards::route('/{record}/edit'),
         ];
     }

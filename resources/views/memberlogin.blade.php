@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
@@ -58,7 +58,7 @@
         <div
             class="flex flex-col justify-center items-center backdrop-blur-sm drop-shadow-2xl bg-white bg-opacity-20 rounded-3xl w-fit h-fit mt-3.5 overflow-hidden">
             <div class=" m-11">
-                <h1 class="text-2xl font-bold text-white text-center header-glow uppercase">Login</h1>
+                <h1 class="text-2xl font-bold text-white text-center header-glow uppercase">Masuk</h1>
 
                 <form action="{{ route('login.post') }}" method="POST" class="flex flex-col gap-4 p-6">
                     @csrf 

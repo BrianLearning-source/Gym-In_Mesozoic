@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
@@ -405,7 +405,7 @@
             submitBtn.textContent = 'Mendaftar...';
         });
     </script>
-    
+
     <script>
     // Simple phone validation for Indonesian numbers
     const phoneInput = document.getElementById('phoneNumber');

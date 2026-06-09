@@ -48,7 +48,7 @@ class AnggotaModelResource extends Resource
     {
         return [
             'index' => ListAnggotaModels::route('/'),
-            'create' => CreateAnggotaModel::route('/create'),
+            // 'create' => CreateAnggotaModel::route('/create'),
             'edit' => EditAnggotaModel::route('/{record}/edit'),
         ];
     }

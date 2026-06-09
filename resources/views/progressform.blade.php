@@ -72,7 +72,7 @@
                     </div>
                 @endif
 
-                @if (!$presensiExists)
+                @if (!$presensiExists && !$perkembangan->exists)
                     <div class="rounded-2xl border border-white/10 bg-white/10 p-6 text-center">
                         <p class="text-lg font-semibold text-white">Presensi belum tercatat</p>
                         <p class="mt-2 text-sm text-gray-300">Presensi Anda belum tercatat. Silahkan ke kasir untuk mencatat presensi.</p>

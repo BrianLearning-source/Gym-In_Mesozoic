@@ -16,11 +16,13 @@ class PenukaranForm
                 Select::make('anggota_id')
                     ->label('Anggota')
                     ->relationship('anggota', 'name')
+                    ->placeholder('Pilih Anggota')
                     ->searchable()
                     ->preload()
                     ->required(),
                 Select::make('reward_id')
                     ->label('Hadiah')
+                    ->placeholder('Pilih Hadiah')
                     ->relationship('reward', 'name')
                     ->searchable()
                     ->preload()
@@ -31,6 +33,7 @@ class PenukaranForm
                     ->required(),
                 Select::make('status')
                     ->label('Status')
+                    ->placeholder('Pilih Status')
                     ->options([
                         'pending' => 'Pending',
                         'claimed' => 'Claimed',

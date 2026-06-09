@@ -13,26 +13,25 @@ return new class extends Migration
     {
         Schema::create('m_anggota', function (Blueprint $table) {
             $table->id();
+            $table->string('username')->unique()->nullable();
             $table->string('name');
             $table->string('title');
             $table->enum('gender', ['Laki-laki', 'Perempuan']);
             $table->string('email')->unique();
             $table->string('password');
             $table->string('phone_number')->nullable();
+            $table->decimal('height', 5, 2)->nullable();
+            $table->decimal('weight', 5, 2)->nullable();
+            $table->integer('rest_days')->default(0);
+            $table->string('qr_code')->unique()->nullable();
+            $table->enum('status', ['pending', 'active', 'suspended'])->default('pending');
             $table->string('avatar')->nullable();
             $table->date('join_date');
             $table->integer('points')->default(0);
             $table->integer('streak')->default(0);
             $table->integer('highest_streak')->default(0);
             $table->timestamps();
-            
-            $table->string('username')->unique()->nullable()->after('id');
-            $table->decimal('height', 5, 2)->nullable()->after('phone_number');
-            $table->decimal('weight', 5, 2)->nullable()->after('height');
-            $table->integer('rest_days')->default(0)->after('weight');
-            $table->string('qr_code')->unique()->nullable()->after('rest_days');
 
-            $table->enum('status', ['pending', 'active', 'suspended'])->default('pending')->after('qr_code');
         });
     }
 

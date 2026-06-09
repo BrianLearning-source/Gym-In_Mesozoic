@@ -229,11 +229,11 @@
                 <div class="flex justify-center gap-6 mt-4 pt-4 border-t border-white/10">
                     <div class="flex items-center gap-2">
                         <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
-                        <span class="text-sm text-gray-400">Completed</span>
+                        <span class="text-sm text-gray-400">Selesai</span>
                     </div>
                     <div class="flex items-center gap-2">
                         <div class="w-3 h-3 rounded" style="background-color: rgba(255,255,255,0.1);"></div>
-                        <span class="text-sm text-gray-400">Not yet</span>
+                        <span class="text-sm text-gray-400">Belum mulai</span>
                     </div>
                 </div>
             </div>

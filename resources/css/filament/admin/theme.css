@@ -3,3 +3,25 @@
 
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';
+
+/* Mengubah warna garis luar (ring) pada kontainer tabel */
+.fi-ta-content {
+    @apply !ring-1 !ring-emerald-500/40 dark:!ring-emerald-500/40;
+}
+
+/* Mengubah warna garis pemisah antar baris di dalam tabel */
+.fi-ta-table, 
+.fi-ta-tbody {
+    @apply !divide-emerald-500/40 dark:!divide-emerald-500/40;
+}
+
+/* Mengubah garis bawah pada bagian Header Tabel (Nama, Surel, dll) */
+.fi-ta-header,
+.fi-ta-header th {
+    @apply !border-emerald-500/40 dark:!border-emerald-500/40;
+}
+
+/* Mengubah garis atas pada bagian pagination (jika ada) */
+.fi-ta-content > nav {
+    @apply !border-t !border-emerald-500/40 dark:!border-emerald-500/40;
+}

@@ -221,9 +221,11 @@
                         <label class="block text-white text-sm font-semibold mb-2">
                             Nomor Telepon <span class="text-red-500">*</span>
                         </label>
-                        <input type="phone_number" name="phone_number" placeholder="Masukkan Nomor Telepon"
-                            value="{{ old('phone_number') }}" required maxlength="100"
+                        <input type="tel" name="phone_number" id="phoneNumber" 
+                            placeholder="081234567890 atau 6281234567890"
+                            value="{{ old('phone_number') }}" required
                             class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-white border-opacity-20 text-white placeholder-white placeholder-opacity-60 focus:bg-opacity-15 focus:border-opacity-40 focus:outline-none transition-all duration-300">
+                        <p id="phoneError" class="text-red-500 text-sm mt-1 hidden"></p>
                         @error('phone_number')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
@@ -402,6 +404,44 @@
             submitBtn.disabled = true;
             submitBtn.textContent = 'Mendaftar...';
         });
+    </script>
+    
+    <script>
+    // Simple phone validation for Indonesian numbers
+    const phoneInput = document.getElementById('phoneNumber');
+    const phoneError = document.getElementById('phoneError');
+
+    function validatePhone() {
+        let val = phoneInput.value.trim();
+        let cleaned = val.replace(/[\s\-\.]/g, '');
+        
+        // Valid formats: 081234567890, 6281234567890, or 81234567890
+        let isValid = /^(08|62|8)\d{8,12}$/.test(cleaned);
+        
+        if (!isValid && val !== '') {
+            phoneError.classList.remove('hidden');
+            phoneError.textContent = '❌ Masukkan nomor Indonesia yang valid (contoh: 081234567890)';
+            phoneInput.classList.add('border-red-500');
+            return false;
+        } else {
+            phoneError.classList.add('hidden');
+            phoneInput.classList.remove('border-red-500');
+            return true;
+        }
+    }
+
+    if (phoneInput) {
+        phoneInput.addEventListener('input', validatePhone);
+        phoneInput.addEventListener('blur', validatePhone);
+        
+        // Also validate on form submit
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            if (!validatePhone() && phoneInput.value.trim() !== '') {
+                e.preventDefault();
+                phoneInput.focus();
+            }
+        });
+    }
     </script>
 </body>
 

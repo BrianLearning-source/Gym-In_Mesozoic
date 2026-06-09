@@ -17,7 +17,7 @@ class ListRegistrasis extends ListRecords
             Action::make('scan')
                 ->label('Pindai QR')
                 ->icon('heroicon-o-qr-code')
-                ->color('success')
+                ->color('danger')
                 ->url(fn (): string => RegistrasiResource::getUrl('scan')),
 
             CreateAction::make()->label('Tambah'),

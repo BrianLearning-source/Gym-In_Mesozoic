@@ -7,6 +7,7 @@ use App\Filament\Resources\AnggotaModels\Pages\EditAnggotaModel;
 use App\Filament\Resources\AnggotaModels\Pages\ListAnggotaModels;
 use App\Filament\Resources\AnggotaModels\Schemas\AnggotaModelForm;
 use App\Filament\Resources\AnggotaModels\Tables\AnggotaModelsTable;
+use App\Filament\Resources\AnggotaModels\Pages\SelectRegister;
 use App\Models\AnggotaModel;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -50,6 +51,7 @@ class AnggotaModelResource extends Resource
             'index' => ListAnggotaModels::route('/'),
             // 'create' => CreateAnggotaModel::route('/create'),
             'edit' => EditAnggotaModel::route('/{record}/edit'),
+            // 'select' => SelectRegister::route('/select'),
         ];
     }
 }

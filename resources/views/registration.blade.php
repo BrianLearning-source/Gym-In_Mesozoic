@@ -177,7 +177,7 @@
                             <label class="block text-white text-sm font-semibold mb-2">
                                 Nama Pengguna <span class="text-red-500">*</span>
                             </label>
-                            <input type="text" name="username" placeholder="Masukkan nama user"
+                            <input type="text" name="username" placeholder="Masukkan nama pengguna"
                                 value="{{ old('username') }}" required minlength="3" maxlength="50"
                                 pattern="^[a-zA-Z0-9_-]+$"
                                 title="Nama User hanya boleh berisi huruf, angka, underscore, dan dash"
@@ -204,9 +204,9 @@
                 <div class="form-group fade-in fade-in-delay-2">
                     <div>
                         <label class="block text-white text-sm font-semibold mb-2">
-                            Email <span class="text-red-500">*</span>
+                            Surel <span class="text-red-500">*</span>
                         </label>
-                        <input type="email" name="email" placeholder="Masukkan email" value="{{ old('email') }}"
+                        <input type="email" name="email" placeholder="Masukkan surel" value="{{ old('email') }}"
                             required maxlength="100"
                             class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-white border-opacity-20 text-white placeholder-white placeholder-opacity-60 focus:bg-opacity-15 focus:border-opacity-40 focus:outline-none transition-all duration-300">
                         @error('email')
@@ -221,9 +221,8 @@
                         <label class="block text-white text-sm font-semibold mb-2">
                             Nomor Telepon <span class="text-red-500">*</span>
                         </label>
-                        <input type="tel" name="phone_number" id="phoneNumber" 
-                            placeholder="081234567890 atau 6281234567890"
-                            value="{{ old('phone_number') }}" required
+                        <input type="phone_number" name="phone_number" placeholder="Masukkan nomor telepon"
+                            value="{{ old('phone_number') }}" required maxlength="100"                
                             class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-white border-opacity-20 text-white placeholder-white placeholder-opacity-60 focus:bg-opacity-15 focus:border-opacity-40 focus:outline-none transition-all duration-300">
                         <p id="phoneError" class="text-red-500 text-sm mt-1 hidden"></p>
                         @error('phone_number')
@@ -276,16 +275,16 @@
                     <strong class="text-white">Nama Pengguna:</strong> {{ session('username') }}
                 </p>
                 <p class="text-gray-300 text-sm">
-                    <strong class="text-white">Email:</strong> {{ session('email') }}
+                    <strong class="text-white">Surel:</strong> {{ session('email') }}
                 </p>
                 <p class="text-gray-300 text-sm">
-                    <strong class="text-white">QR Code:</strong>
+                    <strong class="text-white">Kode QR:</strong>
                     <code class="text-yellow-400 text-xs break-all">{{ session('qr_code') }}</code>
                 </p>
                 <div class="border-t border-white/10 my-2 pt-2">
-                    <p class="text-yellow-400 text-xs">🔐 Password sementara: <strong>1234</strong></p>
+                    <p class="text-yellow-400 text-xs">🔐 Kata sandi sementara: <strong>1234</strong></p>
                     <p class="text-blue-400 text-xs mt-1">⏳ Akun Anda menunggu aktivasi admin</p>
-                    <p class="text-emerald-400 text-xs">💪 Gunakan <i>QR code</i> untuk daftar nanti</p>
+                    <p class="text-emerald-400 text-xs">💪 Gunakan kode QR untuk daftar nanti</p>
                 </div>
             </div>
 
@@ -297,7 +296,7 @@
                 </button>
                 <button onclick="downloadQR()"
                     class="w-full bg-white/10 hover:bg-white/20 text-white font-semibold py-2 rounded-lg transition text-sm">
-                    💾 Download QR Code
+                    💾 Unduh Kode QR
                 </button>
             </div>
         </div>
@@ -345,7 +344,7 @@
                 link.href = qrCanvas.toDataURL();
                 link.click();
             } else {
-                alert('Gagal download QR code');
+                alert('Gagal download kode QR');
             }
         }
         

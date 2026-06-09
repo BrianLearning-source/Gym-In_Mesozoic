@@ -8,6 +8,10 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class GymStatsOverview extends StatsOverviewWidget
 {
+    protected static ?int $sort = 1;
+    protected ?string $heading = 'Statistik Gym';
+    protected int|string|array $columnSpan = 'full';
+
     protected function getStats(): array
     {
         $kapasitas = 30;

@@ -45,11 +45,11 @@ class PresensisTable
                 //
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()->label('Ubah'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()->label('Hapus'),
                 ]),
             ]);
     }

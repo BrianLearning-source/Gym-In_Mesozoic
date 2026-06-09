@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Filament\Resources\Users;
+namespace App\Filament\Resources\Penggunas;
 
-use App\Filament\Resources\Users\Pages\CreateUser;
-use App\Filament\Resources\Users\Pages\EditUser;
-use App\Filament\Resources\Users\Pages\ListUsers;
-use App\Filament\Resources\Users\Schemas\UserForm;
-use App\Filament\Resources\Users\Tables\UsersTable;
+use App\Filament\Resources\Penggunas\Pages\CreateUser;
+use App\Filament\Resources\Penggunas\Pages\EditUser;
+use App\Filament\Resources\Penggunas\Pages\ListUsers;
+use App\Filament\Resources\Penggunas\Schemas\UserForm;
+use App\Filament\Resources\Penggunas\Tables\UsersTable;
 use App\Models\User;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -15,7 +15,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use UnitEnum;
 
-class UserResource extends Resource
+class PenggunaResource extends Resource
 {
     protected static ?string $model = User::class;
 

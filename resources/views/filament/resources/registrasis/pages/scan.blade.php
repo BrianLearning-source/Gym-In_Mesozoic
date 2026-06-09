@@ -3,7 +3,7 @@
         {{-- BAGIAN KIRI: Form Input Manual --}}
         <div class="w-full md:w-1/2 space-y-6">
             <x-filament::section>
-                <x-slot name="heading">Input Manual</x-slot>
+                <x-slot name="heading">Masukan Manual</x-slot>
                 <x-slot name="description">Gunakan form ini jika scanner sedang tidak berfungsi.</x-slot>
 
                 <form wire:submit="prosesManual" class="space-y-4 mt-4">
@@ -21,13 +21,13 @@
         {{-- BAGIAN KANAN: Scanner Kamera --}}
         <div class="w-full md:w-1/2">
             <x-filament::section>
-                <x-slot name="heading">Scan QR Registrasi</x-slot>
+                <x-slot name="heading">Pindai QR Registrasi</x-slot>
                 <x-slot name="description">Arahkan kamera ke QR code yang ditunjukkan oleh calon anggota.</x-slot>
 
                 <div class="flex flex-col items-center justify-center mt-4 w-full">
                     <div id="qr-reader" style="width: 100%; max-width: 500px; margin: 0 auto;"></div>
                     <div id="qr-status" class="mt-4 text-center text-sm text-gray-400">
-                        Menunggu scan...
+                        Menunggu pemindaian...
                     </div>
                     <button id="restart-btn" class="mt-4 hidden px-4 py-2 bg-primary-600 text-white rounded-lg text-sm hover:bg-primary-700">
                         Mulai Ulang Scanner

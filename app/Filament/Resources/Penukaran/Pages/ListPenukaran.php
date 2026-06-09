@@ -16,12 +16,12 @@ class ListPenukaran extends ListRecords
         return [
 
             Action::make('scan')
-                ->label('Scan QR')
+                ->label('Pindai QR')
                 ->icon('heroicon-o-qr-code') // Memberikan icon opsional
                 ->color('success') // Mengubah warna tombol opsional
                 ->url(fn (): string => PenukaranResource::getUrl('scan')),
 
-            CreateAction::make(),
+            CreateAction::make()->label('Tambah'),
         ];
     }
 

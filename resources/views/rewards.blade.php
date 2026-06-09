@@ -64,7 +64,9 @@
                     <div class="reward-card p-4 rounded-xl backdrop-blur-sm bg-white/5 overflow-hidden" data-id="{{ $reward->reward_id }}" data-points="{{ $reward->points_required }}" data-name="{{ $reward->name }}" data-stock="{{ $reward->stock }}">
                         <div class="flex items-start justify-between">
                             <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 rounded-full overflow-hidden"><img src="{{ asset('rewards/' . $reward->image) }}" class="w-full h-full object-cover"></div>
+                                <div class="w-12 h-12 rounded-full overflow-hidden">
+                                    <img src="{{ $reward->image_url }}" class="w-full h-full object-cover" alt="{{ $reward->name }}">
+                                </div>
                                 <div>
                                     <p class="font-semibold text-white">{{ $reward->name }}</p>
                                     <p class="text-sm text-emerald-400">{{ $reward->points_required }} Poin</p>

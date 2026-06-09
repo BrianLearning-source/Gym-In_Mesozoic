@@ -121,8 +121,9 @@
 
                                 <!-- Gambar -->
                                 <div class="w-12 h-12 rounded-full overflow-hidden">
-                                    <img src="{{ asset('rewards/' . $reward->image) }}"
-                                        class="w-full h-full object-cover">
+                                    <img src="{{ $reward->image_url }}"
+                                        class="w-full h-full object-cover"
+                                        alt="{{ $reward->name }}">
                                 </div>
 
                                 <div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Users\Tables;
+namespace App\Filament\Resources\Penggunas\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -31,11 +31,11 @@ class UsersTable
             //
         ])
         ->recordActions([
-            EditAction::make(),
+            EditAction::make()->label('Ubah'),
         ])
         ->toolbarActions([
             BulkActionGroup::make([
-                DeleteBulkAction::make(),
+                DeleteBulkAction::make()->label('Hapus'),
             ]),
         ]);
     }

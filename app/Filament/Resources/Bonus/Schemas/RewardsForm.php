@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Rewards\Schemas;
+namespace App\Filament\Resources\Bonus\Schemas;
 
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\TextInput;

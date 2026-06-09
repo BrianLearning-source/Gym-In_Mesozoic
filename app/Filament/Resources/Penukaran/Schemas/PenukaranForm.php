@@ -35,9 +35,9 @@ class PenukaranForm
                     ->label('Status')
                     ->placeholder('Pilih Status')
                     ->options([
-                        'pending' => 'Pending',
-                        'claimed' => 'Claimed',
-                        'cancelled' => 'Cancelled',
+                        'pending' => 'Menunggu',
+                        'claimed' => 'Diklaim',
+                        'cancelled' => 'Dibatalkan',
                     ])
                     ->required(),
                 DateTimePicker::make('claimed_at')

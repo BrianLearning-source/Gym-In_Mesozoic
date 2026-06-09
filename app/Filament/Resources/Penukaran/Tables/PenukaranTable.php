@@ -47,8 +47,8 @@ class PenukaranTable
                         default => 'gray',
                     })
                     ->formatStateUsing(fn(string $state): string => match ($state) {
-                        'pending' => 'Pending',
-                        'claimed' => 'Claimed',
+                        'pending' => 'Menunggu',
+                        'claimed' => 'Diklaim',
                         'cancelled' => 'Dibatalkan',
                         default => $state,
                     }),
@@ -66,22 +66,22 @@ class PenukaranTable
             ->filters([
                 SelectFilter::make('status')
                     ->options([
-                        'pending' => 'Pending',
-                        'claimed' => 'Claimed',
+                        'pending' => 'Menunggu',
+                        'claimed' => 'Diklaim',
                         'cancelled' => 'Dibatalkan',
                     ]),
             ])
             ->recordActions([
                 Action::make('edit')
-                    ->label('Edit')
+                    ->label('Ubah')
                     ->icon('heroicon-o-pencil')
                     ->form([
                         Select::make('status')
                             ->label('Status')
                             ->options([
-                                'pending' => 'Pending',
-                                'claimed' => 'Claimed',
-                                'cancelled' => 'Cancelled',
+                                'pending' => 'Menunggu',
+                                'claimed' => 'Diklaim',
+                                'cancelled' => 'Dibatalkan',
                             ])
                             ->required(),
                     ])
@@ -145,7 +145,7 @@ class PenukaranTable
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()->label('Hapus'),
                 ]),
             ]);
     }

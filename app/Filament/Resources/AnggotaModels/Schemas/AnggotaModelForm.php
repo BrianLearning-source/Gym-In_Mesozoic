@@ -25,7 +25,7 @@ class AnggotaModelForm
         return $schema
             ->components([
                     Wizard::make([
-                        Step::make('Personal Identity')
+                        Step::make('Identitas Pribadi')
                                 ->inlineLabel()
                                 ->completedIcon(Heroicon::OutlinedUser)
                                 ->schema([
@@ -61,7 +61,7 @@ class AnggotaModelForm
                                         ->maxLength(20),
                                         ])
                                         ->columns(2),
-                        Step::make('Accounts Private')
+                        Step::make('Akun Pribadi')
                                 ->inlineLabel()
                                 ->columns(2)
                                 ->completedIcon(Heroicon::UserCircle)
@@ -80,7 +80,7 @@ class AnggotaModelForm
                                         ->default(now()),
                                         ]),
 
-                        Step::make('Others attributes')
+                        Step::make('Atribut Lainnya')
                                 ->inlineLabel()
                                 ->columns(2)
                                 ->completedIcon(Heroicon::PuzzlePiece)
@@ -111,7 +111,7 @@ class AnggotaModelForm
                                     type="submit"
                                     size="sm"
                                 >
-                                    Submit
+                                    Kirim
                                 </x-filament::button>
                             BLADE)))     
                         ->columnSpanFull()

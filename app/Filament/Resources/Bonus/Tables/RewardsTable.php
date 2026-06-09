@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Rewards\Tables;
+namespace App\Filament\Resources\Bonus\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -37,11 +37,11 @@ class RewardsTable
                 //
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()->label('Ubah'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()->label('Hapus'),
                 ]),
             ]);
     }

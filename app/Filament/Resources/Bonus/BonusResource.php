@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Filament\Resources\Rewards;
+namespace App\Filament\Resources\Bonus;
 
-use App\Filament\Resources\Rewards\Pages\CreateRewards;
-use App\Filament\Resources\Rewards\Pages\EditRewards;
-use App\Filament\Resources\Rewards\Pages\ListRewards;
-use App\Filament\Resources\Rewards\Schemas\RewardsForm;
-use App\Filament\Resources\Rewards\Tables\RewardsTable;
+use App\Filament\Resources\Bonus\Pages\CreateRewards;
+use App\Filament\Resources\Bonus\Pages\EditRewards;
+use App\Filament\Resources\Bonus\Pages\ListRewards;
+use App\Filament\Resources\Bonus\Schemas\RewardsForm;
+use App\Filament\Resources\Bonus\Tables\RewardsTable;
 use App\Models\Rewards;
 use BackedEnum;
 use Illuminate\Contracts\Support\Htmlable;
@@ -16,18 +16,15 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use UnitEnum;
 
-class RewardsResource extends Resource
+class BonusResource extends Resource
 {
     protected static ?string $model = Rewards::class;
 
     protected static string | UnitEnum | null $navigationGroup = 'Fitur';
 
-    // protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Gift;
 
-    public static function getNavigationIcon() : string | BackedEnum | Htmlable | null
-    {
-        return 'heroicon-o-gift';
-    }
+    protected static ?string $navigationLabel = 'Bonus';
 
     protected static ?string $recordTitleAttribute = 'name';
 

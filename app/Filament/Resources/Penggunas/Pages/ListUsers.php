@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\KepadatanGyms\Pages;
+namespace App\Filament\Resources\Penggunas\Pages;
 
-use App\Filament\Resources\KepadatanGyms\KepadatanGymResource;
+use App\Filament\Resources\Penggunas\PenggunaResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 
-class ListKepadatanGyms extends ListRecords
+class ListUsers extends ListRecords
 {
-    protected static string $resource = KepadatanGymResource::class;
+    protected static string $resource = PenggunaResource::class;
 
     protected function getHeaderActions(): array
     {

@@ -15,12 +15,12 @@ class ListRegistrasis extends ListRecords
     {
         return [
             Action::make('scan')
-                ->label('Scan QR')
+                ->label('Pindai QR')
                 ->icon('heroicon-o-qr-code')
                 ->color('success')
                 ->url(fn (): string => RegistrasiResource::getUrl('scan')),
 
-            CreateAction::make(),
+            CreateAction::make()->label('Tambah'),
         ];
     }
     }

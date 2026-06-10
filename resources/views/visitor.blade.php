@@ -170,11 +170,13 @@
                 menunggu Anda!</p>
         </div>
 
-        <div class="flex flex-row justify-between items-center pt-7">
-            {{-- <img src="" alt="" height="308px">
-            <img src="" alt="" height="308px"> --}}
-            <div style="height: 308px; background: #ffffff;"></div>
-            <div style="height: 308px; background: #ffffff;"></div>
+        <div class="flex flex-row justify-center items-center gap-4 pt-7 w-full">
+            <div class="flex-1 flex justify-center">
+                <img src="{{ asset('img/Dasbor.png') }}" alt="Streak" class="w-full h-auto object-contain">
+            </div>
+            <div class="flex-1 flex justify-center">
+                <img src="{{ asset('img/Hadiah.png') }}" alt="Reward" class="w-full h-auto object-contain">
+            </div>
         </div>
 
         <p class="text-white text-center pt-3 opacity-80">Tukarkan Poin <i>Streak</i> Anda dengan berbagai hadiah!</p>
@@ -193,9 +195,9 @@
                 </p>
             </div>
 
-            <div class="flex flex-row justify-between items-center pt-7">
-                {{-- <img src="" alt="" height="308px">
-                <img src="" alt="" height="308px"> --}}
+            <div class="flex flex-row justify-center items-center pt-7">
+                <img src="{{ asset('img/Kepadatan.png') }}" alt="Kepadatan Gym" class="w-full max-w-sm h-auto object-contain">
+                {{-- <img src="" alt="" height="308px"> --}}
                 <div style="height: 308px; background: #ffffff;"></div>
             </div>
 
@@ -213,10 +215,13 @@
             <p class="text-white text-right pt-3 opacity-80">Catat dan lihat seberapa pesat perjalananmu!</p>
         </div>
 
-        <div class="flex flex-row justify-between items-center pt-7">
-            {{-- <img src="" alt="" height="308px">
-            <img src="" alt="" height="308px"> --}}
-            <div style="height: 308px; background: #ffffff;"></div>
+        <div class="flex flex-row justify-center items-center gap-4 pt-7 w-full">
+            <div class="flex-1 flex justify-center">
+                <img src="{{ asset('img/Perkembangan.png') }}" alt="Perkembangan" class="w-full h-auto object-contain">
+            </div>
+            <div class="flex-1 flex justify-center">
+                <img src="{{ asset('img/Perkembangan1.png') }}" alt="Perkembangan" class="w-full h-auto object-contain">
+            </div>
         </div>
 
         <p class="text-white text-right pt-3 opacity-80 flex flex-col justify-end items-end">Tunjukkanlah hasil kerja

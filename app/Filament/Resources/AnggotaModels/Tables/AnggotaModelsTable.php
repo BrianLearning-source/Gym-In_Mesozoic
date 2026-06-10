@@ -4,9 +4,12 @@ namespace App\Filament\Resources\AnggotaModels\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
+use Filament\Forms\Components\DatePicker;
 
 class AnggotaModelsTable
 {
@@ -20,31 +23,52 @@ class AnggotaModelsTable
                     ->sortable(),
                 TextColumn::make('email')
                     ->label('Surel')
-                    ->searchable()
-                    ->sortable(),
+                    ->toggleable()
+                    ->searchable(),
                 TextColumn::make('gender')
                     ->label('Jenis Kelamin')
                     ->searchable()
+                    ->toggleable()
                     ->sortable(),
-                TextColumn::make('nomor_telepon')
+                TextColumn::make('phone_number')
                     ->label('Nomor Telepon')
-                    ->searchable()
-                    ->sortable(),
+                    ->toggleable()
+                    ->searchable(),
                 TextColumn::make('streak')
                     ->label('Rentetan')
                     ->searchable()
                     ->toggleable()
                     ->sortable(),
-            ])
+                TextColumn::make('join_date')
+                    ->label('Tanggal Bergabung')
+                    ->date('d/m/Y')
+                    ->toggleable()
+                    ->sortable()
+            ])->defaultSort('join_date', 'desc')
             ->filters([
-                //
+                Filter::make('created_at')
+                    ->label('Tanggal bergabung')
+                        ->schema([
+                            DatePicker::make('created_at')
+                                ->label('Pilih Tanggal: ')
+                                ->native(false)
+                                ->displayFormat('d/m/Y'),
+                        ])
+                        ->query(function ( $query, $data){
+                            return $query   
+                                ->when(
+                                    $data['created_at'],
+                                    fn ($query, $date) => $query->whereDate('created_at', $date)
+                                );
+                        }),
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()->label('Ubah'),
+                DeleteAction::make()->label('Hapus')
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()->label('Hapus'),
                 ]),
             ]);
     }

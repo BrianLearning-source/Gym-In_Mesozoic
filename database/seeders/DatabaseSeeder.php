@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
+            TestDataSeeder::class,
             AnggotaSeeder::class,
             LevelSeeder::class,
             PerkembanganSeeder::class,

@@ -12,35 +12,36 @@ class RewardsForm
     public static function configure(Schema $schema): Schema
     {
         return $schema
-            ->components([
-                Section::make('Reward ')
-                    ->inlineLabel()
+            ->schema([
+                Section::make('Detail Bonus')
+                    ->columnSpan(1)
                     ->schema([
-                TextInput::make('name')
-                    ->label('Nama Barang')
-                    ->placeholder('Nama Barang')
-                    ->required(),
-                TextInput::make('points_required')
-                    ->numeric()
-                    ->placeholder('Jumlah Poin')
-                    ->minValue(0)
-                    ->label('Poin yang dibutuhkan')
-                    ->required(),
-
-                TextInput::make('stock')
-                    ->numeric()
-                    ->minvalue(0)
-                    ->placeholder('Stok')
-                    ->label('Stok')
-                    ->required(),
-                    ]), 
-                    
-                FileUpload::make('image')
-                    ->label('Gambar')
-                    ->required()
-                    ->placeholder('Unggah gambar reward')
-                    ->disk('public')
-                    ->directory('rewards'),
-                    ])->columns(2);
+                        TextInput::make('name')
+                            ->label('Nama Barang')
+                            ->placeholder('Nama Barang')
+                            ->required(),
+                        TextInput::make('points_required')
+                            ->numeric()
+                            ->placeholder('Jumlah Poin')
+                            ->minValue(0)
+                            ->label('Poin yang dibutuhkan')
+                            ->required(),
+                        TextInput::make('stock')
+                            ->numeric()
+                            ->minValue(0)
+                            ->placeholder('Stok')
+                            ->label('Stok')
+                            ->required(),
+                    ]),
+                Section::make('Gambar')
+                    ->columnSpan(1)
+                    ->schema([
+                        FileUpload::make('image')
+                            ->label('Gambar Reward')
+                            ->required()
+                            ->disk('public')
+                            ->directory('rewards'),
+                    ]),
+            ])->columns(2);
     }
 }

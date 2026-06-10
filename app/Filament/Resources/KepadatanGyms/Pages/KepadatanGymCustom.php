@@ -9,6 +9,8 @@ class KepadatanGymCustom extends Page
 {
     protected static string $resource = KepadatanGymResource::class;
 
+    protected static ?string $title = 'Statistik & Detail Kepadatan Gym';
+
     protected string $view = 'filament.resources.kepadatan-gyms.pages.kepadatan-gym';
 
     protected function getHeaderWidgets(): array

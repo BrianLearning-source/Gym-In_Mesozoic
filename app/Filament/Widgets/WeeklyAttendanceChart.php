@@ -32,8 +32,8 @@ class WeeklyAttendanceChart extends ChartWidget
                 [
                     'label' => 'Member',
                     'data' => $data,
-                    'backgroundColor' => '#f59e0b',
-                    'borderColor' => '#d97706',
+                    'backgroundColor' => '#34d399',
+                    'borderColor' => '#059669',
                     'borderWidth' => 1,
                     'borderRadius' => 4,
                 ],

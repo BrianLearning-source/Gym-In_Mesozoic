@@ -6,11 +6,14 @@ use App\Models\Penukaran;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\DeleteAction;
 use Filament\Notifications\Notification;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\Filter;
+use Filament\Forms\Components\DatePicker;
 
 class PenukaranTable
 {
@@ -56,13 +59,13 @@ class PenukaranTable
                     ->label('Tgl Aktivasi')
                     ->dateTime()
                     ->sortable()
-                    ->toggleable(),
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->label('Dibuat')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-            ])
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 SelectFilter::make('status')
                     ->options([
@@ -70,6 +73,21 @@ class PenukaranTable
                         'claimed' => 'Diklaim',
                         'cancelled' => 'Dibatalkan',
                     ]),
+                Filter::make('created_at')
+                    ->label('Tanggal bergabung')
+                        ->schema([
+                            DatePicker::make('created_at')
+                                ->label('Pilih Tanggal: ')
+                                ->native(false)
+                                ->displayFormat('d/m/Y'),
+                        ])
+                        ->query(function ( $query, $data){
+                            return $query   
+                                ->when(
+                                    $data['created_at'],
+                                    fn ($query, $date) => $query->whereDate('created_at', $date)
+                                );
+                        }),
             ])
             ->recordActions([
                 Action::make('edit')
@@ -83,7 +101,7 @@ class PenukaranTable
                                 'claimed' => 'Diklaim',
                                 'cancelled' => 'Dibatalkan',
                             ])
-                            ->required(),
+                            ->required(),                
                     ])
                     ->action(function (array $data, Penukaran $record) {
                         $new = $data['status'];
@@ -142,6 +160,7 @@ class PenukaranTable
 
                         $record->update($data);
                     }),
+                DeleteAction::make()->label('Hapus')
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

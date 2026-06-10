@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Penggunas\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
@@ -32,6 +33,7 @@ class UsersTable
         ])
         ->recordActions([
             EditAction::make()->label('Ubah'),
+            DeleteAction::make()->label('Hapus')
         ])
         ->toolbarActions([
             BulkActionGroup::make([

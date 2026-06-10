@@ -51,24 +51,24 @@ class ListAnggotaModels extends ListRecords
 
 
                     AnggotaModel::create([
-        'username' => $registration->username,
-        'name' => $registration->name,
-        'title' => 'Pemula',
-        'gender'=> 'Laki-laki',
-        'email' => $registration->email,
-        'password' => $registration->password,
-        'phone_number' => $registration->phone_number,
-        'join_date' => $registration->join_date,
-        'points' => 0,
-        'streak' => 0,
-        'highest_streak' => 0,
-        'qr_code' => null,
-        'rest_days' => $registration->rest_days,
-        'status'=> 'active',
-        'avatar' => null,
-        ]);
+                        'username' => $registration->username,
+                        'name' => $registration->name,
+                        'title' => 'Pemula',
+                        'gender'=> 'Laki-laki',
+                        'email' => $registration->email,
+                        'password' => $registration->password,
+                        'phone_number' => $registration->phone_number,
+                        'join_date' => $registration->join_date,
+                        'points' => 0,
+                        'streak' => 0,
+                        'highest_streak' => 0,
+                        'qr_code' => null,
+                        'rest_days' => $registration->rest_days,
+                        'status'=> 'active',
+                        'avatar' => null,
+                        ]);
 
-        Notification::make()
+                    Notification::make()
                         ->title('Berhasil')
                         ->body('Pengunjung berhasil diaktivasi menjadi anggota.')
                         ->success()
@@ -78,7 +78,9 @@ class ListAnggotaModels extends ListRecords
                     return redirect()->to(AnggotaModelResource::getUrl('index'));
                 }),
 
-            CreateAction::make()->label('Tambah Anggota'),
+            CreateAction::make()->label('Tambah Anggota')
+            ->createAnother(false)
+            ->modalSubmitAction(false),
         ];
     }
 }

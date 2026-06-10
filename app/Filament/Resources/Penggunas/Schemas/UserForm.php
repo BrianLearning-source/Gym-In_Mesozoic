@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Penggunas\Schemas;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
+use App\Rules\PhoneNumber;
 class UserForm
 {
     public static function configure(Schema $schema): Schema
@@ -20,14 +21,18 @@ class UserForm
                             ->placeholder('Nama Admin')
                             ->maxLength(255),
                         TextInput::make('email')
+                            ->label('Surel Admin')
                             ->email()
                             ->required()
-                            ->placeholder('Email Admin')
+                            ->placeholder('Surel Admin')
                             ->maxLength(255),
                         TextInput::make('nomor_telepon') -> label('Nomor telepon')
                             ->required()
+                            ->tel()
                             ->placeholder('+62xxxxxxxxxxx')
-                            ->maxLength(13),
+                            ->minLength(10)
+                            ->maxLength(15)
+                            ->rule(new PhoneNumber),
                         TextInput::make('password') -> label('Kata sandi')
                             ->password()
                             ->placeholder('******')

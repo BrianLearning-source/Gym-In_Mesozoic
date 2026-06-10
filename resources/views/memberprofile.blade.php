@@ -119,7 +119,7 @@
                         <span class="font-semibold text-white">{{ $anggota->gender }}</span>
                     </div>
                     <div class="flex justify-between items-center pb-3 border-b border-white/20">
-                        <span class="text-gray-300">Email</span>
+                        <span class="text-gray-300">Surel</span>
                         <span class="font-semibold text-white">{{ $anggota->email }}</span>
                     </div>
                     <div class="flex justify-between items-center pb-3 border-b border-white/20">

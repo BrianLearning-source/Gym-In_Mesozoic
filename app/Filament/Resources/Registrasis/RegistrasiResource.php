@@ -22,7 +22,7 @@ class RegistrasiResource extends Resource
 
     protected static string | UnitEnum | null $navigationGroup = 'Keanggotaan';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedIdentification;
 
     protected static ?string $recordTitleAttribute = 'name';
 

@@ -6,6 +6,7 @@ use Filament\Schemas\Schema;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Schemas\Components\Section;
+use App\Rules\PhoneNumber as PhoneNumberRule;
 
 class RegistrasiForm
 {
@@ -25,8 +26,8 @@ class RegistrasiForm
                                 ->placeholder('Nama Lengkap')
                                 ->required(),
                             TextInput::make('email')
-                                ->label('Email')
-                                ->placeholder('Email')
+                                ->label('Surel')
+                                ->placeholder('Surel')
                                 ->required(),
                             TextInput::make('phone_number')
                                 ->label('Nomor Telepon')
@@ -34,14 +35,18 @@ class RegistrasiForm
                                 ->required()
                                 ->tel()
                                 ->minLength(10)
-                                ->maxLength(15),
+                                ->maxLength(15)
+                                ->rule(new PhoneNumberRule),
                             TextInput::make('password')
                                 ->label('Kata Sandi')
                                 ->placeholder('******')
                                 ->required()
                                 ->password(),
                             TextInput::make('rest_days')
-                                ->default(2),
+                                ->label('Hari Istirahat')
+                                ->placeholder('Jumlah hari istirahat')
+                                ->default(2)
+                                ->numeric(),
                             DateTimePicker::make('join_date')
                                 ->label('Tanggal Bergabung')
                                 ->placeholder('Pilih tanggal bergabung')

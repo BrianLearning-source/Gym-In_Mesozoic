@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Bonus\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
@@ -24,13 +25,16 @@ class RewardsTable
                     ->sortable()
                     ->searchable(),
                 ImageColumn::make('image')
+                    ->toggleable()
                     ->disk('public')
                     ->label('Gambar'),
                 TextColumn::make('points_required')
                     ->label('Poin yang dibutuhkan')
+                    ->searchable()
                     ->sortable(),
                 TextColumn::make('stock')
                     ->label('Stok')
+                    ->searchable()
                     ->sortable()
             ])
             ->filters([
@@ -38,6 +42,8 @@ class RewardsTable
             ])
             ->recordActions([
                 EditAction::make()->label('Ubah'),
+                DeleteAction::make()->label('Hapus')
+
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

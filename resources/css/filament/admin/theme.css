@@ -25,3 +25,7 @@
 .fi-ta-content > nav {
     @apply !border-t !border-emerald-500/40 dark:!border-emerald-500/40;
 }
+
+.fi-sidebar-item-label {
+    font-size: 18px !important; /* 50px nanti akan sangat kebesaran hehe, coba 18px atau 20px dulu */
+}

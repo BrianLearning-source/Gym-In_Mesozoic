@@ -21,7 +21,7 @@ class ListPenukaran extends ListRecords
                 ->color('success') // Mengubah warna tombol opsional
                 ->url(fn (): string => PenukaranResource::getUrl('scan')),
 
-            CreateAction::make()->label('Tambah'),
+            CreateAction::make()->label('Tambah Penukaran'),
         ];
     }
 

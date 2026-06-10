@@ -20,6 +20,8 @@ class BonusResource extends Resource
 {
     protected static ?string $model = Rewards::class;
 
+    protected static ?string $modelLabel = "Bonus";
+
     protected static string | UnitEnum | null $navigationGroup = 'Fitur';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Gift;

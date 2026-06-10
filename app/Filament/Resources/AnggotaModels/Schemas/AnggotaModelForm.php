@@ -15,6 +15,7 @@ Use Filament\Schemas\Components\Wizard;
 Use Filament\Schemas\Components\Wizard\Step;
 Use Illuminate\Support\Facades\Blade;
 Use Illuminate\Support\HtmlString;
+use App\Rules\PhoneNumber;
 
 
 
@@ -41,8 +42,8 @@ class AnggotaModelForm
                                         ->required()
                                         ->maxLength(100),
                                     TextInput::make('email')
-                                        ->label('Email')
-                                        ->placeholder('Masukkan email')
+                                        ->label('Surel')
+                                        ->placeholder('Masukkan surel')
                                         ->required()
                                         ->email()
                                         ->unique(ignoreRecord: true)
@@ -58,7 +59,9 @@ class AnggotaModelForm
                                         ->label('Nomor Telepon')
                                         ->placeholder('+62xxxxxxxxxx')
                                         ->tel()
-                                        ->maxLength(20),
+                                        ->minLength(10)
+                                        ->maxLength(15)
+                                        ->rule(new PhoneNumber),
                                         ])
                                         ->columns(2),
                         Step::make('Akun Pribadi')

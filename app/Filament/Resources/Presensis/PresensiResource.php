@@ -21,7 +21,7 @@ class PresensiResource extends Resource
 
     protected static string | UnitEnum | null $navigationGroup = 'Fitur';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::CheckCircle;
 
     protected static ?string $recordTitleAttribute = 'name';
 

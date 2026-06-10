@@ -13,7 +13,7 @@ class KepadatanGymResource extends Resource
 {
     protected static ?string $model = KepadatanGym::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::ArrowTrendingUp;
 
     protected static string | UnitEnum | null $navigationGroup = 'Fitur';
 

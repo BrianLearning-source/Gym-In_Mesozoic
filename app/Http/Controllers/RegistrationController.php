@@ -6,6 +6,7 @@ use App\Models\Registrasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
+use App\Rules\PhoneNumber;
 
 class RegistrationController extends Controller
 {
@@ -20,7 +21,7 @@ class RegistrationController extends Controller
             'username' => 'required|string|min:3|max:50|unique:registrasis,username|regex:/^[a-zA-Z0-9_-]+$/',
             'name' => 'required|string|min:3|max:100',
             'email' => 'required|email|max:100|unique:registrasis,email',
-            'phone_number' => ['required', 'string', 'max:20'],
+            'phone_number' => ['required', 'string', new PhoneNumber],
         ]);
 
         try {

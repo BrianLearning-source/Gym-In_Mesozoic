@@ -13,7 +13,9 @@ class ListRewards extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make()->label('Tambah'),
+            CreateAction::make()
+                ->label('Tambah Bonus')
+                ->modalWidth('2xl'),
         ];
     }
 }

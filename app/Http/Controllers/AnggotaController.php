@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use App\Rules\PhoneNumber;
 
 class AnggotaController extends Controller
 {
@@ -49,7 +50,7 @@ class AnggotaController extends Controller
         $stock = $rewards->pluck('stock')->toArray();
         $totalStock = array_sum($stock);
 
-        $kapasitas = 30;
+        $kapasitas = 5;
         $nowTime = now()->format('H:i:s');
         $memberActive = Presensi::whereDate('created_at', today())
             ->whereTime('start_time', '<=', $nowTime)
@@ -148,7 +149,7 @@ class AnggotaController extends Controller
             'name' => 'required|string|max:255',
             'title' => 'nullable|string|max:255',
             'email' => 'required|email|unique:m_anggota,email,' . $anggota->id,
-            'phone_number' => 'nullable|string|max:20',
+            'phone_number' => ['nullable', 'string', new PhoneNumber],
             'gender' => 'nullable|in:0,1',
             'password' => 'nullable|string|min:6|confirmed',
             'avatar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',

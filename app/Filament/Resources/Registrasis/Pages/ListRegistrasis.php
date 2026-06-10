@@ -20,7 +20,7 @@ class ListRegistrasis extends ListRecords
                 ->color('danger')
                 ->url(fn (): string => RegistrasiResource::getUrl('scan')),
 
-            CreateAction::make()->label('Tambah'),
+            CreateAction::make()->label('Proses Registrasi'),
         ];
     }
     }

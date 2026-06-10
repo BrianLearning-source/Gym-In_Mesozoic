@@ -14,7 +14,7 @@ class GymStatsOverview extends StatsOverviewWidget
 
     protected function getStats(): array
     {
-        $kapasitas = 30;
+        $kapasitas = 5;
         $nowTime = now()->format('H:i:s');
         $memberToday = Presensi::whereDate('created_at', today())
             ->whereTime('start_time', '<=', $nowTime)

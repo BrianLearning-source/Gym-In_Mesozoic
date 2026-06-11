@@ -1,8 +1,9 @@
-@source '../../../../vendor/diogogpinto/filament-auth-ui-enhancer/resources/**/*.blade.php';
-@import '../../../../vendor/filament/filament/resources/css/theme.css';
+@import "tailwindcss";
 
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';
+@source '../../../../vendor/filament/**/*.blade.php';
+@source '../../../../vendor/diogogpinto/filament-auth-ui-enhancer/resources/**/*.blade.php';
 
 /* Mengubah warna garis luar (ring) pada kontainer tabel */
 .fi-ta-content {
@@ -10,7 +11,7 @@
 }
 
 /* Mengubah warna garis pemisah antar baris di dalam tabel */
-.fi-ta-table, 
+.fi-ta-table,
 .fi-ta-tbody {
     @apply !divide-emerald-500/40 dark:!divide-emerald-500/40;
 }
@@ -26,6 +27,7 @@
     @apply !border-t !border-emerald-500/40 dark:!border-emerald-500/40;
 }
 
+/* Mengubah ukuran font sidebar */
 .fi-sidebar-item-label {
-    font-size: 18px !important; /* 50px nanti akan sangat kebesaran hehe, coba 18px atau 20px dulu */
+    font-size: 18px !important;
 }

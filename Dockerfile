@@ -32,8 +32,10 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
         zip \
         intl
 
-# Enable Apache Rewrite
-RUN a2enmod rewrite
+# Enable Apache Rewrite and fix MPM conflict
+RUN a2enmod rewrite \
+    && a2dismod mpm_event mpm_worker \
+    && a2enmod mpm_prefork
 
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer

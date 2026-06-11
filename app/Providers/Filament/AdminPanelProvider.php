@@ -63,14 +63,14 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             
-            ->plugins([
-                AuthUIEnhancerPlugin::make()
-                    ->formPanelWidth('40%')
-                    ->formPanelPosition('left')
-                    ->emptyPanelBackgroundImageURL('https://images.pexels.com/photos/3837433/pexels-photo-3837433.jpeg')
-                    ->emptyPanelBackgroundImageOpacity('90%') 
-                    ->showEmptyPanelOnMobile(false)
-            ])
+            // ->plugins([
+            //     AuthUIEnhancerPlugin::make()
+            //         ->formPanelWidth('40%')
+            //         ->formPanelPosition('left')
+            //         ->emptyPanelBackgroundImageURL('https://images.pexels.com/photos/3837433/pexels-photo-3837433.jpeg')
+            //         ->emptyPanelBackgroundImageOpacity('90%') 
+            //         ->showEmptyPanelOnMobile(false)
+            // ])
             ->viteTheme('resources/css/filament/admin/theme.css');
     }
 }

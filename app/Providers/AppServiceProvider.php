@@ -26,4 +26,6 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
     }
+
+    protected $proxies = '*'; // Ubah menjadi '*' untuk mempercayai semua proxy (Railway)
 }

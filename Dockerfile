@@ -65,6 +65,8 @@ RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' \
 
 EXPOSE 8080
 
-CMD sed -i "s/Listen 80/Listen ${PORT:-8080}/" /etc/apache2/ports.conf && \
+CMD a2dismod mpm_event mpm_worker 2>/dev/null || true; \
+    a2enmod mpm_prefork 2>/dev/null || true; \
+    sed -i "s/Listen 80/Listen ${PORT:-8080}/" /etc/apache2/ports.conf && \
     sed -i "s/:80>/:${PORT:-8080}>/" /etc/apache2/sites-available/000-default.conf && \
     apache2-foreground

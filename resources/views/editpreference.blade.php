@@ -56,7 +56,7 @@
         </div>
         <!-- Login Form -->
         <div
-            class="flex flex-col justify-center items-center backdrop-blur-sm drop-shadow-2xl bg-white bg-opacity-20 rounded-3xl w-fit h-fit mt-3.5 overflow-hidden">
+            class="flex flex-col justify-center items-center backdrop-blur-sm drop-shadow-2xl bg-white/10 rounded-3xl w-fit h-fit mt-3.5 overflow-hidden">
             <div class=" m-11">
                 <h1 class="text-2xl font-bold text-white text-center header-glow uppercase">Preferensi Latihan</h1>
 
@@ -77,7 +77,7 @@
 
                     <input type="number" name="rest_day" 
                         value="{{ old('rest_day', $anggota->rest_days ?? '') }} "placeholder="Hari Libur (0-5)" min="0" max="5"
-                        class="bg-white bg-opacity-20 text-white placeholder:text-white placeholder:opacity-75 border border-white border-opacity-50 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-white">
+                        class="w-full resize-none overflow-hidden rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500">
                         <p class="text-white text-sm">*Masukkan jumlah hari libur dalam seminggu (0-5), untuk mempertahankan <i>streak</i> Anda.</p>
                     <button type="submit"
                         class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 overflow-hidden"

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Profil Anggota - GYM-IN</title>
 
-    @vite('resources/css/app.css')
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
         .header-glow {
@@ -193,7 +193,7 @@
                     </a>
 
                     <form action="{{ route('logout') }}" method="POST"
-                        onclick="return confirm('Apakah Anda yakin ingin logout?')">
+                        onclick="return confirm('Apakah Anda yakin ingin keluar?')">
                         @csrf
                         <button type="submit"
                             class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 overflow-hidden"

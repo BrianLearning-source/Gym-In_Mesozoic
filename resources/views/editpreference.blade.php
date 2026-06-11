@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Preferensi Latihan</title>
 
-    @vite('resources/css/app.css')
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
         .header-glow {

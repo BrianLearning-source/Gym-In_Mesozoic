@@ -32,10 +32,10 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
         zip \
         intl
 
-# Enable Apache Rewrite and fix MPM conflict
-RUN a2enmod rewrite \
-    && a2dismod mpm_event mpm_worker \
-    && a2enmod mpm_prefork
+# Fix Apache MPM conflict - THIS IS THE CRITICAL PART
+RUN a2dismod mpm_event mpm_worker || true \
+    && a2enmod mpm_prefork \
+    && a2enmod rewrite
 
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
@@ -61,9 +61,10 @@ RUN npm run build
 RUN chown -R www-data storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
 
-# Apache document root
+# Set Apache document root to public
 RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' \
-    /etc/apache2/sites-available/*.conf
+    /etc/apache2/sites-available/*.conf \
+    /etc/apache2/sites-enabled/*.conf 2>/dev/null || true
 
 EXPOSE 8080
 

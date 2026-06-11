@@ -1,4 +1,4 @@
-FROM php:8.3-apache
+FROM php:8.3-apache-bookworm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -14,7 +14,8 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     libicu-dev \
     gnupg \
-    ca-certificates
+    ca-certificates \
+    netcat-openbsd
 
 # Install Node.js 22
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
@@ -32,10 +33,10 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
         zip \
         intl
 
-# Fix Apache MPM conflict - THIS IS THE CRITICAL PART
-RUN a2dismod mpm_event mpm_worker || true \
-    && a2enmod mpm_prefork \
-    && a2enmod rewrite
+# Completely remove conflicting MPM modules and ensure only prefork is available
+RUN a2dismod -f mpm_event mpm_worker 2>/dev/null || true && \
+    a2enmod mpm_prefork rewrite && \
+    rm -f /etc/apache2/mods-available/mpm_event.load /etc/apache2/mods-available/mpm_worker.load
 
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
@@ -62,12 +63,11 @@ RUN chown -R www-data storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
 
 # Set Apache document root to public
-RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' \
-    /etc/apache2/sites-available/*.conf \
-    /etc/apache2/sites-enabled/*.conf 2>/dev/null || true
+RUN sed -i 's!/var/www/html!/var/www/html/public!g' \
+    /etc/apache2/sites-available/000-default.conf \
+    /etc/apache2/sites-available/default-ssl.conf 2>/dev/null || true
 
 EXPOSE 8080
 
-CMD sed -i "s/Listen 80/Listen ${PORT:-8080}/" /etc/apache2/ports.conf && \
-    sed -i "s/:80>/:${PORT:-8080}>/" /etc/apache2/sites-available/000-default.conf && \
-    apache2-foreground
+# Start Apache with clean environment
+CMD ["/bin/bash", "-c", "export APACHE_RUN_USER=www-data && export APACHE_RUN_GROUP=www-data && export APACHE_PID_FILE=/var/run/apache2/apache2.pid && sed -i 's/Listen 80/Listen ${PORT:-8080}/' /etc/apache2/ports.conf && apache2-foreground"]

@@ -1,55 +1,81 @@
 FROM php:8.3-apache
 
-# Install dependencies
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    unzip \
-    zip \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    libonig-dev \
-    libxml2-dev \
-    libzip-dev \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install \
-        pdo \
-        pdo_mysql \
-        mbstring \
-        exif \
-        pcntl \
-        bcmath \
-        gd \
-        zip
+Install system dependencies
 
-# Enable Apache Rewrite
+RUN apt-get update && apt-get install -y
+git
+curl
+unzip
+zip
+libpng-dev
+libjpeg62-turbo-dev
+libfreetype6-dev
+libonig-dev
+libxml2-dev
+libzip-dev
+libicu-dev
+gnupg
+ca-certificates
+
+Install Node.js 22
+
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+&& apt-get install -y nodejs
+
+Install PHP extensions
+
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+&& docker-php-ext-install
+pdo
+pdo_mysql
+mbstring
+exif
+bcmath
+gd
+zip
+intl
+
+Enable Apache Rewrite
+
 RUN a2enmod rewrite
 
-# Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+Install Composer
 
-# Set working directory
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
 WORKDIR /var/www/html
 
-# Copy project files
+Copy source code
+
 COPY . .
 
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
+Install PHP dependencies
 
-# Laravel permissions
-RUN chown -R www-data:www-data storage bootstrap/cache
-RUN chmod -R 775 storage bootstrap/cache
+RUN composer install
+--no-dev
+--optimize-autoloader
+--no-interaction
 
-# Apache Document Root -> public
-RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' \
-    /etc/apache2/sites-available/*.conf
+Install Node dependencies
 
-# Railway port
-ENV PORT=8080
-RUN sed -i 's/80/${PORT}/g' /etc/apache2/ports.conf /etc/apache2/sites-available/000-default.conf
+RUN npm install
+
+Build Vite assets
+
+RUN npm run build
+
+Laravel permissions
+
+RUN chown -R www-data storage bootstrap/cache
+&& chmod -R 775 storage bootstrap/cache
+
+Apache document root
+
+RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g'
+/etc/apache2/sites-available/*.conf
 
 EXPOSE 8080
 
-CMD ["apache2-foreground"]
+CMD sed -i "s/Listen 80/Listen ${PORT:-8080}/" /etc/apache2/ports.conf &&
+sed -i "s/:80>/:${PORT:-8080}>/" /etc/apache2/sites-available/000-default.conf &&
+apache2-foreground

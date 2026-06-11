@@ -1,0 +1,31 @@
+@source '../../../../vendor/diogogpinto/filament-auth-ui-enhancer/resources/**/*.blade.php';
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+/* Mengubah warna garis luar (ring) pada kontainer tabel */
+.fi-ta-content {
+    @apply !ring-1 !ring-emerald-500/40 dark:!ring-emerald-500/40;
+}
+
+/* Mengubah warna garis pemisah antar baris di dalam tabel */
+.fi-ta-table, 
+.fi-ta-tbody {
+    @apply !divide-emerald-500/40 dark:!divide-emerald-500/40;
+}
+
+/* Mengubah garis bawah pada bagian Header Tabel (Nama, Surel, dll) */
+.fi-ta-header,
+.fi-ta-header th {
+    @apply !border-emerald-500/40 dark:!border-emerald-500/40;
+}
+
+/* Mengubah garis atas pada bagian pagination (jika ada) */
+.fi-ta-content > nav {
+    @apply !border-t !border-emerald-500/40 dark:!border-emerald-500/40;
+}
+
+.fi-sidebar-item-label {
+    font-size: 18px !important; /* 50px nanti akan sangat kebesaran hehe, coba 18px atau 20px dulu */
+}

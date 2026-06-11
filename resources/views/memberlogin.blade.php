@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
@@ -33,15 +33,20 @@
     </div>
 
     <!-- Title -->
-    <h1 class="text-6xl font-bold text-white text-center header-glow mt-12">Gym-In</h1>
+    <div class="flex justify-center mt-12">
+        <img src="{{ asset('img/GymInLogo.png') }}" 
+            alt="Gym-In Logo" 
+            class="h-20 md:h-28 w-auto header-glow"
+            style="max-height: 112px;">
+    </div>
 
-    <div class="flex flex-col justify-center items-center mt-20 px-10">
+    <div class="flex flex-col justify-center items-center mt-5 px-10">
 
         <!-- Login Note -->
         <p class="text-white text-1xl text-center py-3 drop-shadow-2xl">
-            Untuk membuat akun, anda harus menjadi anggota gym.
+            Untuk membuat akun, anda harus menjadi anggota <i>gym</i>.
             Anda bisa mengisi formulir yang berada di halaman utama
-            atau daftar ke gym.
+            atau daftar ke <i>gym</i>.
         </p>
 
         <!-- Back Button -->
@@ -51,15 +56,16 @@
         </a>
         <!-- Login Form -->
         <div
-            class="flex flex-col justify-center items-center backdrop-blur-sm drop-shadow-2xl bg-white bg-opacity-20 rounded-3xl w-fit h-fit mt-3.5">
+            class="flex flex-col justify-center items-center backdrop-blur-sm drop-shadow-2xl bg-white bg-opacity-20 rounded-3xl w-fit h-fit mt-3.5 overflow-hidden">
             <div class=" m-11">
-                <h1 class="text-2xl font-bold text-white text-center header-glow uppercase">Login</h1>
+                <h1 class="text-2xl font-bold text-white text-center header-glow uppercase">Masuk</h1>
 
                 <form action="{{ route('login.post') }}" method="POST" class="flex flex-col gap-4 p-6">
-                    <!-- Error -->
+                    @csrf 
+                    
+                    <!-- Error messages -->
                     @if ($errors->any())
-                    <div
-                        class="bg-red-500 bg-opacity-20 border border-red-500 text-red-500 px-4 py-2 rounded-lg text-sm mb-4">
+                    <div class="bg-red-500 bg-opacity-20 border border-red-500 text-red-500 px-4 py-2 rounded-lg text-sm mb-4">
                         <ul>
                             @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -68,21 +74,20 @@
                     </div>
                     @endif
 
-                    <input type="email" name="email" placeholder="Email"
+                    <input type="email" name="email" placeholder="Surel"
                         class="bg-white bg-opacity-20 text-white placeholder:text-white placeholder:opacity-75 border border-white border-opacity-50 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-white">
-                    <input type="password" name="password" placeholder="Password"
+                    <input type="password" name="password" placeholder="Kata sandi"
                         class="bg-white bg-opacity-20 text-white placeholder:text-white placeholder:opacity-75 border border-white border-opacity-50 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-white">
                     <button type="submit"
-                        class=" text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
-                        style="background-color: rgba(77, 145, 132)">Login</button>
+                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 overflow-hidden"
+                        style="background-color: rgba(77, 145, 132)">Masuk</button>
                 </form>
             </div>
         </div>
 
         <div class="py-6">
             <p class="text-white text-1xl text-center drop-shadow-2xl">
-                Jika terdapat kendala seperti lupa kata sandi, mohon
-                kontak kami di
+                Lupa sandi? Kontak kami di
             </p>
             <p class="text-green-400 text-1xl text-center drop-shadow-2xl hover:underline">+62 767-6767-6767</p>
         </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
@@ -44,7 +44,10 @@
     <div class="flex flex-col items-center justify-center px-4 py-8 md:px-10">
 
         <!-- Title -->
-        <h1 class="mt-6 text-6xl font-bold text-center text-white md:mt-12 header-glow">GYM-IN</h1>
+        <div class="flex justify-center mt-12">
+            <img src="{{ asset('img/GymInLogo.png') }}" alt="Gym-In Logo" class="h-20 md:h-28 w-auto header-glow"
+                style="max-height: 112px;">
+        </div>
 
         <!-- Back Button -->
         <div class="w-full max-w-6xl mt-8">
@@ -55,7 +58,7 @@
         </div>
 
         <!-- Profile Header Section -->
-        <div class="relative w-full max-w-6xl my-6">
+        <div class="relative w-full max-w-6xl my-6 overflow-hidden">
             <!-- Profile Banner -->
             <div
                 class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-800/50 to-teal-800/50 backdrop-blur-sm">
@@ -67,45 +70,47 @@
                     <!-- Avatar -->
                     <div
                         class="w-24 h-24 rounded-full border-4 border-emerald-500 overflow-hidden bg-gradient-to-br from-emerald-600 to-teal-600 shadow-xl">
-                        <img src="https://pbs.twimg.com/media/E8YT2mbVcAIA5vv?format=jpg&name=small" alt="Profile"
-                            class="w-full h-full object-cover">
+                        <img
+                            src="{{ $anggota->avatar ? asset('storage/' . $anggota->avatar) : 'https://ui-avatars.com/api/?name=' . urlencode($anggota->name) . '&background=0D9488&color=fff&size=96' }}"
+                            alt="Profile" class="w-full h-full object-cover">
                     </div>
 
                     <!-- Name and Title -->
-                    <div class="mx-2 my-4 flex flex-col justify-center items-center">
+                    <div class="mx-2 flex flex-col justify-center items-center">
                         <h2 class="text-2xl font-bold text-white md:text-3xl text-center">{{ $anggota->name }}</h2>
-                        <p class="text-emerald-400 text-center">The Veteran Bodybuilder</p>
+                        <p class="text-emerald-400 text-center">{{ $anggota->title ?? 'Enthusiast Bodybuilder' }}</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Stats Grid 1 -->
-        <div class="w-full max-w-6xl gap-4 mt-8 flex flex-row flex-wrap justify-center items-center">
+        <div class="w-full max-w-6xl gap-4 flex flex-row flex-wrap justify-center items-center">
             <!-- Card 1 -->
-            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
+            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
                 <p class="text-2xl font-bold text-white md:text-3xl">{{ $anggota->join_date->format('d/m/Y') }}</p>
                 <p class="mt-2 text-sm text-gray-300">Tanggal bergabung</p>
             </div>
 
             <!-- Card 2 -->
-            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
+            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
                 <p class="text-2xl font-bold text-white md:text-3xl">{{ $anggota->highest_streak }} Hari</p>
-                <p class="mt-2 text-sm text-gray-300">Streak tertinggi</p>
+                <p class="mt-2 text-sm text-gray-300"><i>Streak</i> tertinggi</p>
             </div>
 
             <!-- Card 3 -->
-            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
-                <p class="text-2xl font-bold text-white md:text-3xl">{{ $anggota->total_training_time }} Jam</p>
+            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
+                <p class="text-2xl font-bold text-white md:text-3xl"> {{ intdiv($totalTrainingTime, 60) }} jam {{
+                    $totalTrainingTime % 60 }} menit</p>
                 <p class="mt-2 text-sm text-gray-300">Total waktu latihan</p>
             </div>
         </div>
 
         <!-- Data Anggota & Stat Anggota Section -->
-        <div class="grid w-full max-w-6xl grid-cols-1 gap-6 mt-8 lg:grid-cols-2">
+        <div class="grid w-full max-w-6xl grid-cols-1 gap-6 mt-6 lg:grid-cols-2">
 
             <!-- Data Anggota Card -->
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 overflow-hidden">
                 <h3 class="mb-6 text-xl font-bold text-white">Data Anggota</h3>
 
                 <div class="space-y-4">
@@ -114,7 +119,7 @@
                         <span class="font-semibold text-white">{{ $anggota->gender }}</span>
                     </div>
                     <div class="flex justify-between items-center pb-3 border-b border-white/20">
-                        <span class="text-gray-300">Email</span>
+                        <span class="text-gray-300">Surel</span>
                         <span class="font-semibold text-white">{{ $anggota->email }}</span>
                     </div>
                     <div class="flex justify-between items-center pb-3 border-b border-white/20">
@@ -125,17 +130,17 @@
             </div>
 
             <!-- Stat Anggota Card -->
-            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10">
-                <h3 class="mb-6 text-xl font-bold text-white">Stat Anggota</h3>
+            <div class="p-6 rounded-xl backdrop-blur-sm bg-white/10 overflow-hidden">
+                <h3 class="mb-6 text-xl font-bold text-white">Komposisi Tubuh Anggota</h3>
 
                 <div class="space-y-4">
                     <div class="flex justify-between items-center pb-3 border-b border-white/20">
                         <span class="text-gray-300">Berat Badan</span>
-                        <span class="font-semibold text-white">{{ $anggota->weight }} kg</span>
+                        <span class="font-semibold text-white">{{ $perkembangan->weight ?? '-' }} kg</span>
                     </div>
                     <div class="flex justify-between items-center pb-3 border-b border-white/20">
                         <span class="text-gray-300">Tinggi Badan</span>
-                        <span class="font-semibold text-white">{{ $anggota->height }} cm</span>
+                        <span class="font-semibold text-white">{{ $perkembangan->height ?? '-' }} cm</span>
                     </div>
                 </div>
             </div>
@@ -144,21 +149,22 @@
         <!-- Stats Grid 2 -->
         <div class="w-full max-w-6xl gap-4 mt-4 flex flex-row flex-wrap justify-center items-center">
             <!-- Card 4 -->
-            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
-                <p class="text-2xl font-bold text-white md:text-3xl">6 jam</p>
+            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
+                <p class="text-2xl font-bold text-white md:text-3xl">{{ $duration ? $duration->total_minutes : '0' }}
+                    menit</p>
                 <p class="mt-2 text-sm text-gray-300">Latihan hari ini</p>
             </div>
 
             <!-- Card 5 -->
-            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
-                <p class="text-2xl font-bold text-white md:text-3xl">67 Hari</p>
-                <p class="mt-2 text-sm text-gray-300">Streak saat ini</p>
+            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
+                <p class="text-2xl font-bold text-white md:text-3xl">{{ $anggota->streak ?? '0' }} Hari</p>
+                <p class="mt-2 text-sm text-gray-300"><i>Streak</i> saat ini</p>
             </div>
 
             <!-- Card 6 -->
-            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card">
-                <p class="text-2xl font-bold text-white md:text-3xl">6700</p>
-                <p class="mt-2 text-sm text-gray-300">Poin streak</p>
+            <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
+                <p class="text-2xl font-bold text-white md:text-3xl">{{ $anggota->points ?? '0' }}</p>
+                <p class="mt-2 text-sm text-gray-300">Poin <i>Streak</i></p>
             </div>
         </div>
 
@@ -169,37 +175,30 @@
 
                 <!-- Buttons Container -->
                 <div class="flex flex-col gap-4">
-                    <button type="button"
-                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
+                    <a href="{{ route('member.editProfile') }}"
+                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 items-center justify-center flex overflow-hidden"
                         style="background-color: rgba(77, 145, 132)">
-                        Edit Profil
-                    </button>
+                        Ubah Profil
+                    </a>
 
-                    <button type="button"
-                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
-                        style="background-color: rgba(77, 145, 132)">
-                        Ubah Password
-                    </button>
-
-                    <button type="button"
-                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
-                        style="background-color: rgba(77, 145, 132)">
-                        Pengaturan Notifikasi
-                    </button>
-
-                    <button type="button"
-                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
+                    {{-- <button type="button"
+                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 overflow-hidden"
                         style="background-color: rgba(77, 145, 132)">
                         Preferensi Latihan
-                    </button>
+                    </button> --}}
+                    <a href="{{ route('preference.edit') }}"
+                        class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 items-center justify-center flex overflow-hidden"
+                        style="background-color: rgba(77, 145, 132)">
+                        Ubah Preferensi Latihan
+                    </a>
 
                     <form action="{{ route('logout') }}" method="POST"
-                        onclick="return confirm('Apakah Anda yakin ingin logout?')">
+                        onclick="return confirm('Apakah Anda yakin ingin keluar?')">
                         @csrf
                         <button type="submit"
-                            class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300"
+                            class="text-white font-bold uppercase py-3 px-6 rounded-lg w-full hover:scale-110 transform transition duration-300 overflow-hidden"
                             style="background-color: rgba(255, 77, 77, 0.8)">
-                            Logout
+                            Keluar
                         </button>
                     </form>
                 </div>
@@ -219,7 +218,7 @@
     </div>
 
     <!-- Bottom Navigation Bar -->
-    <div class="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-sm border-t border-white/10 max-w-md mx-auto">
+    <div class="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-sm border-t border-white/10 mx-auto">
         <div class="flex justify-around items-center px-4 py-3">
             <a href="{{ route('member.dashboard') }}"
                 class="flex flex-col items-center text-white/60 hover:text-emerald-400 transition">
@@ -228,7 +227,7 @@
                         d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
                     </path>
                 </svg>
-                <span class="text-xs mt-1">Home</span>
+                <span class="text-xs mt-1">Beranda</span>
             </a>
             <a href="{{ route('member.progres') }}"
                 class="flex flex-col items-center text-white/60 hover:text-emerald-400 transition">
@@ -245,14 +244,14 @@
                         d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
                     </path>
                 </svg>
-                <span class="text-xs mt-1">Rewards</span>
+                <span class="text-xs mt-1">Bonus</span>
             </a>
             <a href="{{ route('member.profile') }}" class="flex flex-col items-center text-emerald-400 transition">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                 </svg>
-                <span class="text-xs mt-1">Profile</span>
+                <span class="text-xs mt-1">Profil</span>
             </a>
         </div>
     </div>

@@ -7,12 +7,14 @@ use App\Filament\Resources\AnggotaModels\Pages\EditAnggotaModel;
 use App\Filament\Resources\AnggotaModels\Pages\ListAnggotaModels;
 use App\Filament\Resources\AnggotaModels\Schemas\AnggotaModelForm;
 use App\Filament\Resources\AnggotaModels\Tables\AnggotaModelsTable;
+use App\Filament\Resources\AnggotaModels\Pages\SelectRegister;
 use App\Models\AnggotaModel;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class AnggotaModelResource extends Resource
 {
@@ -20,7 +22,9 @@ class AnggotaModelResource extends Resource
 
     protected static ?string $modelLabel = "Anggota";
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string | UnitEnum | null $navigationGroup = 'Keanggotaan';
+
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserGroup;
 
     protected static ?string $recordTitleAttribute = 'name';
 
@@ -45,8 +49,9 @@ class AnggotaModelResource extends Resource
     {
         return [
             'index' => ListAnggotaModels::route('/'),
-            'create' => CreateAnggotaModel::route('/create'),
+            // 'create' => CreateAnggotaModel::route('/create'),
             'edit' => EditAnggotaModel::route('/{record}/edit'),
+            // 'select' => SelectRegister::route('/select'),
         ];
     }
 }

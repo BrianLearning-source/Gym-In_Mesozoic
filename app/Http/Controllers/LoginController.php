@@ -11,6 +11,10 @@ class LoginController extends Controller
     //
     public function showLogin() 
     {
+        if (Auth::guard('member')->check()) {
+            return redirect()->route('member.dashboard');
+        }
+
         return view('memberlogin');
     }
 

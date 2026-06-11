@@ -24,8 +24,9 @@ class KepadatanGymCustom extends Page
     {
         return [
             \App\Filament\Widgets\HourlyAttendanceChart::class,
-            \App\Filament\Widgets\WeeklyAttendanceChart::class,
             \App\Filament\Widgets\RecentAttendanceTable::class,
+            \App\Filament\Widgets\WeeklyAttendanceChart::class,
+            
         ];
     }
 }

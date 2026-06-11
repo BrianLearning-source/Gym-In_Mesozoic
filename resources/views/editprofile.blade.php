@@ -71,7 +71,7 @@
                     <!-- Avatar Upload -->
                     <div class="flex flex-row items-left gap-4">
                         <img id="avatarPreview"
-                            src="{{ $anggota->avatar ? asset('storage/' . $anggota->avatar) : 'https://pbs.twimg.com/media/E8YT2mbVcAIA5vv?format=jpg&name=small' }}"
+                            src="{{ $anggota->avatar ? asset('storage/' . $anggota->avatar) : 'https://ui-avatars.com/api/?name=' . urlencode($anggota->name) . '&background=0D9488&color=fff&size=96' }}"
                             alt="Avatar" class="w-24 h-24 rounded-full object-cover border-2 border-white/10">
 
                         <!-- Custom File Input Wrapper -->

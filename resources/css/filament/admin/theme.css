@@ -2,10 +2,8 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-@source '../../../../vendor/diogogpinto/filament-auth-ui-enhancer/resources/**/*.blade.php';
-
-@source '../../../../app/Filament/**/*';
-@source '../../../../resources/views/filament/**/*';
+@source '../../../app/Filament/**/*';
+@source '../../../resources/views/filament/**/*';
 
 /* Mengubah warna garis luar (ring) pada kontainer tabel */
 .fi-ta-content {

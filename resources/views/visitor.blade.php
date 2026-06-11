@@ -124,7 +124,7 @@
                     class="h-8 md:h-10 w-auto" 
                     style="max-height: 40px;">
             </a>
-            <a href="/loginMember/" class="flex items-center gap-2">
+            <a href="/loginMember" class="flex items-center gap-2">
                 <h1 class="text-white font-semibold hover:text-gray-300">Masuk</h1>
                 <div class="bg-black w-8 h-8 rounded-full hover:scale-110 transition-transform duration-300 flex items-center justify-center">
                     <i class="fas fa-user text-white text-sm"></i>

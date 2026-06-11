@@ -45,12 +45,10 @@
 
         <!-- Title -->
         <div class="flex justify-center mt-12">
-            <img src="{{ asset('img/GymInLogo.png') }}" 
-                alt="Gym-In Logo" 
-                class="h-20 md:h-28 w-auto header-glow"
+            <img src="{{ asset('img/GymInLogo.png') }}" alt="Gym-In Logo" class="h-20 md:h-28 w-auto header-glow"
                 style="max-height: 112px;">
         </div>
-        
+
         <!-- Back Button -->
         <div class="w-full max-w-6xl mt-8">
             <a href="{{ route('member.dashboard') }}"
@@ -72,8 +70,9 @@
                     <!-- Avatar -->
                     <div
                         class="w-24 h-24 rounded-full border-4 border-emerald-500 overflow-hidden bg-gradient-to-br from-emerald-600 to-teal-600 shadow-xl">
-                        <img src="{{ $anggota->avatar ? asset('storage/' . $anggota->avatar) : 'https://pbs.twimg.com/media/E8YT2mbVcAIA5vv?format=jpg&name=small' }}" alt="Profile"
-                            class="w-full h-full object-cover">
+                        <img
+                            src="{{ $anggota->avatar ? asset('storage/' . $anggota->avatar) : 'https://ui-avatars.com/api/?name=' . urlencode($anggota->name) . '&background=0D9488&color=fff&size=96' }}"
+                            alt="Profile" class="w-full h-full object-cover">
                     </div>
 
                     <!-- Name and Title -->
@@ -101,7 +100,8 @@
 
             <!-- Card 3 -->
             <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
-                <p class="text-2xl font-bold text-white md:text-3xl"> {{ intdiv($totalTrainingTime, 60) }} jam {{ $totalTrainingTime % 60 }} menit</p>
+                <p class="text-2xl font-bold text-white md:text-3xl"> {{ intdiv($totalTrainingTime, 60) }} jam {{
+                    $totalTrainingTime % 60 }} menit</p>
                 <p class="mt-2 text-sm text-gray-300">Total waktu latihan</p>
             </div>
         </div>
@@ -150,7 +150,8 @@
         <div class="w-full max-w-6xl gap-4 mt-4 flex flex-row flex-wrap justify-center items-center">
             <!-- Card 4 -->
             <div class="w-[calc(50%-0.5rem)] p-6 rounded-xl backdrop-blur-sm bg-white/10 stat-card overflow-hidden">
-                <p class="text-2xl font-bold text-white md:text-3xl">{{ $duration ? $duration->total_minutes : '0' }} menit</p>
+                <p class="text-2xl font-bold text-white md:text-3xl">{{ $duration ? $duration->total_minutes : '0' }}
+                    menit</p>
                 <p class="mt-2 text-sm text-gray-300">Latihan hari ini</p>
             </div>
 

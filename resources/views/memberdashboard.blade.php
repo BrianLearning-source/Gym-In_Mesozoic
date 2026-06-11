@@ -86,7 +86,7 @@
             <div
                 class="w-14 h-14 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 shadow-lg flex items-center justify-center overflow-hidden border-2 border-white/20 overflow-hidden">
                 {{-- <span class="text-2xl text-white">👤</span> --}}
-                <img src="{{ $anggota->avatar ? asset('storage/' . $anggota->avatar) : 'https://pbs.twimg.com/media/E8YT2mbVcAIA5vv?format=jpg&name=small' }}"
+                <img src="{{ $anggota->avatar ? asset('storage/' . $anggota->avatar) : 'https://ui-avatars.com/api/?name=' . urlencode($anggota->name) . '&background=0D9488&color=fff&size=96' }}"
                     alt="Profile" class="w-full h-full object-cover">
             </div>
         </div>

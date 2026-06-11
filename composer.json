@@ -11,7 +11,9 @@
         "filament/filament": "^5.5",
         "laravel/framework": "^13.0",
         "laravel/tinker": "^3.0",
-        "marcelorodrigo/filament-barcode-scanner-field": "^1.1"
+        "marcelorodrigo/filament-barcode-scanner-field": "^1.1",
+        "ext-intl": "*",
+        "ext-zip": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

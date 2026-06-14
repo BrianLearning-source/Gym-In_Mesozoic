@@ -25,6 +25,8 @@ class Absent extends Page implements HasForms, HasTable
 
     protected static string $resource = PresensiResource::class;
 
+    protected static ?string $title = 'Presensi';
+
     protected string $view = 'filament.resources.presensis.pages.absent';
 
     public ?array $data = [];

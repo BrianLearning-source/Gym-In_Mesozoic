@@ -4,7 +4,7 @@
         <div class="w-full md:w-1/2 space-y-6">
             <x-filament::section>
                 <x-slot name="heading">Masukan Manual</x-slot>
-                <x-slot name="description">Gunakan form ini jika scanner sedang tidak berfungsi.</x-slot>
+                <x-slot name="description">Gunakan form ini jika pemindai sedang tidak berfungsi.</x-slot>
 
                 <form wire:submit="prosesManual" class="space-y-4 mt-4">
                     {{ $this->form }}
@@ -30,7 +30,7 @@
                         Menunggu pemindaian...
                     </div>
                     <button id="restart-btn" class="mt-4 hidden px-4 py-2 bg-primary-600 text-white rounded-lg text-sm hover:bg-primary-700">
-                        Mulai Ulang Scanner
+                        Mulai Ulang Pemindai
                     </button>
                 </div>
             </x-filament::section>

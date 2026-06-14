@@ -21,6 +21,8 @@ class ScanRegistrasi extends Page implements HasForms
 
     protected static string $resource = RegistrasiResource::class;
 
+    protected static ?string $title = 'Pemindai Registrasi';
+
     protected string $view = 'filament.resources.registrasis.pages.scan';
 
     public ?array $data = [];

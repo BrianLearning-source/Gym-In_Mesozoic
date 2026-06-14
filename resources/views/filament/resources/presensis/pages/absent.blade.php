@@ -14,7 +14,7 @@
         </div>
 
         <div class="pt-4">
-            <h2 class="text-xl font-semibold mb-6">Riwayat Absensi</h2>
+            <h2 class="text-xl font-semibold mb-6">Riwayat Presensi</h2>
             {{ $this->table }}
         </div>
     </div>

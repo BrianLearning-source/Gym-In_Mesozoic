@@ -21,7 +21,7 @@ class UserForm
                             ->placeholder('Nama Administrator')
                             ->maxLength(255),
                         TextInput::make('email')
-                            ->label('Surel Admin')
+                            ->label('Surel Admininistrator')
                             ->email()
                             ->required()
                             ->placeholder('Surel Administrator')

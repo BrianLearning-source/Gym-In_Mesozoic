@@ -33,6 +33,11 @@ class PenggunaResource extends Resource
         return UserForm::configure($schema);
     }
 
+    public static function getModelLabel(): string
+    {
+    return 'Administrator';
+    }
+
     public static function table(Table $table): Table
     {
         return UsersTable::configure($table);

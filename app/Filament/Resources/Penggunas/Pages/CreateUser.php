@@ -8,4 +8,6 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateUser extends CreateRecord
 {
     protected static string $resource = PenggunaResource::class;
+    
+    protected static ?string $title = 'Buat Administrator baru';
 }

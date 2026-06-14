@@ -8,7 +8,7 @@ use Filament\Widgets\ChartWidget;
 class HourlyAttendanceChart extends ChartWidget
 {
     protected static ?int $sort = 2;
-    protected ?string $heading = 'Member per Jam (Hari Ini)';
+    protected ?string $heading = 'Anggota per Jam (Hari Ini)';
     protected function getType(): string
     {
         return 'bar';

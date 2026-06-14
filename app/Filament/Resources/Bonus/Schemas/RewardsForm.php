@@ -37,7 +37,7 @@ class RewardsForm
                     ->columnSpan(1)
                     ->schema([
                         FileUpload::make('image')
-                            ->label('Gambar Reward')
+                            ->label('Gambar Hadiah')
                             ->required()
                             ->disk('public')
                             ->directory('rewards'),

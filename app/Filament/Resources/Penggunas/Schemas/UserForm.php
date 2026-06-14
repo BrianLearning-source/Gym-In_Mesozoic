@@ -12,19 +12,19 @@ class UserForm
     {
         return $schema
             ->components([
-                Section::make('Informasi Admin')
+                Section::make('Informasi Administrator')
                     ->inlineLabel()
                     ->columnSpanFull()
                     ->components([
                         TextInput::make('name') -> label('Nama')
                             ->required()
-                            ->placeholder('Nama Admin')
+                            ->placeholder('Nama Administrator')
                             ->maxLength(255),
                         TextInput::make('email')
                             ->label('Surel Admin')
                             ->email()
                             ->required()
-                            ->placeholder('Surel Admin')
+                            ->placeholder('Surel Administrator')
                             ->maxLength(255),
                         TextInput::make('nomor_telepon') -> label('Nomor telepon')
                             ->required()

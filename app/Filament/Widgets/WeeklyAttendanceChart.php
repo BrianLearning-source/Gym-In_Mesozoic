@@ -9,7 +9,7 @@ class WeeklyAttendanceChart extends ChartWidget
 {
     protected static ?int $sort = 4;
     protected ?string $heading = 'Tren 7 Hari Terakhir';
-    protected int|string|array $columnSpan = 'full';
+    protected int|string|array $columnSpan = '1';
 
     protected function getType(): string
     {

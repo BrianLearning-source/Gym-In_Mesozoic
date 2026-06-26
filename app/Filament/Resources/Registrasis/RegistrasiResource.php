@@ -47,7 +47,7 @@ class RegistrasiResource extends Resource
     {
         return [
             'index' => ListRegistrasis::route('/'),
-            // 'create' => CreateRegistrasi::route('/create'),
+            'create' => CreateRegistrasi::route('/create'),
             'edit' => EditRegistrasi::route('/{record}/edit'),
             'scan'  => ScanRegistrasi::route('/scan'),
         ];

@@ -33,7 +33,7 @@ class RegistrasisTable
                     ->label('Tanggal Bergabung')
                     ->sortable()
                     ->date(),
-            ])->defaultSort('join_date')
+            ])->defaultSort('join_date', 'desc')
             ->filters([
                  Filter::make('join_date', 'desc')
                     ->label('Tanggal bergabung')
